@@ -5,4 +5,9 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/core.logic "0.8.11"]])
+                 [org.clojure/core.logic "0.8.11"]]
+
+  :profiles {:dev {:dependencies [[grafter "0.11.4"]]}}
+  ;;:plugins [[lein-tools-deps "0.4.1"]]
+  ;;:lein-tools-deps/config {:config-files [:install :user :project]}
+  )

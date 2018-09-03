@@ -1,0 +1,7 @@
+{
+ :paths ["src"]
+
+ :deps {org.clojure/core.logic {:mvn/version "0.8.11"}}
+
+ :aliases {:test {:extra-paths ["test"]}}
+}
