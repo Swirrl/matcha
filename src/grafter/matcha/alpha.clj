@@ -1,11 +1,18 @@
 (ns grafter.matcha.alpha
   (:refer-clojure :exclude [==])
-  (:require [clojure.core.logic :as l :refer [== fresh run*]]
+  (:require [clojure.core.logic :as l :refer [fresh run*]]
             [clojure.core.logic.pldb :as pldb]
             [clojure.core.logic.unifier :as u]
+            [clojure.string :as string]
             [clojure.walk :as walk]))
 
 (pldb/db-rel triple subject predicate object)
+
+(defn triple-vector->idx-triple
+  "Assume triples are either 3/tuple vectors or can be destructured as
+  such.  Grafter Quad objects can be destructured in this manner."
+  [[s p o]]
+  [triple s p o])
 
 (defn index-triples
   "Return an indexed database of triples. Indexing a database will
@@ -15,7 +22,7 @@
   All query functions should accept either a sequence of triples or an
   indexed database."
   [db]
-  (with-meta (apply pldb/db (map #(vec (cons triple (seq %))) db))
+  (with-meta (apply pldb/db (map grafter-triple->idx-triple db))
     {::index true}))
 
 (defn ^:no-doc index-if-necessary
@@ -25,15 +32,30 @@
     db
     (index-triples db)))
 
+(defn query-var?
+  "Test whether supplied sym is a query variable.  Query variables are
+  symbols who's name begin with a ?."
+  [sym]
+  (and (symbol? sym)
+       (string/starts-with? (str sym) "?")))
+
 (defn- find-vars [bgps]
   (let [vars (->> bgps
                      (mapcat identity)
-                     (filter symbol?)
+                     (filter query-var?)
                      distinct
                      vec)]
     (if (seq vars)
       vars
       '[q])))
+
+#_(defmacro bgp [& query-patterns]
+  (let [syms (vec (find-vars query-patterns))
+        query-patterns (map (fn [[s p o]]
+                              `(triple ~s ~p ~o)) query-patterns)]
+
+    `(fresh ~syms
+      ~@query-patterns)))
 
 (defmacro select
   ([bgps]
@@ -60,7 +82,27 @@
       (first ((select ~project-vars ~bgps) db#)))))
 
 (defn find-vars-in-tree [tree]
-  (filterv symbol? (tree-seq coll? seq tree)))
+  (filterv query-var? (tree-seq coll? seq tree)))
+
+
+(defn unify-solutions [projected-vars solutions]
+  (map (fn [s]
+         (u/unifier (vector projected-vars s)))
+       solutions))
+
+(defn replace-vars-with-vals [construct-pattern binding-maps]
+  (map (fn [binding-map]
+         (walk/postwalk-replace binding-map construct-pattern))
+       binding-maps))
+
+(defn ^:no-doc quote-query-vars
+  "Used to help macro expansion.  We need to quote only ?query-variables
+  and leave other symbols unqouted so they pickup their values from
+  the environment."
+  [query-vars construct-pattern]
+  (let [replacements (zipmap query-vars (map (fn [qv]
+                                               `(quote ~qv)) query-vars))]
+    (walk/postwalk-replace replacements construct-pattern)))
 
 (defn group-subjects [solutions]
   (if-let [subj-maps (seq (filter :grafter.rdf/subject solutions))]
@@ -86,7 +128,7 @@
 
 (defmacro construct
   [construct-pattern bgps]
-  (let [pvars (vec (distinct (find-vars-in-tree construct-pattern)))
+  (let [pvars (set (find-vars-in-tree construct-pattern))
         syms (vec (->> (find-vars bgps)
                        (remove (set pvars))))
         query-patterns (map (fn [[s p o]]
@@ -101,13 +143,10 @@
                               ~@query-patterns)))
              ;; create a sequence of {?var :value} binding maps for
              ;; each solution.
-             vars->vals# (map (fn [i#]
-                               (u/unifier (vector (quote ~pvarvec) i#)))
-                              solutions#)
+             vars->vals# (unify-solutions (quote ~pvarvec) solutions#)
 
-             subj-maps# (map (fn [sol#]
-                               (walk/postwalk-replace sol# (quote ~construct-pattern)))
-                             vars->vals#)
+             subj-maps# (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern)
+                                                vars->vals#)
 
              grouped# (group-subjects subj-maps#)]
          grouped#))))
