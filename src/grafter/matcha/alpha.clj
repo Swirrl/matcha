@@ -64,24 +64,24 @@
 
 (defn group-subjects [solutions]
   (if-let [subj-maps (seq (filter :grafter.rdf/subject solutions))]
-    (->> subj-maps
-         (group-by :grafter.rdf/subject)
-         vals
-         (map (fn [v]
-                (apply merge-with
-                       (fn [a b]
-                         (cond
-                           (set? a)
-                           (conj a b)
-                           :else
-                           (set [a b])))
-                       v)))
-         (map (fn [m]
-                (let [vs (:grafter.rdf/subject m)
-                      v (if (set? vs)
-                          (first vs)
-                          vs)]
-                  (assoc m :grafter.rdf/subject v)))))
+    (into []
+          (comp
+           (map (fn [v]
+                  (apply merge-with
+                         (fn [a b]
+                           (cond
+                             (set? a)
+                             (conj a b)
+                             :else
+                             (set [a b])))
+                         v)))
+           (map (fn [m]
+                  (let [vs (:grafter.rdf/subject m)
+                        v (if (set? vs)
+                            (first vs)
+                            vs)]
+                    (assoc m :grafter.rdf/subject v)))))
+          (vals (group-by :grafter.rdf/subject subj-maps)))
     solutions))
 
 (defmacro construct
