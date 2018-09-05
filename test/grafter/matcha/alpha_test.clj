@@ -30,18 +30,20 @@
               (->Triple rick foaf:knows katie)
               (->Triple katie foaf:knows julie)])
 
-(def friends-big (memoize (fn []
-                            (into friends
-                                  (->> (range 2000000)
-                                       (map #(vector (data (dec %)) foaf:knows (data %))))))))
+;; a non grafter representation of the above database
+(def friends-vectors [[:rick :rdfs/label "Rick"]
+                      [:martin :rdfs/label "Martin"]
+                      [:katie :rdfs/label "Katie"]
+                      [:julie :rdfs/label "Julie"]
 
-(deftest bigish-dataset-queries
-  (let [lotsa-data (friends-big)
-        ricks-friends (select [?name]
-                              [[rick foaf:knows ?p2]
-                               [?p2 rdfs:label ?name]])]
-    (is (= ["Martin" "Katie"]
-           (ricks-friends lotsa-data)))))
+                      [:rick :foaf/knows :martin]
+                      [:rick :foaf/knows :katie]
+                      [:katie :foaf/knows :julie]])
+
+(deftest query-clojure-data
+  (testing "Querying 3/tuples of clojure values"
+    (is (= ((select-1 [[:rick :rdfs/label ?name]]) friends-vectors)
+           "Rick"))))
 
 (deftest select-test
   (testing "Select queries arity 1"
@@ -182,6 +184,17 @@
                (set (construct-all friends))))))))
 
 
-;; TODO example of using a var binding
+(def friends-big (memoize (fn []
+                            (into friends
+                                  (->> (range 2000000)
+                                       (map #(vector (data (dec %)) foaf:knows (data %))))))))
+
+(deftest bigish-dataset-queries
+  (let [lotsa-data (friends-big)
+        ricks-friends (select [?name]
+                              [[rick foaf:knows ?p2]
+                               [?p2 rdfs:label ?name]])]
+    (is (= ["Martin" "Katie"]
+           (ricks-friends lotsa-data)))))
 
 ;; TODO add bindings/values equivalent
