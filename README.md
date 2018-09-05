@@ -109,6 +109,9 @@ We can then run the query like so:
 (rick-knows friends) ;; ["Martin" "Katie"]
 ```
 
+There is also `select-1` which is just like `select` but returns just
+the first solution.
+
 ### `construct`
 
 `CONSTRUCT`s are the most powerful query type, as they allow you to
@@ -140,10 +143,25 @@ groups its solutions.  If you don't want these maps to be grouped,
 don't include the magic key `:grafter.rdf/subject` in the top level
 projection.
 
+There is also `construct-1` which is just like `construct` but returns
+only the first solution.
+
 See the [unit
 tests](https://github.com/Swirrl/matcha/blob/ae2449483d5a7849ac60a3e5b6a29e459d74ad8e/test/grafter/matcha/alpha_test.clj#L113)
 for more examples, including examples that use Matcha with Grafter
 Statements and vocabularies.
+
+### `ask`
+
+`ask` is the only query that doesn't specify an explicit projection.
+It accepts a BGP, like the other query types and returns a boolean
+result if there were any matches found.
+
+```clojure
+(def any-triples? (ask [[?s ?p ?o]])
+
+(any-triples? friends) ;; => true
+```
 
 ## Performance
 
