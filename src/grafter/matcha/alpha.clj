@@ -151,6 +151,10 @@
              grouped# (group-subjects subj-maps#)]
          grouped#))))
 
+(defmacro construct-1 [construct-pattern bgps]
+  `(fn [db#]
+     (first ((construct ~construct-pattern ~bgps) db#))))
+
 (defmacro ask [bgps]
   `(let [f# (select ~bgps)]
     (fn [db#]
