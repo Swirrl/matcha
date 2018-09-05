@@ -1,5 +1,7 @@
 # Matcha
 
+[![Clojars Project](https://img.shields.io/clojars/v/grafter/matcha.alpha.svg)](https://clojars.org/grafter/matcha.alpha)
+
 *WARNING: Alpha Software Subject to Change*
 
 A Clojure DSL to query in memory triple models with a SPARQL like
