@@ -8,6 +8,9 @@
                  [org.clojure/core.logic "0.8.11"]]
 
   :profiles {:dev {:dependencies [[grafter "0.11.4"]]}}
+
+  :deploy-repositories [["releases" :clojars]
+                       ["snapshots" :clojars]]
   ;;:plugins [[lein-tools-deps "0.4.1"]]
   ;;:lein-tools-deps/config {:config-files [:install :user :project]}
   )
