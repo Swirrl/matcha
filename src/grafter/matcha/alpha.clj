@@ -22,7 +22,7 @@
   All query functions should accept either a sequence of triples or an
   indexed database."
   [db]
-  (with-meta (apply pldb/db (map grafter-triple->idx-triple db))
+  (with-meta (apply pldb/db (map triple-vector->idx-triple db))
     {::index true}))
 
 (defn ^:no-doc index-if-necessary
