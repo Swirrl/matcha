@@ -87,7 +87,10 @@
 
 (defn unify-solutions [projected-vars solutions]
   (map (fn [s]
-         (u/unifier (vector projected-vars s)))
+         (let [vars (if (= 1 (count projected-vars))
+                      (first projected-vars)
+                      projected-vars)]
+           (u/unifier (vector vars s))))
        solutions))
 
 (defn replace-vars-with-vals [construct-pattern binding-maps]
@@ -128,7 +131,7 @@
 
 (defmacro construct
   [construct-pattern bgps]
-  (let [pvars (set (find-vars-in-tree construct-pattern))
+  (let [pvars (find-vars-in-tree construct-pattern)
         syms (vec (->> (find-vars bgps)
                        (remove (set pvars))))
         query-patterns (map (fn [[s p o]]

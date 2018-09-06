@@ -135,7 +135,14 @@
         (let [construct-all (construct [?s ?p ?o]
                                        [[?s ?p ?o]])]
           (is (= friends-db-as-triples
-               (set (construct-all friends))))))
+                 (set (construct-all friends))))))
+
+      (testing "Construct with a single projected value"
+        (let [all-s (construct [?s]
+                               [[?s ?p ?o]])]
+          (is (= (set (map vector (map :s friends)))
+                 (set (all-s friends))))))
+
 
       (testing "Construct set solution"
         (let [construct-all (construct #{?s ?p ?o}
