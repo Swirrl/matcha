@@ -110,23 +110,23 @@
 (deftest construct-test
   (testing "Construct queries"
     (testing "Construct Rick"
-      (let [construct-rick (construct {:grafter.rdf/subject rick
+      (let [construct-rick (construct {:grafter.rdf/uri rick
                                        ?p ?o}
                                       [[rick ?p ?o]])]
-        (is (= {:grafter.rdf/subject rick
+        (is (= {:grafter.rdf/uri rick
                 rdfs:label "Rick"
                 foaf:knows #{martin katie}}
                (first (construct-rick friends))))))
 
     (testing "Construct people Rick knows"
-      (let [construct-rick-nested (construct {:grafter.rdf/subject rick
-                                              foaf:knows {:grafter.rdf/subject ?p
+      (let [construct-rick-nested (construct {:grafter.rdf/uri rick
+                                              foaf:knows {:grafter.rdf/uri ?p
                                                           rdfs:label ?name}}
                                              [[rick foaf:knows ?p]
                                               [?p rdfs:label ?name]])]
-        (is (= {:grafter.rdf/subject rick
-                foaf:knows #{{:grafter.rdf/subject martin, rdfs:label "Martin"}
-                              {:grafter.rdf/subject katie, rdfs:label "Katie"}}}
+        (is (= {:grafter.rdf/uri rick
+                foaf:knows #{{:grafter.rdf/uri martin, rdfs:label "Martin"}
+                              {:grafter.rdf/uri katie, rdfs:label "Katie"}}}
                (first (construct-rick-nested friends))))))
 
     (let [friends-db-as-triples (set (map (fn [[s p o]] [s p o])
@@ -142,7 +142,6 @@
                                [[?s ?p ?o]])]
           (is (= (set (map vector (map :s friends)))
                  (set (all-s friends))))))
-
 
       (testing "Construct set solution"
         (let [construct-all (construct #{?s ?p ?o}
@@ -175,19 +174,19 @@
                 {:not/grafter.rdf.subject katie, foaf:knows julie})
                (set (construct-all friends))))))
 
-    (testing "Constructing :grafter.rdf/subject's"
-      ;; Unless the map contains a :grafter.rdf/subject key in which
+    (testing "Constructing :grafter.rdf/uri's"
+      ;; Unless the map contains a :grafter.rdf/uri key in which
       ;; case it is grouped accordingly.
-      (let [construct-all (construct {:grafter.rdf/subject ?s
+      (let [construct-all (construct {:grafter.rdf/uri ?s
                                       ?p ?o}
                                      [[?s ?p ?o]])]
         (is (= (hash-set
-                {:grafter.rdf/subject martin, rdfs:label "Martin"}
-                {:grafter.rdf/subject rick,
+                {:grafter.rdf/uri martin, rdfs:label "Martin"}
+                {:grafter.rdf/uri rick,
                  foaf:knows #{martin katie},
                  rdfs:label "Rick"}
-                {:grafter.rdf/subject julie, rdfs:label "Julie"}
-                {:grafter.rdf/subject katie, foaf:knows julie, rdfs:label "Katie"})
+                {:grafter.rdf/uri julie, rdfs:label "Julie"}
+                {:grafter.rdf/uri katie, foaf:knows julie, rdfs:label "Katie"})
                (set (construct-all friends))))))))
 
 
@@ -204,4 +203,15 @@
     (is (= ["Martin" "Katie"]
            (ricks-friends lotsa-data)))))
 
-;; TODO add bindings/values equivalent
+
+;; ;;TODO tidy up
+;; (extend-type grafter.rdf.protocols.LangString
+;;   clojure.core.logic.protocols/IUnifyTerms
+;;   (unify-terms [u v s]
+;;     (if (= u v)
+;;       s
+;;       nil))
+;;   )
+
+
+;; ;; TODO add bindings/values equivalent

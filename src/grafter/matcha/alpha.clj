@@ -108,7 +108,7 @@
     (walk/postwalk-replace replacements construct-pattern)))
 
 (defn group-subjects [solutions]
-  (if-let [subj-maps (seq (filter :grafter.rdf/subject solutions))]
+  (if-let [subj-maps (seq (filter :grafter.rdf/uri solutions))]
     (into []
           (comp
            (map (fn [v]
@@ -121,12 +121,12 @@
                              (set [a b])))
                          v)))
            (map (fn [m]
-                  (let [vs (:grafter.rdf/subject m)
+                  (let [vs (:grafter.rdf/uri m)
                         v (if (set? vs)
                             (first vs)
                             vs)]
-                    (assoc m :grafter.rdf/subject v)))))
-          (vals (group-by :grafter.rdf/subject subj-maps)))
+                    (assoc m :grafter.rdf/uri v)))))
+          (vals (group-by :grafter.rdf/uri subj-maps)))
     solutions))
 
 (defmacro construct
