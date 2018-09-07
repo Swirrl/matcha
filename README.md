@@ -120,8 +120,8 @@ results, and position the projected query variables where ever you
 want within the structure.
 
 ```clojure
-(def query (construct {:grafter.rdf/subject :rick
-                                :foaf/knows {:grafter.rdf/subject ?p
+(def query (construct {:grafter.rdf/uri :rick
+                                :foaf/knows {:grafter.rdf/uri ?p
                                 :rdfs/label ?name}}
          [[:rick :foaf/knows ?p]
          [?p :rdfs/label ?name]]))
@@ -130,17 +130,17 @@ want within the structure.
 Produces:
 
 ```clojure
-{:grafter.rdf/subject :rick
-                :foaf/knows #{{:grafter.rdf/subject :martin, :rdfs/label "Martin"}
-                              {:grafter.rdf/subject :katie, :rdfs/label "Katie"}}}
+{:grafter.rdf/uri :rick
+                :foaf/knows #{{:grafter.rdf/uri :martin, :rdfs/label "Martin"}
+                              {:grafter.rdf/uri :katie, :rdfs/label "Katie"}}}
 ```
 
 Maps in a projection that contain the special key of
-`:grafter.rdf/subject` trigger extra behaviour, and cause the query
+`:grafter.rdf/uri` trigger extra behaviour, and cause the query
 engine to group solutions by subject, and merge values into clojure
 sets.  For example in the above query you'll notice that `foaf:knows`
 groups its solutions.  If you don't want these maps to be grouped,
-don't include the magic key `:grafter.rdf/subject` in the top level
+don't include the magic key `:grafter.rdf/uri` in the top level
 projection.
 
 There is also `construct-1` which is just like `construct` but returns
