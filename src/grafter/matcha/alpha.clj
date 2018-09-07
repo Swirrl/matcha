@@ -6,7 +6,7 @@
             [clojure.string :as string]
             [clojure.walk :as walk]))
 
-(pldb/db-rel triple subject predicate object)
+(pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
 
 (defn triple-vector->idx-triple
   "Assume triples are either 3/tuple vectors or can be destructured as
