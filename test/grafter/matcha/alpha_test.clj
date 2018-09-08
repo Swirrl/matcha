@@ -192,7 +192,7 @@
 
 (def friends-big (memoize (fn []
                             (into friends
-                                  (->> (range 2000000)
+                                  (->> (range 100000)
                                        (map #(vector (data (dec %)) foaf:knows (data %))))))))
 
 (deftest bigish-dataset-queries
