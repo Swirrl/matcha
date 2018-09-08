@@ -49,14 +49,6 @@
       vars
       '[q])))
 
-#_(defmacro bgp [& query-patterns]
-  (let [syms (vec (find-vars query-patterns))
-        query-patterns (map (fn [[s p o]]
-                              `(triple ~s ~p ~o)) query-patterns)]
-
-    `(fresh ~syms
-      ~@query-patterns)))
-
 (defmacro select
   ([bgps]
    `(select ~(find-vars bgps) ~bgps))
