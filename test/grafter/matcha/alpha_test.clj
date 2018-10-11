@@ -189,6 +189,29 @@
                 {:grafter.rdf/uri katie, foaf:knows julie, rdfs:label "Katie"})
                (set (construct-all friends))))))))
 
+(deftest merge-dbs-test
+  (testing "merge-dbs is idempotent"
+    (is (= (merge-dbs [[1 2 3]] [[1 2 3]])
+           (index-triples [[1 2 3]]))))
+
+  (testing "merge-dbs is idempotent if triples are already indexed or not"
+    (is (= (merge-dbs [[1 2 3]]
+                      (index-triples [[1 2 3]]))
+           (index-triples [[1 2 3]]))))
+
+  (testing "merge-dbs works with multiple triples"
+    (is (= (merge-dbs [[1 2 3]] [[4 5 6]])
+           (index-triples [[1 2 3] [4 5 6]]))))
+
+  (testing "merge-dbs works with more complex indexes"
+    (is (= (merge-dbs [[:s :p :o]] [[:s :p2 :o]] [[:s :p2 :o2]])
+           (index-triples [[:s :p :o] [:s :p2 :o] [:s :p2 :o2]]))))
+
+  (testing "merge-dbs idempotent with complex indexed/unindexed data"
+    (is (= (merge-dbs friends-vectors (index-triples friends-vectors) friends-vectors)
+           (index-triples friends-vectors)))))
+
+
 
 (def friends-big (memoize (fn []
                             (into friends

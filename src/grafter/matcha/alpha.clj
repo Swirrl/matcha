@@ -4,7 +4,8 @@
             [clojure.core.logic.pldb :as pldb]
             [clojure.core.logic.unifier :as u]
             [clojure.string :as string]
-            [clojure.walk :as walk]))
+            [clojure.walk :as walk]
+            [clojure.set :as set]))
 
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
 
@@ -156,3 +157,23 @@
       (if (seq (f# db#))
         true
         false))))
+
+(defn merge-dbs
+  "Merges all supplied Matcha databases together into one.  Any
+  individual database form can either be indexed already with
+  index-triples, or a sequence of triples, in which case the triples
+  will be indexed before being combined with any other databases."
+  [& dbs]
+  (->> dbs
+       (map index-if-necessary)
+       (apply (partial merge-with
+                       (fn [a b]
+                         (let [unindexed {::pldb/unindexed (set/union (::pldb/unindexed a)
+                                                                      (::pldb/unindexed b))}
+
+                               rem-a (dissoc a ::pldb/unindexed)
+                               rem-b (dissoc b ::pldb/unindexed)]
+
+                           (merge unindexed
+                                  (merge-with (partial merge-with set/union)
+                                              rem-a rem-b))))))))
