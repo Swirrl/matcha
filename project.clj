@@ -4,7 +4,7 @@
   :url "https://github.com/Swirrl/matcha"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.10.0-RC1"]
                  [org.clojure/core.logic "0.8.11"]]
 
   :profiles {:dev {:dependencies [[grafter "0.11.4"]]}}
