@@ -1,11 +1,34 @@
 (ns grafter.matcha.alpha
   (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :as l :refer [fresh run*]]
+            [clojure.core.logic.protocols :as lp]
             [clojure.core.logic.pldb :as pldb]
             [clojure.core.logic.unifier :as u]
             [clojure.string :as string]
             [clojure.walk :as walk]
             [clojure.set :as set]))
+
+
+(try
+  ;; avoid issue: https://github.com/Swirrl/matcha/issues/5
+
+  (require '[grafter.rdf.protocols :as gp])
+  (import '[grafter.rdf.protocols RDFLiteral LangString Quad])
+
+  ;; NOTE the eval here allows us to catch the compiler error we'll
+  ;; get if one of the grafter classes isn't found.
+  (eval '(extend-protocol lp/IUninitialized
+           LangString
+           (lp/-uninitialized [coll]
+             coll)
+
+           RDFLiteral
+           (lp/-uninitialized [coll]
+             coll)))
+
+  (catch clojure.lang.Compiler$CompilerException _)
+  (catch java.io.FileNotFoundException _))
+
 
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
 

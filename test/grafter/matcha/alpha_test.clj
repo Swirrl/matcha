@@ -4,7 +4,9 @@
             [grafter.vocabularies.core :refer [prefixer]]
             [grafter.vocabularies.foaf :refer [foaf:knows]]
             [grafter.vocabularies.rdf :refer [rdfs:label]]
-            [grafter.rdf.protocols :refer [->Triple]]))
+            [grafter.rdf.protocols :refer [->Triple] :as gp])
+  (:import [grafter.rdf.protocols LangString RDFLiteral]
+           [java.net URI]))
 
 (deftest quote-query-vars-test
   ;; used to help macro expansion
@@ -212,6 +214,20 @@
            (index-triples friends-vectors)))))
 
 
+(deftest grafter-record-interrop
+  ;; Test we avoid issue: https://github.com/Swirrl/matcha/issues/5
+  ;; where grafter types cause an exception because they don't
+  ;; implement core.logic protocols.
+  (let [ls (gp/->LangString "foo" :en)]
+    (is (= ls  ((construct-1 ?o [[?s ?p ?o]]) [[:a :b ls]]))))
+
+  (let [rs (gp/->RDFLiteral "foo" (URI. "http://some/datatype"))]
+    (is (= rs  ((construct-1 ?o [[?s ?p ?o]]) [[:a :b rs]]))))
+
+  (let [quads [(gp/->Quad :s :p :o :g) (gp/->Quad :s :p2 :o2 :g)]]
+    (is #{:o :o2} ((construct ?o [[?s ?p ?o]]) quads))))
+
+
 
 (def friends-big (memoize (fn []
                             (into friends
@@ -225,16 +241,3 @@
                                [?p2 rdfs:label ?name]])]
     (is (= ["Martin" "Katie"]
            (ricks-friends lotsa-data)))))
-
-
-;; ;;TODO tidy up
-;; (extend-type grafter.rdf.protocols.LangString
-;;   clojure.core.logic.protocols/IUnifyTerms
-;;   (unify-terms [u v s]
-;;     (if (= u v)
-;;       s
-;;       nil))
-;;   )
-
-
-;; ;; TODO add bindings/values equivalent
