@@ -3,6 +3,7 @@
   (:require [clojure.core.logic :as l :refer [fresh run*]]
             [clojure.core.logic.protocols :as lp]
             [clojure.core.logic.pldb :as pldb]
+            [clojure.spec.alpha :as s]
             [clojure.core.logic.unifier :as u]
             [clojure.string :as string]
             [clojure.walk :as walk]
@@ -72,6 +73,14 @@
     (if (seq vars)
       vars
       '[q])))
+
+(s/def ::triple (s/tuple any? any? any?))
+
+(s/def ::bgp ::triple)
+
+(s/def ::bgps (s/+ ::bgp))
+
+(s/def ::row-projection (s/+ query-var?))
 
 (defmacro select
   ([bgps]
