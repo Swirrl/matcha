@@ -3,32 +3,30 @@
   (:require [clojure.core.logic :as l :refer [fresh run*]]
             [clojure.core.logic.protocols :as lp]
             [clojure.core.logic.pldb :as pldb]
+            [clojure.spec.alpha :as s]
             [clojure.core.logic.unifier :as u]
             [clojure.string :as string]
             [clojure.walk :as walk]
             [clojure.set :as set]))
 
+(defmacro ^:private when-available [syms & body]
+  (when (every? some? (map resolve syms))
+    `(do ~@body)))
 
 (try
   ;; avoid issue: https://github.com/Swirrl/matcha/issues/5
-
   (require '[grafter.rdf.protocols :as gp])
   (import '[grafter.rdf.protocols RDFLiteral LangString Quad])
 
-  ;; NOTE the eval here allows us to catch the compiler error we'll
-  ;; get if one of the grafter classes isn't found.
-  (eval '(extend-protocol lp/IUninitialized
-           LangString
-           (lp/-uninitialized [coll]
-             coll)
-
-           RDFLiteral
-           (lp/-uninitialized [coll]
-             coll)))
-
-  (catch clojure.lang.Compiler$CompilerException _)
   (catch java.io.FileNotFoundException _))
 
+(when-available #{LangString RDFLiteral}
+  (extend-protocol lp/IUninitialized
+    LangString
+    (lp/-uninitialized [coll] coll)
+
+    RDFLiteral
+    (lp/-uninitialized [coll] coll)))
 
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
 
@@ -71,7 +69,39 @@
                      vec)]
     (if (seq vars)
       vars
-      '[q])))
+      '[?_])))
+
+(defn collection? [x]
+  (instance? java.util.Collection x))
+
+(s/def ::sexp
+  (s/and list? (s/cat :op (s/or :ifn? ifn? :sexp ::sexp) :* (s/* any?))))
+
+(s/def ::atomic
+  (s/and some? (s/or :sexp ::sexp :non-coll (comp not collection?))))
+
+(s/def ::triple
+  (s/tuple ::atomic ::atomic ::atomic))
+
+(s/def ::bgp ::triple)
+
+(s/def ::bgps (s/coll-of ::bgp :kind vector?))
+
+(defn valid-bgps? [bgps]
+  (letfn [(valid-atomic? [x] (and some? (not (collection? x))))
+          (valid-bgp? [bgp]
+            (and (= (count bgp) 3)
+                 (every? valid-atomic? bgp)))]
+    (and (sequential? bgps)
+         (every? valid-bgp? bgps))))
+
+(defn validate-bgps [bgps error-message error-data]
+  (let [quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))]
+    `(let [bgps# ~(quote-qvars bgps)]
+       (when-not (valid-bgps? bgps#)
+         (throw (ex-info (str ~error-message)
+                         (merge {:bgps bgps#}
+                                ~(quote-qvars error-data))))))))
 
 (defmacro select
   ([bgps]
@@ -84,11 +114,20 @@
                                `(triple ~s ~p ~o)) bgps)]
 
      `(fn [db-or-idx#]
+        ~(validate-bgps bgps
+                        "Invalid data syntax passed to `select` query at runtime"
+                        {:type ::select-validation-error
+                         :project-vars project-vars})
         (let [idx# (index-if-necessary db-or-idx#)]
           (pldb/with-db idx#
             (l/run* ~project-vars
               (fresh ~syms
                 ~@query-patterns))))))))
+
+(s/fdef select
+  :args (s/or :ary-1 (s/cat :bgps ::bgps)
+              :ary-2 (s/cat :project-vars (s/coll-of query-var?)
+                            :bgps ::bgps)))
 
 (defmacro select-1
   ([bgps]
@@ -155,6 +194,10 @@
         pvarvec (vec pvars)]
 
     `(fn [db-or-idx#]
+       ~(validate-bgps bgps
+                       "Invalid data syntax passed to `construct` query at runtime"
+                       {:type ::construct-validation-error
+                        :construct-pattern construct-pattern})
        (let [idx# (index-if-necessary db-or-idx#)
              solutions# (pldb/with-db idx#
                           (l/run* ~pvarvec
@@ -170,6 +213,9 @@
              grouped# (group-subjects subj-maps#)]
          grouped#))))
 
+(s/fdef construct
+  :args (s/cat :construct-pattern any? :bgps ::bgps))
+
 (defmacro construct-1 [construct-pattern bgps]
   `(fn [db#]
      (first ((construct ~construct-pattern ~bgps) db#))))
@@ -177,9 +223,15 @@
 (defmacro ask [bgps]
   `(let [f# (select ~bgps)]
     (fn [db#]
+      ~(validate-bgps bgps
+                      "Invalid data syntax passed to `ask` query at runtime"
+                      {:type ::ask-validation-error})
       (if (seq (f# db#))
         true
         false))))
+
+(s/fdef ask
+  :args (s/cat :bgps ::bgps))
 
 (defn merge-dbs
   "Merges all supplied Matcha databases together into one.  Any
