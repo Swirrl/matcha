@@ -18,6 +18,7 @@
 
 (defmethod object-type Number [_] number?)
 
+;; xsd:string
 (defmethod object-type String [_] string?)
 
 (defmethod object-type java.net.URI [_] uri?)
@@ -30,11 +31,22 @@
 
 (defmethod object-type java.sql.Time [_] inst?)
 
-(s/def ::lang-string (s/with-gen string?
+;; TODO fix lang string support
+
+(s/def ::string string?)
+
+;; https://tools.ietf.org/html/bcp47
+(def gen-langs (fn [] (s/gen #{:en :jp :fr :en-US :en-Latn-GB-boont-r-extended-sequence-x-private :zh-Hant})))
+
+(s/def ::lang (s/with-gen keyword? gen-langs))
+
+(s/def ::lang-map (s/keys :req-un [::lang ::string]))
+
+(s/def ::lang-string (s/with-gen (s/and ::lang-map
+                                        #(instance? grafter.rdf.protocols.LangString %))
                        #(g/fmap
-                         (fn [[s l]]
-                           (pr/->LangString s l)))
-                       (g/tuple (g/string) (g/keyword))))
+                         pr/map->LangString
+                         (s/gen ::lang-map))))
 
 (defmethod object-type grafter.rdf.protocols.LangString [_]
   ::lang-string)
