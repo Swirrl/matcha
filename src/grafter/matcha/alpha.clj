@@ -116,7 +116,8 @@
      `(fn [db-or-idx#]
         ~(validate-bgps bgps
                         "Invalid data syntax passed to `select` query at runtime"
-                        {:project-vars project-vars})
+                        {:type ::select-validation-error
+                         :project-vars project-vars})
         (let [idx# (index-if-necessary db-or-idx#)]
           (pldb/with-db idx#
             (l/run* ~project-vars
@@ -195,7 +196,8 @@
     `(fn [db-or-idx#]
        ~(validate-bgps bgps
                        "Invalid data syntax passed to `construct` query at runtime"
-                       {:construct-pattern construct-pattern})
+                       {:type ::construct-validation-error
+                        :construct-pattern construct-pattern})
        (let [idx# (index-if-necessary db-or-idx#)
              solutions# (pldb/with-db idx#
                           (l/run* ~pvarvec
@@ -221,7 +223,9 @@
 (defmacro ask [bgps]
   `(let [f# (select ~bgps)]
     (fn [db#]
-      ~(validate-bgps bgps "Invalid data syntax passed to `ask` query at runtime" nil)
+      ~(validate-bgps bgps
+                      "Invalid data syntax passed to `ask` query at runtime"
+                      {:type ::ask-validation-error})
       (if (seq (f# db#))
         true
         false))))
