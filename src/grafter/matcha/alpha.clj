@@ -94,6 +94,15 @@
 
 (s/def ::row-projection (s/+ query-var?))
 
+(defn validate-bgps [bgps error-message error-data]
+  (let [quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))]
+    `(let [bgps# ~(quote-qvars bgps)]
+      (when-not (s/valid? ::bgps bgps#)
+        (throw (ex-info (str ~error-message \newline
+                             (s/explain-str ::bgps bgps#))
+                        (merge {:bgps bgps#}
+                               ~(quote-qvars error-data))))))))
+
 (defmacro select
   ([bgps]
    `(select ~(find-vars bgps) ~bgps))
@@ -105,6 +114,9 @@
                                `(triple ~s ~p ~o)) bgps)]
 
      `(fn [db-or-idx#]
+        ~(validate-bgps bgps
+                        "Invalid data syntax passed to `select` query at runtime"
+                        {:project-vars project-vars})
         (let [idx# (index-if-necessary db-or-idx#)]
           (pldb/with-db idx#
             (l/run* ~project-vars
@@ -181,13 +193,9 @@
         pvarvec (vec pvars)]
 
     `(fn [db-or-idx#]
-       (let [bgps# ~(quote-query-vars (into pvars syms) bgps)]
-         (when-not (s/valid? ::bgps bgps#)
-           (throw
-            (ex-info "Invalid BGP syntax"
-                     {:construct-pattern ~(quote-query-vars (into pvars syms) construct-pattern)
-                      :bgps bgps#}))))
-
+       ~(validate-bgps bgps
+                       "Invalid data syntax passed to `construct` query at runtime"
+                       {:construct-pattern construct-pattern})
        (let [idx# (index-if-necessary db-or-idx#)
              solutions# (pldb/with-db idx#
                           (l/run* ~pvarvec
