@@ -7,10 +7,11 @@
             [clojure.core.logic.unifier :as u]
             [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojure.set :as set]
-            [grafter.matcha.spec :as spec]))
+            [clojure.set :as set]))
 
-(def ^:private ^:macro when-available #'spec/when-available)
+(defmacro ^:private when-available [syms & body]
+  (when (every? some? (map resolve syms))
+    `(do ~@body)))
 
 (try
   ;; avoid issue: https://github.com/Swirrl/matcha/issues/5
@@ -76,15 +77,17 @@
 (defn queryable [spec]
   (s/or :qvar query-var? :spec spec))
 
+(s/def ::atomic (comp not coll?))
+
 (s/def ::macro-syntax-triple
-  (s/tuple (macro-syntax ::spec/subject)
-           (macro-syntax ::spec/predicate)
-           (macro-syntax ::spec/object)))
+  (s/tuple (macro-syntax ::atomic)
+           (macro-syntax ::atomic)
+           (macro-syntax ::atomic)))
 
 (s/def ::triple
-  (s/tuple (queryable ::spec/subject)
-           (queryable ::spec/predicate)
-           (queryable ::spec/object)))
+  (s/tuple (queryable ::atomic)
+           (queryable ::atomic)
+           (queryable ::atomic)))
 
 (s/def ::bgp-macro-syntax ::macro-syntax-triple)
 (s/def ::bgp ::triple)
