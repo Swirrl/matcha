@@ -70,11 +70,27 @@
       vars
       '[q])))
 
-(s/def ::triple (s/tuple any? any? any?))
+(defn macro-syntax [spec]
+  (s/or :qvar query-var? :var symbol? :spec spec))
 
+(defn queryable [spec]
+  (s/or :qvar query-var? :spec spec))
+
+(s/def ::macro-syntax-triple
+  (s/tuple (macro-syntax ::spec/subject)
+           (macro-syntax ::spec/predicate)
+           (macro-syntax ::spec/object)))
+
+(s/def ::triple
+  (s/tuple (queryable ::spec/subject)
+           (queryable ::spec/predicate)
+           (queryable ::spec/object)))
+
+(s/def ::bgp-macro-syntax ::macro-syntax-triple)
 (s/def ::bgp ::triple)
 
-(s/def ::bgps (s/+ ::bgp))
+(s/def ::bgps-macro-syntax (s/coll-of ::bgp-macro-syntax :kind vector?))
+(s/def ::bgps (s/coll-of ::bgp :kind vector?))
 
 (s/def ::row-projection (s/+ query-var?))
 
@@ -94,6 +110,11 @@
             (l/run* ~project-vars
               (fresh ~syms
                 ~@query-patterns))))))))
+
+(s/fdef select
+  :args (s/or :ary-1 (s/cat :bgps ::bgps-macro-syntax)
+              :ary-2 (s/cat :project-vars (s/coll-of query-var?)
+                            :bgps ::bgps-macro-syntax)))
 
 (defmacro select-1
   ([bgps]
@@ -160,6 +181,13 @@
         pvarvec (vec pvars)]
 
     `(fn [db-or-idx#]
+       (let [bgps# ~(quote-query-vars (into pvars syms) bgps)]
+         (when-not (s/valid? ::bgps bgps#)
+           (throw
+            (ex-info "Invalid BGP syntax"
+                     {:construct-pattern ~(quote-query-vars (into pvars syms) construct-pattern)
+                      :bgps bgps#}))))
+
        (let [idx# (index-if-necessary db-or-idx#)
              solutions# (pldb/with-db idx#
                           (l/run* ~pvarvec
@@ -175,6 +203,9 @@
              grouped# (group-subjects subj-maps#)]
          grouped#))))
 
+(s/fdef construct
+  :args (s/cat :construct-pattern any? :bgps ::bgps-macro-syntax))
+
 (defmacro construct-1 [construct-pattern bgps]
   `(fn [db#]
      (first ((construct ~construct-pattern ~bgps) db#))))
@@ -182,9 +213,13 @@
 (defmacro ask [bgps]
   `(let [f# (select ~bgps)]
     (fn [db#]
+      ~(validate-bgps bgps "Invalid data syntax passed to `ask` query at runtime" nil)
       (if (seq (f# db#))
         true
         false))))
+
+(s/fdef ask
+  :args (s/cat :bgps ::bgps-macro-syntax))
 
 (defn merge-dbs
   "Merges all supplied Matcha databases together into one.  Any
