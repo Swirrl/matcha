@@ -1,7 +1,17 @@
 (ns grafter.matcha.spec
-  (:require [grafter.rdf.protocols :as pr]
-            [clojure.spec.alpha :as s]
+  (:require [clojure.spec.alpha :as s]
             [clojure.spec.gen.alpha :as g]))
+
+(defmacro ^:private when-available [syms & body]
+  (when (every? some? (map resolve syms))
+    `(do ~@body)))
+
+(try
+  ;; avoid issue: https://github.com/Swirrl/matcha/issues/5
+  (require '[grafter.rdf.protocols :as gp])
+  (import '[grafter.rdf.protocols RDFLiteral LangString Quad])
+
+  (catch java.io.FileNotFoundException _))
 
 (s/def ::uri uri?)
 
