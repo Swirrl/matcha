@@ -57,7 +57,7 @@
     (s/with-gen (s/and ::lang-map
                        #(instance? grafter.rdf.protocols.LangString %))
       #(g/fmap
-        pr/map->LangString
+        gp/map->LangString
         (s/gen ::lang-map))))
 
   (defmethod object-type grafter.rdf.protocols.LangString [_]
