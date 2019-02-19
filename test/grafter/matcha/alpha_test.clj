@@ -1,6 +1,6 @@
 (ns grafter.matcha.alpha-test
   (:require [clojure.test :refer :all]
-            [grafter.matcha.alpha :refer :all]
+            [grafter.matcha.alpha :as m :refer :all]
             [grafter.vocabularies.core :refer [prefixer]]
             [grafter.vocabularies.foaf :refer [foaf:knows]]
             [grafter.vocabularies.rdf :refer [rdfs:label]]
@@ -241,3 +241,60 @@
                                [?p2 rdfs:label ?name]])]
     (is (= ["Martin" "Katie"]
            (ricks-friends lotsa-data)))))
+
+(defmacro throws? [ex-type & body]
+  `(is (try
+         ~@body
+         false
+         (catch clojure.lang.ExceptionInfo e#
+           (= (-> e# ex-data :type) ~ex-type)))))
+
+(deftest runtime-validation-test
+
+  ;; select validation
+  (letfn [(selectq [uri]
+            (select
+             [?name]
+             [[uri foaf:knows ?p]
+              [?p rdfs:label ?name]]))]
+
+    ;; valid syntax doesn't throw
+    (is (= ["Martin" "Katie"]
+           ((selectq rick) friends)))
+
+    ;; literal set throws
+    (throws? ::m/select-validation-error ((selectq #{rick}) friends))
+
+    ;; bound arg set throws
+    (throws? ::m/select-validation-error (let [arg #{rick}] ((selectq arg) friends))))
+
+  ;; construct validation
+  (letfn [(constructq [uri]
+            (construct
+             {:foaf/knows ?name}
+             [[uri foaf:knows ?p]
+              [?p rdfs:label ?name]]))]
+
+    ;; valid syntax doesn't throw
+    (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}]
+           ((constructq rick) friends)))
+
+    ;; literal set throws
+    (throws? ::m/construct-validation-error ((constructq #{rick}) friends))
+
+    ;; bound arg set throws
+    (throws? ::m/construct-validation-error (let [arg #{rick}] ((constructq arg) friends))))
+
+  ;; ask validation
+  (letfn [(askq [uri]
+            (ask [[uri foaf:knows ?p]
+                  [?p rdfs:label ?name]]))]
+
+    ;; valid syntax doesn't throw
+    (is ((askq rick) friends))
+
+    ;; literal set throws
+    (throws? ::m/ask-validation-error ((askq #{rick}) friends))
+
+    ;; bound arg set throws
+    (throws? ::m/ask-validation-error (let [arg #{rick}] ((askq arg) friends)))))
