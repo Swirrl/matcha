@@ -17,10 +17,9 @@
 
 (s/def ::bnode keyword?)
 
-(s/def ::subject (s/or :uri ::uri
-                       :bnode ::bnode))
+(s/def ::subject (s/or :uri ::uri :bnode ::bnode))
 
-(s/def ::predicate ::uri)
+(s/def ::predicate (s/or :uri ::uri :bnode ::bnode))
 
 (defmulti object-type class)
 
@@ -52,14 +51,17 @@
 
 (s/def ::lang-map (s/keys :req-un [::lang ::string]))
 
-(s/def ::lang-string (s/with-gen (s/and ::lang-map
-                                        #(instance? grafter.rdf.protocols.LangString %))
-                       #(g/fmap
-                         pr/map->LangString
-                         (s/gen ::lang-map))))
+(when-available #{grafter.rdf.protocols.LangString}
 
-(defmethod object-type grafter.rdf.protocols.LangString [_]
-  ::lang-string)
+  (s/def ::lang-string
+    (s/with-gen (s/and ::lang-map
+                       #(instance? grafter.rdf.protocols.LangString %))
+      #(g/fmap
+        pr/map->LangString
+        (s/gen ::lang-map))))
+
+  (defmethod object-type grafter.rdf.protocols.LangString [_]
+    ::lang-string))
 
 (s/def ::object (s/multi-spec
                  object-type (fn [a b] a)))
