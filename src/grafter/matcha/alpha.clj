@@ -71,40 +71,30 @@
       vars
       '[q])))
 
-(defn macro-syntax [spec]
-  (s/or :qvar query-var? :var symbol? :spec spec))
-
-(defn queryable [spec]
-  (s/or :qvar query-var? :spec spec))
-
-(s/def ::atomic (comp not coll?))
-
-(s/def ::macro-syntax-triple
-  (s/tuple (macro-syntax ::atomic)
-           (macro-syntax ::atomic)
-           (macro-syntax ::atomic)))
+(s/def ::atomic (s/and some? (comp not coll?)))
 
 (s/def ::triple
-  (s/tuple (queryable ::atomic)
-           (queryable ::atomic)
-           (queryable ::atomic)))
+  (s/tuple ::atomic ::atomic ::atomic))
 
-(s/def ::bgp-macro-syntax ::macro-syntax-triple)
 (s/def ::bgp ::triple)
 
-(s/def ::bgps-macro-syntax (s/coll-of ::bgp-macro-syntax :kind vector?))
 (s/def ::bgps (s/coll-of ::bgp :kind vector?))
 
-(s/def ::row-projection (s/+ query-var?))
+(defn valid-bgps? [bgps]
+  (letfn [(valid-atomic? [x] (and some? (not (coll? x))))
+          (valid-bgp? [bgp]
+            (and (= (count bgp) 3)
+                 (every? valid-atomic? bgp)))]
+    (and (coll? bgps)
+         (every? valid-bgp? bgps))))
 
 (defn validate-bgps [bgps error-message error-data]
   (let [quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))]
     `(let [bgps# ~(quote-qvars bgps)]
-      (when-not (s/valid? ::bgps bgps#)
-        (throw (ex-info (str ~error-message \newline
-                             (s/explain-str ::bgps bgps#))
-                        (merge {:bgps bgps#}
-                               ~(quote-qvars error-data))))))))
+       (when-not (valid-bgps? bgps#)
+         (throw (ex-info (str ~error-message)
+                         (merge {:bgps bgps#}
+                                ~(quote-qvars error-data))))))))
 
 (defmacro select
   ([bgps]
@@ -128,9 +118,9 @@
                 ~@query-patterns))))))))
 
 (s/fdef select
-  :args (s/or :ary-1 (s/cat :bgps ::bgps-macro-syntax)
+  :args (s/or :ary-1 (s/cat :bgps ::bgps)
               :ary-2 (s/cat :project-vars (s/coll-of query-var?)
-                            :bgps ::bgps-macro-syntax)))
+                            :bgps ::bgps)))
 
 (defmacro select-1
   ([bgps]
@@ -217,7 +207,7 @@
          grouped#))))
 
 (s/fdef construct
-  :args (s/cat :construct-pattern any? :bgps ::bgps-macro-syntax))
+  :args (s/cat :construct-pattern any? :bgps ::bgps))
 
 (defmacro construct-1 [construct-pattern bgps]
   `(fn [db#]
@@ -234,7 +224,7 @@
         false))))
 
 (s/fdef ask
-  :args (s/cat :bgps ::bgps-macro-syntax))
+  :args (s/cat :bgps ::bgps))
 
 (defn merge-dbs
   "Merges all supplied Matcha databases together into one.  Any
