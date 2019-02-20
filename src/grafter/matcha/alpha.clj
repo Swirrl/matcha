@@ -71,7 +71,10 @@
       vars
       '[q])))
 
-(s/def ::atomic (s/and some? (comp not coll?)))
+(defn collection? [x]
+  (instance? java.util.Collection x))
+
+(s/def ::atomic (s/and some? (comp not collection?)))
 
 (s/def ::triple
   (s/tuple ::atomic ::atomic ::atomic))
@@ -81,11 +84,11 @@
 (s/def ::bgps (s/coll-of ::bgp :kind vector?))
 
 (defn valid-bgps? [bgps]
-  (letfn [(valid-atomic? [x] (and some? (not (coll? x))))
+  (letfn [(valid-atomic? [x] (and some? (not (collection? x))))
           (valid-bgp? [bgp]
             (and (= (count bgp) 3)
                  (every? valid-atomic? bgp)))]
-    (and (coll? bgps)
+    (and (sequential? bgps)
          (every? valid-bgp? bgps))))
 
 (defn validate-bgps [bgps error-message error-data]
