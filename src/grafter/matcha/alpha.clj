@@ -23,7 +23,7 @@
 (when-available #{LangString RDFLiteral}
   (extend-protocol lp/IUninitialized
     LangString
-    (lp/-uninitialized [coll] coll?)
+    (lp/-uninitialized [coll] coll)
 
     RDFLiteral
     (lp/-uninitialized [coll] coll)))
