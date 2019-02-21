@@ -279,6 +279,20 @@
     (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}]
            ((constructq rick) friends)))
 
+    ;; s-expressions in bgps don't throw
+    (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}]
+           ((construct {:foaf/knows ?name}
+              [[(identity (identity rick)) foaf:knows ?p]
+               [?p rdfs:label ?name]])
+            friends)))
+
+    ;; more complex s-expressions in bgps don't throw
+    (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}]
+           ((construct {:foaf/knows ?name}
+              [[(((fn [_] (fn [x] x)) 1) rick) foaf:knows ?p]
+               [?p rdfs:label ?name]])
+            friends)))
+
     ;; literal set throws
     (throws? ::m/construct-validation-error ((constructq #{rick}) friends))
 

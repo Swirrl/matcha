@@ -74,7 +74,11 @@
 (defn collection? [x]
   (instance? java.util.Collection x))
 
-(s/def ::atomic (s/and some? (comp not collection?)))
+(s/def ::sexp
+  (s/and list? (s/cat :op (s/or :ifn? ifn? :sexp ::sexp) :* (s/* any?))))
+
+(s/def ::atomic
+  (s/and some? (s/or :sexp ::sexp :non-coll (comp not collection?))))
 
 (s/def ::triple
   (s/tuple ::atomic ::atomic ::atomic))
