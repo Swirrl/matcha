@@ -252,32 +252,44 @@
 (deftest runtime-validation-test
 
   ;; select validation
-  (letfn [(selectq [uri]
-            (select
-             [?name]
-             [[uri foaf:knows ?p]
-              [?p rdfs:label ?name]]))]
+  (letfn [(selectq-2 [uri]
+            (select [?name]
+                    [[uri foaf:knows ?p]
+                     [?p rdfs:label ?name]]))
+          (selectq-3 [uri db]
+            (select [?name]
+                    [[uri foaf:knows ?p]
+                     [?p rdfs:label ?name]]
+                    db))]
 
     ;; valid syntax doesn't throw
-    (is (= ["Martin" "Katie"]
-           ((selectq rick) friends)))
+    (is (= ["Martin" "Katie"] ((selectq-2 rick) friends)))
+    (is (= ["Martin" "Katie"] (selectq-3 rick friends)))
 
     ;; literal set throws
-    (throws? ::m/select-validation-error ((selectq #{rick}) friends))
+    (throws? ::m/select-validation-error ((selectq-2 #{rick}) friends))
+    (throws? ::m/select-validation-error (selectq-3 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/select-validation-error (let [arg #{rick}] ((selectq arg) friends))))
+    (throws? ::m/select-validation-error (let [arg #{rick}] ((selectq-2 arg) friends)))
+    (throws? ::m/select-validation-error (let [arg #{rick}] (selectq-3 arg friends))))
 
   ;; construct validation
-  (letfn [(constructq [uri]
+  (letfn [(constructq-2 [uri]
             (construct
-             {:foaf/knows ?name}
-             [[uri foaf:knows ?p]
-              [?p rdfs:label ?name]]))]
+              {:foaf/knows ?name}
+              [[uri foaf:knows ?p]
+               [?p rdfs:label ?name]]))
+          (constructq-3 [uri db]
+            (construct
+              {:foaf/knows ?name}
+              [[uri foaf:knows ?p]
+               [?p rdfs:label ?name]]
+              db))]
 
     ;; valid syntax doesn't throw
-    (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}]
-           ((constructq rick) friends)))
+    (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}] ((constructq-2 rick) friends)))
+    (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}] (constructq-3 rick friends)))
 
     ;; s-expressions in bgps don't throw
     (is (= [#:foaf{:knows "Martin"} #:foaf{:knows "Katie"}]
@@ -294,21 +306,68 @@
             friends)))
 
     ;; literal set throws
-    (throws? ::m/construct-validation-error ((constructq #{rick}) friends))
+    (throws? ::m/construct-validation-error ((constructq-2 #{rick}) friends))
+    (throws? ::m/construct-validation-error (constructq-3 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/construct-validation-error (let [arg #{rick}] ((constructq arg) friends))))
+    (throws? ::m/construct-validation-error (let [arg #{rick}] ((constructq-2 arg) friends)))
+    (throws? ::m/construct-validation-error (let [arg #{rick}] (constructq-3 arg friends))))
 
   ;; ask validation
-  (letfn [(askq [uri]
+  (letfn [(askq-1 [uri]
             (ask [[uri foaf:knows ?p]
-                  [?p rdfs:label ?name]]))]
+                  [?p rdfs:label ?name]]))
+          (askq-2 [uri db]
+            (ask [[uri foaf:knows ?p]
+                  [?p rdfs:label ?name]]
+                 db))]
 
     ;; valid syntax doesn't throw
-    (is ((askq rick) friends))
+    (is ((askq-1 rick) friends))
+    (is (askq-2 rick friends))
 
     ;; literal set throws
-    (throws? ::m/ask-validation-error ((askq #{rick}) friends))
+    (throws? ::m/ask-validation-error ((askq-1 #{rick}) friends))
+    (throws? ::m/ask-validation-error (askq-2 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/ask-validation-error (let [arg #{rick}] ((askq arg) friends)))))
+    (throws? ::m/ask-validation-error (let [arg #{rick}] ((askq-1 arg) friends)))
+    (throws? ::m/ask-validation-error (let [arg #{rick}] (askq-2 arg friends)))))
+
+(deftest immediate-and-function-macro-arities-equiv
+  (let [uri rick]
+    (let [v1 ((m/select [?name]
+                        [[uri foaf:knows ?p]
+                         [?p rdfs:label ?name]]) friends)
+          v2 (m/select [?name]
+                       [[uri foaf:knows ?p]
+                        [?p rdfs:label ?name]] friends)]
+      (is (= v1 v2)))
+
+    (let [v1 ((m/select-1 [?name]
+                          [[uri foaf:knows ?p]
+                           [?p rdfs:label ?name]]) friends)
+          v2 (m/select-1 [?name]
+                         [[uri foaf:knows ?p]
+                          [?p rdfs:label ?name]] friends)]
+      (is (= v1 v2)))
+
+    (let [v1 ((m/construct {:foaf/knows ?name}
+                [[uri foaf:knows ?p]
+                 [?p rdfs:label ?name]]) friends)
+          v2 (m/construct {:foaf/knows ?name}
+               [[uri foaf:knows ?p]
+                [?p rdfs:label ?name]] friends)]
+      (is (= v1 v2)))
+
+    (let [v1 ((m/construct-1 {:foaf/knows ?name}
+                             [[uri foaf:knows ?p]
+                              [?p rdfs:label ?name]]) friends)
+          v2 (m/construct-1 {:foaf/knows ?name}
+                            [[uri foaf:knows ?p]
+                             [?p rdfs:label ?name]] friends)]
+      (is (= v1 v2)))
+
+    (let [v1 ((m/ask [[uri foaf:knows ?p] [?p rdfs:label ?name]]) friends)
+          v2 (m/ask [[uri foaf:knows ?p] [?p rdfs:label ?name]] friends)]
+      (is (= v1 v2)))))
