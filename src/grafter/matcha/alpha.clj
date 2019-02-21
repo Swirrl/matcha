@@ -111,6 +111,18 @@
            ~@query-patterns)))))
 
 (defmacro select
+  "Query a `db-or-idx` with `bgps` patterns.
+
+  If called with 1 argument, `select` finds all `?vars` in the `bgps` patterns
+  and returns a function of 1 argument: the `db-or-idx`, which returns a
+  sequence of results.
+
+  If called with 2 arguments, returns a function of 1 argument: the `db-or-idx`,
+  which returns a sequence of results with the `?vars` in `project-vars`
+  projected.
+
+  If called with 3 arguments, queries the `db-or-idx` directly, returning a
+  sequence of results with the `?vars` in `project-vars` projected."
   ([bgps]
    `(select ~(find-vars bgps) ~bgps))
   ([project-vars bgps]
@@ -127,21 +139,46 @@
                          :project-vars project-vars})
         ~(generate-solutions* project-vars syms query-patterns db-or-idx)))))
 
-(let [ary-1 (s/cat :bgps ::bgps)
-      ary-2 (s/cat :project-vars (s/coll-of query-var?) :ary-1 ary-1)]
-  (s/fdef select
-    :args (s/or
-           :ary-1 ary-1
-           :ary-2 ary-2
-           :ary-3 (s/cat :ary-2 ary-2 :db any?))))
+(s/fdef select
+  :args (s/or
+         :ary-1 (s/cat :bgps ::bgps)
+         :ary-2 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps)
+         :ary-3 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps :db any?))
+  :ret (s/or
+        :ary-1-and-2 (s/fspec
+                      :args (s/cat :db-or-idx any?)
+                      :ret (s/coll-of any?))
+        :ary-3 (s/coll-of any?)))
 
 (defmacro select-1
+  "Query a `db-or-idx` with `bgps` patterns.
+
+  If called with 1 argument, `select` finds all `?vars` in the `bgps` patterns
+  and returns a function of 1 argument: the `db-or-idx`, which returns the first
+  result.
+
+  If called with 2 arguments, returns a function of 1 argument: the `db-or-idx`,
+  which returns the first result with `?vars` in `project-vars`projected.
+
+  If called with 3 arguments, queries the `db-or-idx` directly, returning the
+  first result with `?vars` in `project-vars` projected."
   ([bgps]
    `(select-1 ~(find-vars bgps) ~bgps))
   ([project-vars bgps]
    `(comp first (select ~project-vars ~bgps)))
   ([project-vars bgps db]
    `(first (select ~project-vars ~bgps ~db))))
+
+(s/fdef select-1
+  :args (s/or
+         :ary-1 (s/cat :bgps ::bgps)
+         :ary-2 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps)
+         :ary-3 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps :db any?))
+  :ret (s/or
+        :ary-1-and-2 (s/fspec
+                      :args (s/cat :db-or-idx any?)
+                      :ret any?)
+        :ary-3 any?))
 
 (defn find-vars-in-tree [tree]
   (filterv query-var? (tree-seq coll? seq tree)))
@@ -191,6 +228,14 @@
     solutions))
 
 (defmacro construct
+  "Query a `db-or-idx` with `bgps` patterns, and return data in the form of the
+  `construct-pattern`.
+
+  If called with 2 arguments, returns a function of 1 argument: the `db-or-idx`,
+  which returns a sequence of results in the form of the `construct-pattern`.
+
+  If called with 3 arguments, queries the `db-or-idx` directly, returning a
+  sequence of results in the form of the `construct-pattern`."
   ([construct-pattern bgps]
    `(fn [db-or-idx#]
       (construct ~construct-pattern ~bgps db-or-idx#)))
@@ -215,19 +260,58 @@
               grouped# (group-subjects subj-maps#)]
           grouped#)))))
 
-(let [ary-2 (s/cat :construct-pattern any? :bgps ::bgps)
-      ary-3 (s/cat :ary-2 ary-2 :db any?)]
-  (s/fdef construct
-    :args (s/or :ary-2 ary-2
-                :ary-3 ary-3)))
+(s/def ::construct-pattern any?)
+
+(s/fdef construct
+  :args (s/or
+         :ary-2 (s/cat
+                 :construct-pattern any?
+                 :bgps ::bgps)
+         :ary-3 (s/cat
+                 :construct-pattern any?
+                 :bgps ::bgps
+                 :db-or-idx any?))
+  :ret (s/or
+        :ary-2 (s/fspec
+                :args (s/cat :db-or-idx any?)
+                :ret (s/coll-of ::construct-pattern))
+        :ary-3 (s/coll-of ::construct-pattern)))
 
 (defmacro construct-1
+  "Query a `db-or-idx` with `bgps` patterns, and return data in the form of the
+  `construct-pattern`.
+
+  If called with 2 arguments, returns a function of 1 argument: the `db-or-idx`,
+  which returns the first result in the form of the `construct-pattern`.
+
+  If called with 3 arguments, queries the `db-or-idx` directly, returning the
+  first result in the form of the `construct-pattern`."
   ([construct-pattern bgps]
    `(comp first (construct ~construct-pattern ~bgps)))
   ([construct-pattern bgps db]
    `(first (construct ~construct-pattern ~bgps ~db))))
 
+(s/fdef construct-1
+  :args (s/or
+         :ary-2 (s/cat
+                 :construct-pattern any?
+                 :bgps ::bgps)
+         :ary-3 (s/cat
+                 :construct-pattern any?
+                 :bgps ::bgps
+                 :db-or-idx any?))
+  :ret (s/or
+        :ary-2 (s/fspec
+                :args (s/cat :db-or-idx any?)
+                :ret ::construct-pattern)
+        :ary-3 ::construct-pattern))
+
 (defmacro ask
+  "Predicate: are there results in a `db-or-idx` matching `bgps` patterns?
+
+  If called with 1 argument, returns a function of 1 argument: the `db-or-idx`.
+
+  If called with 2 arguments, queries the `db-or-idx` directly."
   ([bgps]
    `(fn [db#] (ask ~bgps db#)))
   ([bgps db]
@@ -239,10 +323,9 @@
         true
         false))))
 
-(let [ary-1 (s/cat :bgps ::bgps)]
-  (s/fdef ask
-    :args (s/or :ary-1 ary-1
-                :ary-2 (s/cat :ary-1 ary-1 :db any?))))
+(s/fdef ask
+  :args (s/or :ary-1 (s/cat :bgps ::bgps)
+              :ary-2 (s/cat :bgps ::bgps :db any?)))
 
 (defn merge-dbs
   "Merges all supplied Matcha databases together into one.  Any
