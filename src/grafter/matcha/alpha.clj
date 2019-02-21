@@ -195,8 +195,6 @@
    `(fn [db-or-idx#]
       (construct ~construct-pattern ~bgps db-or-idx#)))
   ([construct-pattern bgps db-or-idx]
-   `(construct {} ~construct-pattern ~bgps ~db-or-idx))
-  ([opts? construct-pattern bgps db-or-idx]
    (let [pvars (find-vars-in-tree construct-pattern)
          syms (vec (->> (find-vars bgps) (remove (set pvars))))
          query-patterns (map (fn [[s p o]] `(triple ~s ~p ~o)) bgps)
@@ -221,8 +219,7 @@
       ary-3 (s/cat :ary-2 ary-2 :db any?)]
   (s/fdef construct
     :args (s/or :ary-2 ary-2
-                :ary-3 ary-3
-                :ary-4 (s/cat :opts map? :ary-3 ary-3))))
+                :ary-3 ary-3)))
 
 (defmacro construct-1
   ([construct-pattern bgps]
