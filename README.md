@@ -54,9 +54,9 @@ some RDF-like data inline.
 
 Triples can be vectors of clojure values or any datastructure that
 supports positional destructuring via `clojure.lang.Indexed`, this
-allows Matcha to work `grafter.rdf.protocols.Statement` records.  Matcha works with
-any clojure values in the triples, be they java URI's, or clojure
-keywords.
+allows Matcha to work `grafter.rdf.protocols.Statement` records.
+Matcha works with any clojure values in the triples, be they java
+URI's, or clojure keywords.
 
 ```clojure
 (def friends [[:rick :rdfs/label "Rick"]
@@ -88,25 +88,35 @@ BGPs have some semantics you need to be aware of:
 
 ### `select`
 
-`select` compiles a query function from your arguments, that returns
-results as a sequence of tuples.  It is directly analagous to SPARQL's
-`SELECT` query:
+`select` compiles a query from your arguments, that returns results as a
+sequence of tuples. It is directly analagous to SPARQL's `SELECT` query.
+
+The `bgp` argument is analagous to a SPARQL `WHERE` clause and should be
+a BGP.
+
+When called with one argument, `select` projects all `?qvar`s used in the
+query.
+
+```clojure
+(def rick-knows
+  (select
+    [[:rick :foaf/knows ?p2]
+    [?p2 :rdfs/label ?name]]))
+
+(rick-knows friends)
+;; => ["Martin" "Katie"]
+```
+
+When called with two arguments `select` expects the first argument to be a
+vector of variables to project into the solution sequence.
 
 ```clojure
 (def rick-knows (select [?name]
                   [[:rick :foaf/knows ?p2]
                    [?p2 :rdfs/label ?name]]))
-```
 
-When called with two arguments `select` expects the first argument to
-be a vector of variables to project into the solution sequence, the
-second argument is analagous to a SPARQL `WHERE` clause and should be
-a BGP.
-
-We can then run the query like so:
-
-```clojure
-(rick-knows friends) ;; ["Martin" "Katie"]
+(rick-knows friends)
+;; => ["Martin" "Katie"]
 ```
 
 There is also `select-1` which is just like `select` but returns just
@@ -119,20 +129,42 @@ construct arbitrary clojure data structures directly from your query
 results, and position the projected query variables where ever you
 want within the structure.
 
+Args:
+ * `construct-pattern`: an arbitrary clojure data structure. Results
+   will be projected into the `?qvar` "holes".
+ * `bgps`: this argument is analagous to a SPARQL `WHERE` clause and should be
+   a BGPs.
+ * `db-or-idx`: A matcha "database".
+
+When called with two arguments `construct` returns a query function
+that accepts a `db-or-idx` as its only argument. When called, the
+function returns a sequence of matching tuples in the form of the
+`construct-pattern`.
+
 ```clojure
-(def query (construct {:grafter.rdf/uri :rick
-                                :foaf/knows {:grafter.rdf/uri ?p
-                                :rdfs/label ?name}}
-         [[:rick :foaf/knows ?p]
-         [?p :rdfs/label ?name]]))
+(construct {:grafter.rdf/uri :rick
+            :foaf/knows {:grafter.rdf/uri ?p
+                         :rdfs/label ?name}}
+  [[:rick :foaf/knows ?p]
+   [?p :rdfs/label ?name]])
+
+;; => (fn [db-or-idx] ...)
 ```
 
-Produces:
+When called with 3 arguments, queries the `db-or-idx` directly, returning a
+sequence of results in the form of the `construct-pattern`.
 
 ```clojure
-{:grafter.rdf/uri :rick
-                :foaf/knows #{{:grafter.rdf/uri :martin, :rdfs/label "Martin"}
-                              {:grafter.rdf/uri :katie, :rdfs/label "Katie"}}}
+(construct {:grafter.rdf/uri :rick
+            :foaf/knows {:grafter.rdf/uri ?p
+                         :rdfs/label ?name}}
+  [[:rick :foaf/knows ?p]
+   [?p :rdfs/label ?name]]
+  some-bound-db)
+
+;; => {:grafter.rdf/uri :rick
+;;     :foaf/knows #{{:grafter.rdf/uri :martin, :rdfs/label "Martin"}
+;;                   {:grafter.rdf/uri :katie, :rdfs/label "Katie"}}}
 ```
 
 Maps in a projection that contain the special key of
