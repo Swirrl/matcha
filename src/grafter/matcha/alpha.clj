@@ -95,20 +95,23 @@
     (and (sequential? bgps)
          (every? valid-bgp? bgps))))
 
-(defn- validate-bgps* [bgps error-message error-data]
-  (let [quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))]
+(defn- solve* [qtype err-data pvars bgps db-or-idx]
+  (let [syms (->> bgps find-vars (remove (set pvars)) vec)
+        query-patterns (map (fn [[s p o]] `(triple ~s ~p ~o)) bgps)
+        quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))
+        kwtype (keyword "grafter.matcha.alpha" (str qtype "-validation-error"))
+        err-msg (format "Invalid data syntax passed to `%s` query at runtime"
+                        qtype)]
     `(let [bgps# ~(quote-qvars bgps)]
        (when-not (valid-bgps? bgps#)
-         (throw (ex-info (str ~error-message)
-                         (merge {:bgps bgps#}
-                                ~(quote-qvars error-data))))))))
-
-(defn- generate-solutions* [project-vars syms query-patterns db-or-idx]
-  `(let [idx# (index-if-necessary ~db-or-idx)]
-     (pldb/with-db idx#
-       (l/run* ~project-vars
-         (fresh ~syms
-           ~@query-patterns)))))
+         (throw
+          (ex-info ~err-msg
+                   (merge {:type ~kwtype :bgps bgps#} ~(quote-qvars err-data)))))
+       (let [idx# (index-if-necessary ~db-or-idx)]
+         (pldb/with-db idx#
+           (l/run* ~(vec pvars)
+             (fresh ~syms
+               ~@query-patterns)))))))
 
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
@@ -129,15 +132,7 @@
    `(fn [db-or-idx#]
       (select ~project-vars ~bgps db-or-idx#)))
   ([project-vars bgps db-or-idx]
-   (let [pvar? (set project-vars)
-         syms (vec (->> (find-vars bgps) (remove pvar?)))
-         query-patterns (map (fn [[s p o]] `(triple ~s ~p ~o)) bgps)]
-     `(do
-        ~(validate-bgps* bgps
-                        "Invalid data syntax passed to `select` query at runtime"
-                        {:type ::select-validation-error
-                         :project-vars project-vars})
-        ~(generate-solutions* project-vars syms query-patterns db-or-idx)))))
+   (solve* 'select {:project-vars project-vars} project-vars bgps db-or-idx)))
 
 (s/fdef select
   :args (s/or
@@ -241,24 +236,14 @@
       (construct ~construct-pattern ~bgps db-or-idx#)))
   ([construct-pattern bgps db-or-idx]
    (let [pvars (find-vars-in-tree construct-pattern)
-         syms (vec (->> (find-vars bgps) (remove (set pvars))))
-         query-patterns (map (fn [[s p o]] `(triple ~s ~p ~o)) bgps)
-         pvarvec (vec pvars)]
-     `(do
-        ~(validate-bgps* bgps
-                        "Invalid data syntax passed to `construct` query at runtime"
-                        {:type ::construct-validation-error
-                         :construct-pattern construct-pattern})
-        (let [solutions# ~(generate-solutions* pvarvec syms query-patterns db-or-idx)
-              ;; create a sequence of {?var :value} binding maps for
-              ;; each solution.
-              vars->vals# (unify-solutions (quote ~pvarvec) solutions#)
-
-              subj-maps# (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern)
-                                                 vars->vals#)
-
-              grouped# (group-subjects subj-maps#)]
-          grouped#)))))
+         pvarvec (vec pvars)
+         err-data {:construct-pattern construct-pattern}]
+     `(->> ~(solve* 'construct err-data pvars bgps db-or-idx)
+           ;; create a sequence of {?var :value} binding maps for
+           ;; each solution.
+           (unify-solutions (quote ~pvarvec))
+           (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern))
+           (group-subjects)))))
 
 (s/def ::construct-pattern any?)
 
@@ -315,13 +300,7 @@
   ([bgps]
    `(fn [db#] (ask ~bgps db#)))
   ([bgps db]
-   `(do
-      ~(validate-bgps* bgps
-                       "Invalid data syntax passed to `ask` query at runtime"
-                       {:type ::ask-validation-error})
-      (if (seq (select ~(find-vars bgps) ~bgps ~db))
-        true
-        false))))
+   `(boolean (seq ~(solve* 'ask {} '[?_] bgps db)))))
 
 (s/fdef ask
   :args (s/or :ary-1 (s/cat :bgps ::bgps)

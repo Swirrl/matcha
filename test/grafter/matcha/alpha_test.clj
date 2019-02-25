@@ -332,7 +332,10 @@
 
     ;; bound arg set throws
     (throws? ::m/ask-validation-error (let [arg #{rick}] ((askq-1 arg) friends)))
-    (throws? ::m/ask-validation-error (let [arg #{rick}] (askq-2 arg friends)))))
+    (throws? ::m/ask-validation-error (let [arg #{rick}] (askq-2 arg friends)))
+
+    ;; no ?qvars are OK
+    (is (let [col-uri rick] (m/ask [[col-uri foaf:knows martin]] friends)))))
 
 (deftest immediate-and-function-macro-arities-equiv
   (let [uri rick]
