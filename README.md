@@ -23,6 +23,7 @@ use Matcha to query this graph locally.
 ## Features
 
 - SPARQL-like BGP queries across multiple triple patterns
+- Parameterised queries using just clojure `let`
 - Ability to index your database, with `index-triples`.  In order to
   be queried Matcha needs to have indexed the data; if your data is
   unindexed it will index it before running the query, and then
@@ -59,14 +60,14 @@ Matcha works with any clojure values in the triples, be they java
 URI's, or clojure keywords.
 
 ```clojure
-(def friends [[:rick :rdfs/label "Rick"]
-              [:martin :rdfs/label "Martin"]
-              [:katie :rdfs/label "Katie"]
-              [:julie :rdfs/label "Julie"]
+(def friends-db [[:rick :rdfs/label "Rick"]
+                 [:martin :rdfs/label "Martin"]
+                 [:katie :rdfs/label "Katie"]
+                 [:julie :rdfs/label "Julie"]
 
-              [:rick :foaf/knows :martin]
-              [:rick :foaf/knows :katie]
-              [:katie :foaf/knows :julie]])
+                 [:rick :foaf/knows :martin]
+                 [:rick :foaf/knows :katie]
+                 [:katie :foaf/knows :julie]])
 ```
 
 Now we can build our query functions:
@@ -95,7 +96,7 @@ The `bgp` argument is analagous to a SPARQL `WHERE` clause and should be
 a BGP.
 
 When called with one argument, `select` projects all `?qvar`s used in the
-query.
+query.  This is analagous to `SELECT *` in SPARQL:
 
 ```clojure
 (def rick-knows
@@ -103,7 +104,7 @@ query.
     [[:rick :foaf/knows ?p2]
     [?p2 :rdfs/label ?name]]))
 
-(rick-knows friends)
+(rick-knows friends-db)
 ;; => ["Martin" "Katie"]
 ```
 
@@ -115,7 +116,7 @@ vector of variables to project into the solution sequence.
                   [[:rick :foaf/knows ?p2]
                    [?p2 :rdfs/label ?name]]))
 
-(rick-knows friends)
+(rick-knows friends-db)
 ;; => ["Martin" "Katie"]
 ```
 
@@ -127,7 +128,7 @@ the first solution.
 `CONSTRUCT`s are the most powerful query type, as they allow you to
 construct arbitrary clojure data structures directly from your query
 results, and position the projected query variables where ever you
-want within the structure.
+want within the projected datastructure template.
 
 Args:
  * `construct-pattern`: an arbitrary clojure data structure. Results
@@ -160,7 +161,7 @@ sequence of results in the form of the `construct-pattern`.
                          :rdfs/label ?name}}
   [[:rick :foaf/knows ?p]
    [?p :rdfs/label ?name]]
-  some-bound-db)
+  friends-db)
 
 ;; => {:grafter.rdf/uri :rick
 ;;     :foaf/knows #{{:grafter.rdf/uri :martin, :rdfs/label "Martin"}
@@ -192,7 +193,25 @@ result if there were any matches found.
 ```clojure
 (def any-triples? (ask [[?s ?p ?o]])
 
-(any-triples? friends) ;; => true
+(any-triples? friends-db) ;; => true
+```
+
+### Parameterising queries
+
+You can parameterise Matcha queries simply by adding a lexical binding or wrapping a function call over your Matcha query.  For example
+
+```clojure
+(defn lookup-friends [person-id database]
+  (->> database
+       (construct {:grafter.rdf/uri ?friend
+                   :name ?name}
+                   [[person-id :foaf/knows ?friend]
+                    [?friend :rdfs/label ?name]]))
+
+(lookup-friends :rick friends-db) 
+
+;; => [{:grafter.rdf/uri :martin, :name "Martin"}
+;;     {:grafter.rdf/uri :katie, :name "Katie"}]
 ```
 
 ## Performance
