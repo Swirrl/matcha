@@ -146,6 +146,23 @@
 
 (s/def ::bgps (s/coll-of ::pattern-row :kind vector?))
 
+(defn- parse-values [{:keys [binding bound]}]
+  `(l/membero ~binding (vec ~bound)))
+
+(declare parse-patterns)
+
+(defn- parse-clause [[type row]]
+  (case type
+    :values (parse-values row)))
+
+(defn- parse-pattern-row [[type row]]
+  (case type
+    :bgp `(triple ~@(s/unform ::bgp row))
+    :clause (parse-clause row)))
+
+(defn- parse-patterns [conformed]
+  (mapv parse-pattern-row conformed))
+
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
 
