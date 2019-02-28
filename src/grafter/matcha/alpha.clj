@@ -71,6 +71,22 @@
       vars
       '[?_])))
 
+(defmacro values
+  "Binds a ?qvar binding to elements of a set inside the query. MUST be used
+  inside a (select|construct|ask|etc) query.
+
+  SYNTAX: (values binding bound-value)
+          binding: ?qvar
+          bound-value: any?
+
+  E.G.,
+  (let [subjects #{:a :b :c}]
+    (select [?s ?p ?o]
+      [[?s ?p ?o]
+       (values ?s subjects)]))"
+  [binding bound-value]
+  (assert nil "`values` used not in a query block"))
+
 (defn collection? [x]
   (instance? java.util.Collection x))
 
