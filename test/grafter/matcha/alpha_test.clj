@@ -374,3 +374,51 @@
     (let [v1 ((m/ask [[uri foaf:knows ?p] [?p rdfs:label ?name]]) friends)
           v2 (m/ask [[uri foaf:knows ?p] [?p rdfs:label ?name]] friends)]
       (is (= v1 v2)))))
+
+(deftest values-syntax-test
+  (is (= (let [people #{rick}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               [?o rdfs:label ?name]
+               (values ?person people)]
+              friends)))
+         #{"Martin" "Katie"}))
+  (is (= (let [people #{rick katie}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               [?o rdfs:label ?name]
+               (values ?person people)]
+              friends)))
+         #{"Martin" "Katie" "Julie"}))
+
+  (is (= (let [people #{rick katie}
+               names #{"Julie"}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               (values ?person people)
+               [?o rdfs:label ?name]
+               (values ?name names)]
+              friends)))
+         #{"Julie"}))
+
+  (throws? ::m/invalid-values
+           (let [people rick]
+             (set
+              (select [?name]
+                [[?person foaf:knows ?o]
+                 [?o rdfs:label ?name]
+                 (values ?person people)]
+                friends)))
+           #{"Martin" "Katie" "Julie"})
+  (throws? ::m/invalid-values
+           (let [people [rick]]
+             (set
+              (select [?name]
+                [[?person foaf:knows ?o]
+                 [?o rdfs:label ?name]
+                 (values ?person people)]
+                friends)))
+           #{"Martin" "Katie" "Julie"}))
