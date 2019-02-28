@@ -4,7 +4,8 @@
             [grafter.vocabularies.core :refer [prefixer]]
             [grafter.vocabularies.foaf :refer [foaf:knows]]
             [grafter.vocabularies.rdf :refer [rdfs:label]]
-            [grafter.rdf.protocols :refer [->Triple] :as gp])
+            [grafter.rdf.protocols :refer [->Triple] :as gp]
+            [clojure.spec.alpha :as s])
   (:import [grafter.rdf.protocols LangString RDFLiteral]
            [java.net URI]))
 
@@ -494,3 +495,29 @@
                  (values ?person people)]
                 optional-friends)))
            #{[martin "Nitram"] [katie '_0] [julie '_0]}))))
+
+(defmacro valid-syntax? [[op & args]]
+  (let [argspec (:args (get (s/registry) (resolve-sym op)))]
+    (s/valid? argspec args)))
+
+(def valid-syntax-symbol :hi-there)
+(def invalid-syntax-symbol [])
+(deftest macro-syntax-validation-test
+  (let [people #{rick katie}
+        names  #{"Martin"}]
+    (is (valid-syntax?
+         (select [?o ?eman]
+           [[?person foaf:knows valid-syntax-symbol] ;; => :hi-there
+            (optional [[?o rdfs:label ?name]
+                       (optional [[?name :name/backwards ?eman]
+                                  (values ?name names)])])
+            (values ?person people)]
+           optional-friends)))
+    (is (not (valid-syntax?
+              (select [?o ?eman]
+                [[?person foaf:knows invalid-syntax-symbol] ;; => []
+                 (optional [[?o rdfs:label ?name]
+                            (optional [[?name :name/backwards ?eman]
+                                       (values ?name names)])])
+                 (values ?person people)]
+                optional-friends))))))
