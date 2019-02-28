@@ -62,11 +62,7 @@
        (string/starts-with? (str sym) "?")))
 
 (defn- find-vars [bgps]
-  (let [vars (->> bgps
-                     (mapcat identity)
-                     (filter query-var?)
-                     distinct
-                     vec)]
+  (let [vars (->> bgps flatten (filter query-var?) distinct vec)]
     (if (seq vars)
       vars
       '[?_])))
