@@ -248,13 +248,14 @@
 
   If called with 3 arguments, queries the `db-or-idx` directly, returning a
   sequence of results with the `?vars` in `project-vars` projected."
+  {:style/indent :defn}
   ([bgps]
    `(select ~(find-vars bgps) ~bgps))
   ([project-vars bgps]
    `(fn [db-or-idx#]
       (select ~project-vars ~bgps db-or-idx#)))
   ([project-vars bgps db-or-idx]
-   (solve* 'select {:project-vars project-vars} project-vars bgps db-or-idx)))
+   (solve* 'select &env project-vars bgps db-or-idx)))
 
 (s/fdef select
   :args (s/or
@@ -358,9 +359,8 @@
       (construct ~construct-pattern ~bgps db-or-idx#)))
   ([construct-pattern bgps db-or-idx]
    (let [pvars (find-vars-in-tree construct-pattern)
-         pvarvec (vec pvars)
-         err-data {:construct-pattern construct-pattern}]
-     `(->> ~(solve* 'construct err-data pvars bgps db-or-idx)
+         pvarvec (vec pvars)]
+     `(->> ~(solve* 'construct &env pvars bgps db-or-idx)
            ;; create a sequence of {?var :value} binding maps for
            ;; each solution.
            (unify-solutions (quote ~pvarvec))
@@ -422,7 +422,7 @@
   ([bgps]
    `(fn [db#] (ask ~bgps db#)))
   ([bgps db]
-   `(boolean (seq ~(solve* 'ask {} '[?_] bgps db)))))
+   `(boolean (seq ~(solve* 'ask &env '[?_] bgps db)))))
 
 (s/fdef ask
   :args (s/or :ary-1 (s/cat :bgps ::bgps)
