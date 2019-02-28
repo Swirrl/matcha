@@ -87,6 +87,25 @@
   [binding bound-value]
   (assert nil "`values` used not in a query block"))
 
+(defmacro optional
+  "Makes a graph pattern optional. I.E., the pattern inside (optional [...]) is
+  optional, patterns outside are required. Can be arbitrarily nested. MUST be
+  used inside a (select|construct|ask|etc) query.
+
+  SYNTAX: (optional bgps)
+          bgps: ::bgps
+
+  E.G.,
+  (select [?o ?eman]
+    [[?person foaf:knows somebody]
+     (optional [[?o rdfs:label ?name]
+                (optional [[?name :name/backwards ?eman]
+                           (values ?name names)])])]
+    optional-friends)"
+  {:style/indent :defn ::clause true}
+  [bgps]
+  (assert nil "`optional` used not in a query block"))
+
 (defn collection? [x]
   (or (instance? java.util.Collection x)
       (map? x)))
