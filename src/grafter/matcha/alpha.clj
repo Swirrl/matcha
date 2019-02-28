@@ -113,8 +113,21 @@
 (s/def ::sexp
   (s/and list? (s/cat :op (s/or :ifn? ifn? :sexp ::sexp) :* (s/* any?))))
 
+(defn- valid-symbol-atomic? [x]
+  (and (symbol? x)
+       (if-let [v (resolve x)]
+         (and (bound? v)
+              (let [value (deref v)]
+                (and (some? value)
+                     (not (collection? value)))))
+         (simple-symbol? x))))
+
 (s/def ::atomic
-  (s/and some? (s/or :sexp ::sexp :non-coll (comp not collection?))))
+  (s/and some?
+         (s/or :symbol valid-symbol-atomic?
+               :literal (s/and (complement symbol?)
+                               (s/or :sexp ::sexp
+                                     :non-coll (complement collection?))))))
 
 (s/def ::triple
   (s/tuple ::atomic ::atomic ::atomic))
@@ -141,7 +154,11 @@
 (s/def ::values
   (clause values :binding query-var? :bound (comp not query-var?)))
 
-(s/def ::clause ::values)
+(s/def ::optional
+  (clause optional :bgps ::bgps))
+
+(s/def ::clause
+  (s/or :values ::values :optional ::optional))
 
 (s/def ::pattern-row (s/or :bgp ::bgp :clause ::clause))
 
