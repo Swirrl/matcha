@@ -88,7 +88,8 @@
   (assert nil "`values` used not in a query block"))
 
 (defn collection? [x]
-  (instance? java.util.Collection x))
+  (or (instance? java.util.Collection x)
+      (map? x)))
 
 (s/def ::sexp
   (s/and list? (s/cat :op (s/or :ifn? ifn? :sexp ::sexp) :* (s/* any?))))
@@ -100,8 +101,6 @@
   (s/tuple ::atomic ::atomic ::atomic))
 
 (s/def ::bgp ::triple)
-
-(s/def ::bgps (s/coll-of ::bgp :kind vector?))
 
 (defn valid-bgps? [bgps]
   (letfn [(valid-atomic? [x] (and some? (not (collection? x))))
@@ -128,6 +127,24 @@
            (l/run* ~(vec pvars)
              (fresh ~syms
                ~@query-patterns)))))))
+
+(defn resolve-sym [x]
+  (let [v (resolve x)]
+    (symbol (str (.name (.ns v))) (str (.sym v)))))
+
+(defmacro clause [name & argspec]
+  `(letfn [(clause?# [x#]
+             (= '~(resolve-sym name) (resolve-sym x#)))]
+     (s/and list? (s/cat :op clause?# ~@argspec))))
+
+(s/def ::values
+  (clause values :binding query-var? :bound (comp not query-var?)))
+
+(s/def ::clause ::values)
+
+(s/def ::pattern-row (s/or :bgp ::bgp :clause ::clause))
+
+(s/def ::bgps (s/coll-of ::pattern-row :kind vector?))
 
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
