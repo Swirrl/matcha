@@ -110,24 +110,6 @@
     (and (sequential? bgps)
          (every? valid-bgp? bgps))))
 
-(defn- solve* [qtype err-data pvars bgps db-or-idx]
-  (let [syms (->> bgps find-vars (remove (set pvars)) vec)
-        query-patterns (map (fn [[s p o]] `(triple ~s ~p ~o)) bgps)
-        quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))
-        kwtype (keyword "grafter.matcha.alpha" (str qtype "-validation-error"))
-        err-msg (format "Invalid data syntax passed to `%s` query at runtime"
-                        qtype)]
-    `(let [bgps# ~(quote-qvars bgps)]
-       (when-not (valid-bgps? bgps#)
-         (throw
-          (ex-info ~err-msg
-                   (merge {:type ~kwtype :bgps bgps#} ~(quote-qvars err-data)))))
-       (let [idx# (index-if-necessary ~db-or-idx)]
-         (pldb/with-db idx#
-           (l/run* ~(vec pvars)
-             (fresh ~syms
-               ~@query-patterns)))))))
-
 (defn resolve-sym [x]
   (let [v (resolve x)]
     (symbol (str (.name (.ns v))) (str (.sym v)))))
@@ -162,6 +144,38 @@
 
 (defn- parse-patterns [conformed]
   (mapv parse-pattern-row conformed))
+
+(defn valid-values? [values-syms]
+  (let [invalid (into {} (remove (comp set? second) values-syms))]
+    (when (seq invalid)
+      (throw
+       (ex-info
+        (str "Invalid Argument: `values` bound arguments must be sets\n"
+             (format "%s were not" (pr-str invalid)))
+        {:type ::invalid-values
+         :args invalid})))))
+
+(defn extract-validation [bound-vars conformed-bgps]
+  (letfn [(pair-quote [x]
+            {(list 'quote x) x})
+          (extract-clause [[type row]]
+            (case type
+              :values {:values (pair-quote (:bound row))}))
+          (extract-row [[type row]]
+            (case type
+              :clause (extract-clause row)))]
+    (reduce (partial merge-with merge)
+            (map extract-row conformed-bgps))))
+
+(defn- solve* [qtype bound-vars pvars bgps db-or-idx]
+  (let [conformed (s/conform ::bgps bgps)
+        validation (extract-validation bound-vars conformed)]
+    `(do
+       ~@(some->> validation :values (list `valid-values?) list)
+       (pldb/with-db (index-if-necessary ~db-or-idx)
+         (l/run* ~(vec pvars)
+           (fresh ~(->> bgps find-vars (remove (set pvars)) vec)
+             ~@(parse-patterns conformed)))))))
 
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
