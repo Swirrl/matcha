@@ -134,14 +134,6 @@
 
 (s/def ::bgp ::triple)
 
-(defn valid-bgps? [bgps]
-  (letfn [(valid-atomic? [x] (and some? (not (collection? x))))
-          (valid-bgp? [bgp]
-            (and (= (count bgp) 3)
-                 (every? valid-atomic? bgp)))]
-    (and (sequential? bgps)
-         (every? valid-bgp? bgps))))
-
 (defn resolve-sym [x]
   (let [v (resolve x)]
     (symbol (str (.name (.ns v))) (str (.sym v)))))
@@ -169,9 +161,13 @@
 
 (declare parse-patterns)
 
+(defn- parse-optional [{:keys [bgps]}]
+  `[(l/conde ~(parse-patterns bgps))])
+
 (defn- parse-clause [[type row]]
   (case type
-    :values (parse-values row)))
+    :values (parse-values row)
+    :optional (parse-optional row)))
 
 (defn- parse-pattern-row [[type row]]
   (case type
@@ -179,7 +175,26 @@
     :clause (parse-clause row)))
 
 (defn- parse-patterns [conformed]
-  (mapv parse-pattern-row conformed))
+  (let [optional? (fn [[k v]] (and (= k :clause) (= :optional (first v))))
+        optionals (filter optional? conformed)
+        requireds (remove optional? conformed)]
+    (vec
+     (concat
+      (mapv parse-pattern-row requireds)
+      (when (seq optionals)
+        [`(l/conda
+           ~@(map parse-pattern-row optionals)
+           ~@(when (seq requireds) [[`l/succeed]]))])))))
+
+(defn valid-bgps? [bgps-syms]
+  (letfn [(valid-atomic? [[_ x]] (and (some? x) (not (collection? x))))]
+    (let [invalid (into {} (remove valid-atomic? bgps-syms))]
+      (when (seq invalid)
+        (throw
+         (ex-info (str "Invalid Argument: `bgp` elements must be atomic values\n"
+                       (format "%s were not" (pr-str invalid)))
+                  {:type ::invalid-bgp
+                   :args invalid}))))))
 
 (defn valid-values? [values-syms]
   (let [invalid (into {} (remove (comp set? second) values-syms))]
@@ -194,11 +209,21 @@
 (defn extract-validation [bound-vars conformed-bgps]
   (letfn [(pair-quote [x]
             {(list 'quote x) x})
+          (binding? [x]
+            (and (simple-symbol? x)
+                 (not (string/starts-with? (str x) "?"))
+                 (get bound-vars x)))
           (extract-clause [[type row]]
             (case type
-              :values {:values (pair-quote (:bound row))}))
+              :values {:values (pair-quote (:bound row))}
+              :optional (extract-validation bound-vars (:bgps row))))
           (extract-row [[type row]]
             (case type
+              :bgp {:bgp (->> row
+                              (map second)
+                              (filter binding?)
+                              (map pair-quote)
+                              (apply merge))}
               :clause (extract-clause row)))]
     (reduce (partial merge-with merge)
             (map extract-row conformed-bgps))))
@@ -207,6 +232,7 @@
   (let [conformed (s/conform ::bgps bgps)
         validation (extract-validation bound-vars conformed)]
     `(do
+       ~@(some->> validation :bgp (list `valid-bgps?) list)
        ~@(some->> validation :values (list `valid-values?) list)
        (pldb/with-db (index-if-necessary ~db-or-idx)
          (l/run* ~(vec pvars)
