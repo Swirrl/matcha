@@ -267,12 +267,12 @@
     (is (= ["Martin" "Katie"] (selectq-3 rick friends)))
 
     ;; literal set throws
-    (throws? ::m/select-validation-error ((selectq-2 #{rick}) friends))
-    (throws? ::m/select-validation-error (selectq-3 #{rick} friends))
+    (throws? ::m/invalid-bgp ((selectq-2 #{rick}) friends))
+    (throws? ::m/invalid-bgp (selectq-3 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/select-validation-error (let [arg #{rick}] ((selectq-2 arg) friends)))
-    (throws? ::m/select-validation-error (let [arg #{rick}] (selectq-3 arg friends))))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] ((selectq-2 arg) friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] (selectq-3 arg friends))))
 
   ;; construct validation
   (letfn [(constructq-2 [uri]
@@ -306,12 +306,12 @@
             friends)))
 
     ;; literal set throws
-    (throws? ::m/construct-validation-error ((constructq-2 #{rick}) friends))
-    (throws? ::m/construct-validation-error (constructq-3 #{rick} friends))
+    (throws? ::m/invalid-bgp ((constructq-2 #{rick}) friends))
+    (throws? ::m/invalid-bgp (constructq-3 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/construct-validation-error (let [arg #{rick}] ((constructq-2 arg) friends)))
-    (throws? ::m/construct-validation-error (let [arg #{rick}] (constructq-3 arg friends))))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] ((constructq-2 arg) friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] (constructq-3 arg friends))))
 
   ;; ask validation
   (letfn [(askq-1 [uri]
@@ -327,12 +327,12 @@
     (is (askq-2 rick friends))
 
     ;; literal set throws
-    (throws? ::m/ask-validation-error ((askq-1 #{rick}) friends))
-    (throws? ::m/ask-validation-error (askq-2 #{rick} friends))
+    (throws? ::m/invalid-bgp ((askq-1 #{rick}) friends))
+    (throws? ::m/invalid-bgp (askq-2 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/ask-validation-error (let [arg #{rick}] ((askq-1 arg) friends)))
-    (throws? ::m/ask-validation-error (let [arg #{rick}] (askq-2 arg friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] ((askq-1 arg) friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] (askq-2 arg friends)))
 
     ;; no ?qvars are OK
     (is (let [col-uri rick] (m/ask [[col-uri foaf:knows martin]] friends)))))
