@@ -422,3 +422,75 @@
                  (values ?person people)]
                 friends)))
            #{"Martin" "Katie" "Julie"}))
+
+(def other:label (data "other-label"))
+
+(def optional-friends
+  [(->Triple rick rdfs:label "Rick")
+   (->Triple martin rdfs:label "Martin")
+   (->Triple katie rdfs:label "Katie")
+
+   (->Triple julie other:label "Not a robot")
+
+   (->Triple rick foaf:knows martin)
+   (->Triple rick foaf:knows katie)
+   (->Triple katie foaf:knows julie)
+
+   (->Triple "Martin" :name/backwards "Nitram")
+   (->Triple "Katie" :name/backwards "Eitak")
+   (->Triple "Rick" :name/backwards "Kcir")])
+
+(deftest optional-syntax-test
+
+  (testing "OPTIONAL behaviour"
+    (is (= (set
+            (let [person katie]
+              (select [?o ?name]
+                [[person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]])
+                 (optional [[?o other:label ?name]])]
+                optional-friends)))
+           #{[julie "Not a robot"]}))
+    (is (= (set
+            (let [person rick]
+              (select [?o ?name]
+                [[person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]])
+                 (optional [[?o other:label ?name]])]
+                optional-friends)))
+           #{[martin "Martin"] [katie "Katie"]})))
+
+  (testing "OPTIONAL behaviour with VALUES"
+    (is (= (set
+            (let [people #{rick katie}]
+              (select [?o ?name]
+                [[?person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]])
+                 (optional [[?o other:label ?name]])
+                 (values ?person people)]
+                optional-friends)))
+           #{[martin "Martin"] [katie "Katie"] [julie "Not a robot"]})))
+
+  (testing "Where optional thing is just not there"
+    (is (= (set
+            (let [people #{rick katie}]
+              (select [?o ?name]
+                [[?person foaf:knows ?o]
+                 [?o rdfs:label ?name]
+                 (optional [[?o :who/am-i? ?dunno]])
+                 (values ?person people)]
+                optional-friends)))
+           #{[martin "Martin"] [katie "Katie"]})))
+
+  (testing "How about some optionals in your optionals?"
+    (is (= (set
+            (let [people #{rick katie}
+                  names  #{"Martin"}]
+              (select [?o ?eman]
+                [[?person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]
+                            (optional [[?name :name/backwards ?eman]
+                                       (values ?name names)])])
+                 (values ?person people)]
+                optional-friends)))
+           #{[martin "Nitram"] [katie '_0] [julie '_0]}))))
