@@ -4,7 +4,8 @@
             [grafter.vocabularies.core :refer [prefixer]]
             [grafter.vocabularies.foaf :refer [foaf:knows]]
             [grafter.vocabularies.rdf :refer [rdfs:label]]
-            [grafter.rdf.protocols :refer [->Triple] :as gp])
+            [grafter.rdf.protocols :refer [->Triple] :as gp]
+            [clojure.spec.alpha :as s])
   (:import [grafter.rdf.protocols LangString RDFLiteral]
            [java.net URI]))
 
@@ -242,6 +243,7 @@
     (is (= ["Martin" "Katie"]
            (ricks-friends lotsa-data)))))
 
+
 (defmacro throws? [ex-type & body]
   `(is (try
          ~@body
@@ -267,12 +269,12 @@
     (is (= ["Martin" "Katie"] (selectq-3 rick friends)))
 
     ;; literal set throws
-    (throws? ::m/select-validation-error ((selectq-2 #{rick}) friends))
-    (throws? ::m/select-validation-error (selectq-3 #{rick} friends))
+    (throws? ::m/invalid-bgp ((selectq-2 #{rick}) friends))
+    (throws? ::m/invalid-bgp (selectq-3 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/select-validation-error (let [arg #{rick}] ((selectq-2 arg) friends)))
-    (throws? ::m/select-validation-error (let [arg #{rick}] (selectq-3 arg friends))))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] ((selectq-2 arg) friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] (selectq-3 arg friends))))
 
   ;; construct validation
   (letfn [(constructq-2 [uri]
@@ -306,12 +308,12 @@
             friends)))
 
     ;; literal set throws
-    (throws? ::m/construct-validation-error ((constructq-2 #{rick}) friends))
-    (throws? ::m/construct-validation-error (constructq-3 #{rick} friends))
+    (throws? ::m/invalid-bgp ((constructq-2 #{rick}) friends))
+    (throws? ::m/invalid-bgp (constructq-3 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/construct-validation-error (let [arg #{rick}] ((constructq-2 arg) friends)))
-    (throws? ::m/construct-validation-error (let [arg #{rick}] (constructq-3 arg friends))))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] ((constructq-2 arg) friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] (constructq-3 arg friends))))
 
   ;; ask validation
   (letfn [(askq-1 [uri]
@@ -327,12 +329,12 @@
     (is (askq-2 rick friends))
 
     ;; literal set throws
-    (throws? ::m/ask-validation-error ((askq-1 #{rick}) friends))
-    (throws? ::m/ask-validation-error (askq-2 #{rick} friends))
+    (throws? ::m/invalid-bgp ((askq-1 #{rick}) friends))
+    (throws? ::m/invalid-bgp (askq-2 #{rick} friends))
 
     ;; bound arg set throws
-    (throws? ::m/ask-validation-error (let [arg #{rick}] ((askq-1 arg) friends)))
-    (throws? ::m/ask-validation-error (let [arg #{rick}] (askq-2 arg friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] ((askq-1 arg) friends)))
+    (throws? ::m/invalid-bgp (let [arg #{rick}] (askq-2 arg friends)))
 
     ;; no ?qvars are OK
     (is (let [col-uri rick] (m/ask [[col-uri foaf:knows martin]] friends)))))
@@ -374,3 +376,186 @@
     (let [v1 ((m/ask [[uri foaf:knows ?p] [?p rdfs:label ?name]]) friends)
           v2 (m/ask [[uri foaf:knows ?p] [?p rdfs:label ?name]] friends)]
       (is (= v1 v2)))))
+
+(deftest values-syntax-test
+  (is (= #{"Martin" "Katie"}
+         (let [people #{rick}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               [?o rdfs:label ?name]
+               (values ?person people)]
+              friends)))))
+
+  (is (= #{"Martin" "Katie" "Julie"}
+         (let [people #{rick katie}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               [?o rdfs:label ?name]
+               (values ?person people)]
+              friends)))))
+
+  (is (= #{"Julie"}
+         (let [people [rick katie]
+               names #{"Julie"}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               (values ?person people)
+               [?o rdfs:label ?name]
+               (values ?name names)]
+              friends)))))
+
+  (throws? ::m/invalid-values
+           (let [people rick]
+             (set
+              (select [?name]
+                [[?person foaf:knows ?o]
+                 [?o rdfs:label ?name]
+                 (values ?person people)]
+                friends)))
+           #{"Martin" "Katie" "Julie"})
+
+  (throws? ::m/invalid-values
+           (let [people 1]
+             (set
+              (select [?name]
+                [[?person foaf:knows ?o]
+                 [?o rdfs:label ?name]
+                 (values ?person people)]
+                friends)))
+           #{"Martin" "Katie" "Julie"}))
+
+(def other:label (data "other-label"))
+
+(def optional-friends
+  [(->Triple rick rdfs:label "Rick")
+   (->Triple martin rdfs:label "Martin")
+   (->Triple katie rdfs:label "Katie")
+
+   (->Triple julie other:label "Not a robot")
+
+   (->Triple rick foaf:knows martin)
+   (->Triple rick foaf:knows katie)
+   (->Triple katie foaf:knows julie)
+
+   (->Triple "Martin" :name/backwards "Nitram")
+   (->Triple "Katie" :name/backwards "Eitak")
+   (->Triple "Rick" :name/backwards "Kcir")])
+
+(deftest optional-syntax-test
+  (testing "OPTIONAL behaviour"
+    (let [tiny-db [[:a :triple :here]]]
+      (is (= #{[:a :triple :here]}
+             (set
+              (select [?s ?p ?o]
+                [(optional [[?s ?p ?o]])]
+                tiny-db))))
+
+      (is (empty?
+           (select [?s ?p ?o]
+             [(optional [[:do :not :match]])]
+             tiny-db)))
+
+      (is (= [[:a :triple :here]]
+             (select [?s ?p ?o]
+               [[?s ?p ?o]
+                (optional [[:optional :doesnt :match]
+                           [:but :required-pattern :does]])]
+               tiny-db)))
+
+      (is (= #{[:a :triple :here]}
+             (set
+              (select [?s ?p ?o]
+                [[?s ?p ?o]
+                 (optional [[?s ?p ?o]])]
+                tiny-db))))
+
+      (is (= #{[:a :triple :here]}
+             (set (select [?s ?p ?o]
+                    [(optional [[:optional :doesnt :match]
+                                [:but :other-optional :does]])
+                     (optional [[?s ?p ?o]])]
+                    tiny-db)))))
+
+    (is (= #{[julie "Not a robot"]}
+           (set
+            (let [person katie]
+              (select [?o ?name]
+                [[person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]])
+                 (optional [[?o other:label ?name]])]
+                optional-friends)))))
+
+    (is (= #{[martin "Martin"] [katie "Katie"]}
+           (set
+            (let [person rick]
+              (select [?o ?name]
+                [[person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]])
+                 (optional [[?o other:label ?name]])]
+                optional-friends))))))
+
+  (testing "OPTIONAL behaviour with VALUES"
+    (is (=
+         #{[martin "Martin"] [katie "Katie"] [julie "Not a robot"]}
+         (set
+            (let [people #{rick katie}]
+              (select [?o ?name]
+                [[?person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]])
+                 (optional [[?o other:label ?name]])
+                 (values ?person people)]
+                optional-friends))))))
+
+  (testing "Where optional thing is just not there"
+    (is (= #{[martin "Martin"] [katie "Katie"]}
+           (set
+            (let [people #{rick katie}]
+              (select [?o ?name]
+                [[?person foaf:knows ?o]
+                 [?o rdfs:label ?name]
+                 (optional [[?o :who/am-i? ?dunno]])
+                 (values ?person people)]
+                optional-friends))))))
+
+  (testing "How about some optionals in your optionals?"
+    (is (= #{[martin "Nitram"] [katie '_0] [julie '_0]}
+           (set
+            (let [people #{rick katie}
+                  names  #{"Martin"}]
+              (select [?o ?eman]
+                [[?person foaf:knows ?o]
+                 (optional [[?o rdfs:label ?name]
+                            (optional [[?name :name/backwards ?eman]
+                                       (values ?name names)])])
+                 (values ?person people)]
+                optional-friends)))))))
+
+(defmacro valid-syntax? [[op & args]]
+  (let [argspec (:args (get (s/registry) (resolve-sym op)))]
+    (s/valid? argspec args)))
+
+(def valid-syntax-symbol :hi-there)
+(def invalid-syntax-symbol [])
+
+(deftest macro-syntax-validation-test
+  (let [people #{rick katie}
+        names  #{"Martin"}]
+    (is (valid-syntax?
+         (select [?o ?eman]
+           [[?person foaf:knows valid-syntax-symbol] ;; => :hi-there
+            (optional [[?o rdfs:label ?name]
+                       (optional [[?name :name/backwards ?eman]
+                                  (values ?name names)])])
+            (values ?person people)]
+           optional-friends)))
+    (is (not (valid-syntax?
+              (select [?o ?eman]
+                [[?person foaf:knows invalid-syntax-symbol] ;; => []
+                 (optional [[?o rdfs:label ?name]
+                            (optional [[?name :name/backwards ?eman]
+                                       (values ?name names)])])
+                 (values ?person people)]
+                optional-friends))))))

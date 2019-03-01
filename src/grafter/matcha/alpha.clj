@@ -62,56 +62,183 @@
        (string/starts-with? (str sym) "?")))
 
 (defn- find-vars [bgps]
-  (let [vars (->> bgps
-                     (mapcat identity)
-                     (filter query-var?)
-                     distinct
-                     vec)]
+  (let [vars (->> bgps flatten (filter query-var?) distinct vec)]
     (if (seq vars)
       vars
       '[?_])))
 
+(defmacro values
+  "Binds a ?qvar binding to elements of a set inside the query. MUST be used
+  inside a (select|construct|ask|etc) query.
+
+  SYNTAX: (values binding bound-value)
+          binding: ?qvar
+          bound-value: any?
+
+  E.G.,
+  (let [subjects #{:a :b :c}]
+    (select [?s ?p ?o]
+      [[?s ?p ?o]
+       (values ?s subjects)]))"
+  [binding bound-value]
+  (assert nil "`values` used not in a query block"))
+
+(defmacro optional
+  "Makes a graph pattern optional. I.E., the pattern inside (optional [...]) is
+  optional, patterns outside are required. Can be arbitrarily nested. MUST be
+  used inside a (select|construct|ask|etc) query.
+
+  SYNTAX: (optional bgps)
+          bgps: ::bgps
+
+  E.G.,
+  (select [?o ?eman]
+    [[?person foaf:knows somebody]
+     (optional [[?o rdfs:label ?name]
+                (optional [[?name :name/backwards ?eman]
+                           (values ?name names)])])]
+    optional-friends)"
+  {:style/indent :defn ::clause true}
+  [bgps]
+  (assert nil "`optional` used not in a query block"))
+
 (defn collection? [x]
-  (instance? java.util.Collection x))
+  (or (instance? java.util.Collection x)
+      (map? x)))
 
 (s/def ::sexp
   (s/and list? (s/cat :op (s/or :ifn? ifn? :sexp ::sexp) :* (s/* any?))))
 
+(defn- valid-symbol-atomic? [x]
+  (and (symbol? x)
+       (if-let [v (resolve x)]
+         (and (bound? v)
+              (let [value (deref v)]
+                (and (some? value)
+                     (not (collection? value)))))
+         (simple-symbol? x))))
+
 (s/def ::atomic
-  (s/and some? (s/or :sexp ::sexp :non-coll (comp not collection?))))
+  (s/and some?
+         (s/or :symbol valid-symbol-atomic?
+               :literal (s/and (complement symbol?)
+                               (s/or :sexp ::sexp
+                                     :non-coll (complement collection?))))))
 
 (s/def ::triple
   (s/tuple ::atomic ::atomic ::atomic))
 
 (s/def ::bgp ::triple)
 
-(s/def ::bgps (s/coll-of ::bgp :kind vector?))
+(defn resolve-sym [x]
+  (let [v (resolve x)]
+    (symbol (str (.name (.ns v))) (str (.sym v)))))
 
-(defn valid-bgps? [bgps]
-  (letfn [(valid-atomic? [x] (and some? (not (collection? x))))
-          (valid-bgp? [bgp]
-            (and (= (count bgp) 3)
-                 (every? valid-atomic? bgp)))]
-    (and (sequential? bgps)
-         (every? valid-bgp? bgps))))
+(defmacro clause [name & argspec]
+  `(letfn [(clause?# [x#]
+             (= '~(resolve-sym name) (resolve-sym x#)))]
+     (s/and list? (s/cat :op clause?# ~@argspec))))
 
-(defn- solve* [qtype err-data pvars bgps db-or-idx]
-  (let [syms (->> bgps find-vars (remove (set pvars)) vec)
-        query-patterns (map (fn [[s p o]] `(triple ~s ~p ~o)) bgps)
-        quote-qvars (partial walk/postwalk #(if (query-var? %) `(quote ~%) %))
-        kwtype (keyword "grafter.matcha.alpha" (str qtype "-validation-error"))
-        err-msg (format "Invalid data syntax passed to `%s` query at runtime"
-                        qtype)]
-    `(let [bgps# ~(quote-qvars bgps)]
-       (when-not (valid-bgps? bgps#)
-         (throw
-          (ex-info ~err-msg
-                   (merge {:type ~kwtype :bgps bgps#} ~(quote-qvars err-data)))))
-       (let [idx# (index-if-necessary ~db-or-idx)]
-         (pldb/with-db idx#
-           (l/run* ~(vec pvars)
-             (fresh ~syms
-               ~@query-patterns)))))))
+(s/def ::values
+  (clause values :binding query-var? :bound (comp not query-var?)))
+
+(s/def ::optional
+  (clause optional :bgps ::bgps))
+
+(s/def ::clause
+  (s/or :values ::values :optional ::optional))
+
+(s/def ::pattern-row (s/or :bgp ::bgp :clause ::clause))
+
+(s/def ::bgps (s/coll-of ::pattern-row :kind vector?))
+
+(defn- parse-values [{:keys [binding bound]}]
+  `(l/membero ~binding (vec ~bound)))
+
+(declare parse-patterns)
+
+(defn- parse-optional [{:keys [bgps]}]
+  `[(l/conde ~(parse-patterns bgps))])
+
+(defn- parse-clause [[type row]]
+  (case type
+    :values (parse-values row)
+    :optional (parse-optional row)))
+
+(defn- parse-pattern-row [[type row]]
+  (case type
+    :bgp `(triple ~@(s/unform ::bgp row))
+    :clause (parse-clause row)))
+
+(defn- parse-patterns [conformed]
+  (let [optional? (fn [[k v]] (and (= k :clause) (= :optional (first v))))
+        optionals (filter optional? conformed)
+        requireds (remove optional? conformed)]
+    (vec
+     (concat
+      (mapv parse-pattern-row requireds)
+      (when (seq optionals)
+        [`(l/conda
+           ~@(map parse-pattern-row optionals)
+           ~@(when (seq requireds) [[`l/succeed]]))])))))
+
+(defn valid-bgps? [bgps-syms]
+  (letfn [(valid-atomic? [[_ x]] (and (some? x) (not (collection? x))))]
+    (let [invalid (into {} (remove valid-atomic? bgps-syms))]
+      (when (seq invalid)
+        (throw
+         (ex-info (str "Invalid Argument: `bgp` elements must be atomic values\n"
+                       (format "%s were not" (pr-str invalid)))
+                  {:type ::invalid-bgp
+                   :args invalid}))))))
+
+(defn- flat-coll? [c]
+  (or (sequential? c)
+      (set? c)
+      (nil? c)))
+
+(defn valid-values? [values-syms]
+  (let [invalid (into {} (remove (comp flat-coll? second) values-syms))]
+    (when (seq invalid)
+      (throw
+       (ex-info
+        (str "Invalid Argument: `values` bound arguments must be sequential?, set? or nil?\n"
+             (format "%s were not" (pr-str invalid)))
+        {:type ::invalid-values
+         :args invalid})))))
+
+(defn extract-validation [bound-vars conformed-bgps]
+  (letfn [(pair-quote [x]
+            {(list 'quote x) x})
+          (binding? [x]
+            (and (simple-symbol? x)
+                 (not (string/starts-with? (str x) "?"))
+                 (get bound-vars x)))
+          (extract-clause [[type row]]
+            (case type
+              :values {:values (pair-quote (:bound row))}
+              :optional (extract-validation bound-vars (:bgps row))))
+          (extract-row [[type row]]
+            (case type
+              :bgp {:bgp (->> row
+                              (map second)
+                              (filter binding?)
+                              (map pair-quote)
+                              (apply merge))}
+              :clause (extract-clause row)))]
+    (reduce (partial merge-with merge)
+            (map extract-row conformed-bgps))))
+
+(defn- solve* [qtype bound-vars pvars bgps db-or-idx]
+  (let [conformed (s/conform ::bgps bgps)
+        validation (extract-validation bound-vars conformed)]
+    `(do
+       ~@(some->> validation :bgp (list `valid-bgps?) list)
+       ~@(some->> validation :values (list `valid-values?) list)
+       (pldb/with-db (index-if-necessary ~db-or-idx)
+         (l/run* ~(vec pvars)
+           (fresh ~(->> bgps find-vars (remove (set pvars)) vec)
+             ~@(parse-patterns conformed)))))))
 
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
@@ -126,13 +253,14 @@
 
   If called with 3 arguments, queries the `db-or-idx` directly, returning a
   sequence of results with the `?vars` in `project-vars` projected."
+  {:style/indent :defn}
   ([bgps]
    `(select ~(find-vars bgps) ~bgps))
   ([project-vars bgps]
    `(fn [db-or-idx#]
       (select ~project-vars ~bgps db-or-idx#)))
   ([project-vars bgps db-or-idx]
-   (solve* 'select {:project-vars project-vars} project-vars bgps db-or-idx)))
+   (solve* 'select &env project-vars bgps db-or-idx)))
 
 (s/fdef select
   :args (s/or
@@ -236,9 +364,8 @@
       (construct ~construct-pattern ~bgps db-or-idx#)))
   ([construct-pattern bgps db-or-idx]
    (let [pvars (find-vars-in-tree construct-pattern)
-         pvarvec (vec pvars)
-         err-data {:construct-pattern construct-pattern}]
-     `(->> ~(solve* 'construct err-data pvars bgps db-or-idx)
+         pvarvec (vec pvars)]
+     `(->> ~(solve* 'construct &env pvars bgps db-or-idx)
            ;; create a sequence of {?var :value} binding maps for
            ;; each solution.
            (unify-solutions (quote ~pvarvec))
@@ -300,7 +427,7 @@
   ([bgps]
    `(fn [db#] (ask ~bgps db#)))
   ([bgps db]
-   `(boolean (seq ~(solve* 'ask {} '[?_] bgps db)))))
+   `(boolean (seq ~(solve* 'ask &env '[?_] bgps db)))))
 
 (s/fdef ask
   :args (s/or :ary-1 (s/cat :bgps ::bgps)
