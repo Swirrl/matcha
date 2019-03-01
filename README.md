@@ -22,14 +22,18 @@ use Matcha to query this graph locally.
 
 ## Features
 
-- SPARQL-like BGP queries across multiple triple patterns
-- Parameterised queries using just clojure `let`
+- SPARQL-like BGP queries across multiple triple patterns.
+- Parameterised queries using just clojure `let`.
 - Ability to index your database, with `index-triples`.  In order to
   be queried Matcha needs to have indexed the data; if your data is
   unindexed it will index it before running the query, and then
   dispose of the index.  This can lead to poor performance when you
   want to query the same set of data multiple times.
 - Construct graph query results directly into clojure datastructures.
+- Support for `VALUES` clauses (unlike in SPARQL we do not yet support 
+  binding arbitrary tuples/tables).  So we only support the 
+  `VALUES ?x { ... }` form.
+- Support for `OPTIONAL`s with SPARQL-like semantics.
 
 ## Limitations
 
@@ -67,7 +71,11 @@ URI's, or clojure keywords.
 
                  [:rick :foaf/knows :martin]
                  [:rick :foaf/knows :katie]
-                 [:katie :foaf/knows :julie]])
+                 [:katie :foaf/knows :julie]
+                 
+                 [:rick :a :foaf/Person]
+                 [:katie :a :foaf/Person]
+                 [:martin :a :foaf/Person]])
 ```
 
 Now we can build our query functions:
@@ -213,6 +221,43 @@ You can parameterise Matcha queries simply by adding a lexical binding or wrappi
 ;; => [{:grafter.rdf/uri :martin, :name "Martin"}
 ;;     {:grafter.rdf/uri :katie, :name "Katie"}]
 ```
+
+### OPTIONALs
+
+We support SPARQL-like `OPTIONAL`s in all query types with the following syntax:
+
+```clojure
+(defn lookup-name [person-id database]
+  (select [?name]
+    [[person-id :a :foaf/Person]
+     (optional [[person :rdfs/label ?name]])
+     (optional [[person :foaf/name ?name]])]))
+```
+
+### VALUEs
+
+We support dynamic VALUEs clauses in all query types like so:
+
+```clojure
+(defn lookup-names [person-ids database]
+  (select [?name]
+    [(values ?person-id person-ids)
+     [?person-id :rdfs/label ?name]]))
+     
+(lookup-names [:rick :katie] friends-db) ;; => ["Rick", "Katie"]     
+```
+
+You can also hardcode the values into the query:
+
+```clojure
+(defn lookup-names [person-ids database]
+  (select [?name]
+    [(values ?person-id [:rick :katie])
+     [?person-id :rdfs/label ?name]]))
+```
+
+Any "flat collection" (i.e. a `sequential?` or a `set?`) is valid 
+on the right hand side of a `values` binding.
 
 ## Performance
 
