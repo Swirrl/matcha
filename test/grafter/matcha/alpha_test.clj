@@ -445,17 +445,49 @@
    (->Triple "Rick" :name/backwards "Kcir")])
 
 (deftest optional-syntax-test
-
   (testing "OPTIONAL behaviour"
-    (is (= (set
+    (let [tiny-db [[:a :triple :here]]]
+      (is (= #{[:a :triple :here]}
+             (set
+              (select [?s ?p ?o]
+                [(optional [[?s ?p ?o]])]
+                tiny-db))))
+
+      (is (empty?
+           (select [?s ?p ?o]
+             [(optional [[:do :not :match]])]
+             tiny-db)))
+
+      (is (= [[:a :triple :here]]
+             (select [?s ?p ?o]
+               [[?s ?p ?o]
+                (optional [[:optional :doesnt :match]
+                           [:but :required-pattern :does]])]
+               tiny-db)))
+
+      (is (= #{[:a :triple :here]}
+             (set
+              (select [?s ?p ?o]
+                [[?s ?p ?o]
+                 (optional [[?s ?p ?o]])]
+                tiny-db))))
+
+      (is (= #{[:a :triple :here]}
+             (set (select [?s ?p ?o]
+                    [(optional [[:optional :doesnt :match]
+                                [:but :other-optional :does]])
+                     (optional [[?s ?p ?o]])]
+                    tiny-db)))))
+
+    (is (= #{[julie "Not a robot"]}
+           (set
             (let [person katie]
               (select [?o ?name]
                 [[person foaf:knows ?o]
                  (optional [[?o rdfs:label ?name]])
                  (optional [[?o other:label ?name]])]
-                optional-friends)))
-           #{[julie "Not a robot"]}))
-    (is (= (set
+                optional-friends)))))
+
     (is (= #{[martin "Martin"] [katie "Katie"]}
            (set
             (let [person rick]
@@ -489,7 +521,8 @@
                 optional-friends))))))
 
   (testing "How about some optionals in your optionals?"
-    (is (= (set
+    (is (= #{[martin "Nitram"] [katie '_0] [julie '_0]}
+           (set
             (let [people #{rick katie}
                   names  #{"Martin"}]
               (select [?o ?eman]
