@@ -192,12 +192,17 @@
                   {:type ::invalid-bgp
                    :args invalid}))))))
 
+(defn- flat-coll? [c]
+  (or (sequential? c)
+      (set? c)
+      (nil? c)))
+
 (defn valid-values? [values-syms]
-  (let [invalid (into {} (remove (comp set? second) values-syms))]
+  (let [invalid (into {} (remove (comp flat-coll? second) values-syms))]
     (when (seq invalid)
       (throw
        (ex-info
-        (str "Invalid Argument: `values` bound arguments must be sets\n"
+        (str "Invalid Argument: `values` bound arguments must be sequential?, set? or nil?\n"
              (format "%s were not" (pr-str invalid)))
         {:type ::invalid-values
          :args invalid})))))

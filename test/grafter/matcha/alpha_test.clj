@@ -414,8 +414,9 @@
                  (values ?person people)]
                 friends)))
            #{"Martin" "Katie" "Julie"})
+
   (throws? ::m/invalid-values
-           (let [people [rick]]
+           (let [people 1]
              (set
               (select [?name]
                 [[?person foaf:knows ?o]
