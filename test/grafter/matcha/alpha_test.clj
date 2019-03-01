@@ -243,6 +243,7 @@
     (is (= ["Martin" "Katie"]
            (ricks-friends lotsa-data)))))
 
+
 (defmacro throws? [ex-type & body]
   `(is (try
          ~@body
@@ -377,24 +378,26 @@
       (is (= v1 v2)))))
 
 (deftest values-syntax-test
-  (is (= (let [people #{rick}]
+  (is (= #{"Martin" "Katie"}
+         (let [people #{rick}]
            (set
             (select [?name]
               [[?person foaf:knows ?o]
                [?o rdfs:label ?name]
                (values ?person people)]
-              friends)))
-         #{"Martin" "Katie"}))
-  (is (= (let [people #{rick katie}]
-           (set
-            (select [?name]
-              [[?person foaf:knows ?o]
-               [?o rdfs:label ?name]
-               (values ?person people)]
-              friends)))
-         #{"Martin" "Katie" "Julie"}))
+              friends)))))
 
-  (is (= (let [people #{rick katie}
+  (is (= #{"Martin" "Katie" "Julie"}
+         (let [people #{rick katie}]
+           (set
+            (select [?name]
+              [[?person foaf:knows ?o]
+               [?o rdfs:label ?name]
+               (values ?person people)]
+              friends)))))
+
+  (is (= #{"Julie"}
+         (let [people [rick katie]
                names #{"Julie"}]
            (set
             (select [?name]
@@ -402,8 +405,7 @@
                (values ?person people)
                [?o rdfs:label ?name]
                (values ?name names)]
-              friends)))
-         #{"Julie"}))
+              friends)))))
 
   (throws? ::m/invalid-values
            (let [people rick]
@@ -454,35 +456,37 @@
                 optional-friends)))
            #{[julie "Not a robot"]}))
     (is (= (set
+    (is (= #{[martin "Martin"] [katie "Katie"]}
+           (set
             (let [person rick]
               (select [?o ?name]
                 [[person foaf:knows ?o]
                  (optional [[?o rdfs:label ?name]])
                  (optional [[?o other:label ?name]])]
-                optional-friends)))
-           #{[martin "Martin"] [katie "Katie"]})))
+                optional-friends))))))
 
   (testing "OPTIONAL behaviour with VALUES"
-    (is (= (set
+    (is (=
+         #{[martin "Martin"] [katie "Katie"] [julie "Not a robot"]}
+         (set
             (let [people #{rick katie}]
               (select [?o ?name]
                 [[?person foaf:knows ?o]
                  (optional [[?o rdfs:label ?name]])
                  (optional [[?o other:label ?name]])
                  (values ?person people)]
-                optional-friends)))
-           #{[martin "Martin"] [katie "Katie"] [julie "Not a robot"]})))
+                optional-friends))))))
 
   (testing "Where optional thing is just not there"
-    (is (= (set
+    (is (= #{[martin "Martin"] [katie "Katie"]}
+           (set
             (let [people #{rick katie}]
               (select [?o ?name]
                 [[?person foaf:knows ?o]
                  [?o rdfs:label ?name]
                  (optional [[?o :who/am-i? ?dunno]])
                  (values ?person people)]
-                optional-friends)))
-           #{[martin "Martin"] [katie "Katie"]})))
+                optional-friends))))))
 
   (testing "How about some optionals in your optionals?"
     (is (= (set
@@ -494,8 +498,7 @@
                             (optional [[?name :name/backwards ?eman]
                                        (values ?name names)])])
                  (values ?person people)]
-                optional-friends)))
-           #{[martin "Nitram"] [katie '_0] [julie '_0]}))))
+                optional-friends)))))))
 
 (defmacro valid-syntax? [[op & args]]
   (let [argspec (:args (get (s/registry) (resolve-sym op)))]
@@ -503,6 +506,7 @@
 
 (def valid-syntax-symbol :hi-there)
 (def invalid-syntax-symbol [])
+
 (deftest macro-syntax-validation-test
   (let [people #{rick katie}
         names  #{"Martin"}]
