@@ -2,12 +2,12 @@
   (:refer-clojure :exclude [==])
   (:require [clojure.core.logic :as l :refer [fresh run*]]
             [clojure.core.logic.protocols :as lp]
-            [clojure.core.logic.pldb :as pldb]
-            [clojure.spec.alpha :as s]
             [clojure.core.logic.unifier :as u]
+            [clojure.set :as set]
+            [clojure.spec.alpha :as s]
             [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojure.set :as set]))
+            [grafter.matcha.db :as pldb]))
 
 (defmacro ^:private when-available [syms & body]
   (when (every? some? (map resolve syms))
@@ -28,9 +28,7 @@
     RDFLiteral
     (lp/-uninitialized [coll] coll)))
 
-(pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
-
-(defn triple-vector->idx-triple
+#_(defn triple-vector->idx-triple
   "Assume triples are either 3/tuple vectors or can be destructured as
   such.  Grafter Quad objects can be destructured in this manner."
   [[s p o]]
@@ -44,7 +42,7 @@
   All query functions should accept either a sequence of triples or an
   indexed database."
   [db]
-  (with-meta (apply pldb/db (map triple-vector->idx-triple db))
+  (with-meta (pldb/index-triples db)
     {::index true}))
 
 (defn ^:no-doc index-if-necessary
@@ -167,7 +165,7 @@
 
 (defn- parse-pattern-row [[type row]]
   (case type
-    :bgp `(triple ~@(s/unform ::bgp row))
+    :bgp `(pldb/triple ~@(s/unform ::bgp row))
     :clause (parse-clause row)))
 
 (defn- parse-patterns [conformed]
@@ -183,7 +181,7 @@
            ~@(when (seq requireds) [[`l/succeed]]))])))))
 
 (defn valid-bgps? [bgps-syms]
-  (letfn [(valid-atomic? [[_ x]] (and (some? x) (not (collection? x))))]
+  (letfn [(valid-atomic? [[_ x]] (and (not (collection? x))))]
     (let [invalid (into {} (remove valid-atomic? bgps-syms))]
       (when (seq invalid)
         (throw
@@ -433,22 +431,45 @@
   :args (s/or :ary-1 (s/cat :bgps ::bgps)
               :ary-2 (s/cat :bgps ::bgps :db any?)))
 
+(defn- normalise-db [db]
+  (if (map? db)
+    (:grafter.matcha.db/unindexed db)
+    db))
+
 (defn merge-dbs
   "Merges all supplied Matcha databases together into one.  Any
   individual database form can either be indexed already with
   index-triples, or a sequence of triples, in which case the triples
   will be indexed before being combined with any other databases."
   [& dbs]
+  ;; WARNING this is a very inefficient implementation, it would be
+  ;; much better to reuse existing database indexes and merge them;
+  ;; though the interface would need to change to account for the
+  ;; indexes we want to index on.
   (->> dbs
-       (map index-if-necessary)
-       (apply (partial merge-with
-                       (fn [a b]
-                         (let [unindexed {::pldb/unindexed (set/union (::pldb/unindexed a)
-                                                                      (::pldb/unindexed b))}
+       (mapcat normalise-db)
+       (pldb/index-triples [:s :p :o])))
 
-                               rem-a (dissoc a ::pldb/unindexed)
-                               rem-b (dissoc b ::pldb/unindexed)]
+(comment
 
-                           (merge unindexed
-                                  (merge-with (partial merge-with set/union)
-                                              rem-a rem-b))))))))
+  (select [?s]
+    [[:s ?p ?o]
+     [?s ?p ?o]] [[:s :p :o]])
+
+
+
+  (select [?s ?p ?o]
+    [[:s :p ?o]
+     [?s ?p ?o]
+     ]
+
+
+    [[:s :p :spo]
+     [:s :p :spo2]
+     [:s :p :spo3]
+     [:s2 :p2 :s2p2o]
+
+     [:s2 :p :s2po]])
+
+
+  )
