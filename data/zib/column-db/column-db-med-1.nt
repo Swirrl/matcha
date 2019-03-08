@@ -1,0 +1,952 @@
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/burma> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/portugal> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/syria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/estonia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/norway> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/middle-east> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bermuda-british> <http://www.w3.org/2000/01/rdf-schema#label> "Bermuda (British)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ecuador> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/america-central-and-south> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/burkina> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/greenland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/dominican-republic> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mongolia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/unit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/tajikistan> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/belgium> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/papua-new-guinea> .
+<http://gss-data.org.uk/def/concept/ages/hoad/65-plus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2008> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-kitts-and-nevis> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/macau> <http://www.w3.org/2000/01/rdf-schema#label> "Macau" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/central-african-republic> <http://www.w3.org/2000/01/rdf-schema#label> "Central African Republic" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/laos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/south-georgia-and-south-sandwich-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/dominican-republic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/congo> <http://www.w3.org/2000/01/rdf-schema#label> "Congo" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/greece> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/taiwan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/palau> <http://www.w3.org/2000/01/rdf-schema#label> "Palau" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/japan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/panama> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/peru> <http://www.w3.org/2000/01/rdf-schema#label> "Peru" .
+<http://gss-data.org.uk/def/concept/ages/hoad/30-34> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/65-plus> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/turkey> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/dominica> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2015> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/hong-kong> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/malaysia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-central> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/zambia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/curacao> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/gibraltar-british> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/azerbaijan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/seychelles> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/sudan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-helena-british> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/monaco> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/macedonia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sweden> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/brazil> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/netherlands-antilles> <http://www.w3.org/2000/01/rdf-schema#label> "Netherlands Antilles" .
+<http://purl.org/linked-data/sdmx/2009/dimension#age> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guadeloupe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2009> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-14> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mali> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2016> <http://www.w3.org/2000/01/rdf-schema#label> "2016" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/azerbaijan> <http://www.w3.org/2000/01/rdf-schema#label> "Azerbaijan" .
+<http://reference.data.gov.uk/id/year/2009> <http://www.w3.org/2000/01/rdf-schema#label> "2009" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/philippines> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/falkland-islands-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/21-24> <http://www.w3.org/2000/01/rdf-schema#label> "21-24" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/morocco> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cocos-keeling-islands> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/solomon-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Solomon Islands" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tokelau> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/namibia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/united-states> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eritrea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/qatar> <http://www.w3.org/2000/01/rdf-schema#label> "Qatar" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nigeria> <http://www.w3.org/2000/01/rdf-schema#label> "Nigeria" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/argentina> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/malta> <http://www.w3.org/2000/01/rdf-schema#label> "Malta" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/south-africa> <http://www.w3.org/2000/01/rdf-schema#label> "South Africa" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/south-africa> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bangladesh> .
+<http://reference.data.gov.uk/id/year/2015> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/code#sex-M> <http://www.w3.org/2000/01/rdf-schema#label> "Male"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/europe-other> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/kiribati> .
+<http://gss-data.org.uk/def/concept/ages/hoad/50-59> <http://www.w3.org/2000/01/rdf-schema#label> "50-59" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bermuda-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/chile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/romania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/guinea> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-lucia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/ages/hoad/35-39> <http://www.w3.org/2000/01/rdf-schema#label> "35-39" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/30-34> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/greenland> <http://www.w3.org/2000/01/rdf-schema#label> "Greenland" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/niger> <http://www.w3.org/2000/01/rdf-schema#label> "Niger" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://github.com/swirrl/zib#codelistSize> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/trinidad-and-tobago> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bulgaria> <http://www.w3.org/2000/01/rdf-schema#label> "Bulgaria" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/sdmx/2009/dimension#sex> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/nepal> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/andorra> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/turkey> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://purl.org/linked-data/cube#dimension> <http://purl.org/linked-data/sdmx/2009/dimension#sex> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/vatican-city> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/burma> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/america-north> .
+<http://gss-data.org.uk/def/concept/ages/hoad/40-49> <http://www.w3.org/2000/01/rdf-schema#label> "40-49" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tonga> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-east> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/refugee> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/russia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/paraguay> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sri-lanka> <http://www.w3.org/2000/01/rdf-schema#label> "Sri Lanka" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/benin> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://purl.org/linked-data/cube#concept> <http://purl.org/linked-data/sdmx/2009/concept#unitMeasure> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-pierre-and-miquelon> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/belize> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/slovenia> <http://www.w3.org/2000/01/rdf-schema#label> "Slovenia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/serbia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bahamas-the> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/stateless> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/curacao> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/serbia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/australia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/14-15> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/brunei> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/estonia> <http://www.w3.org/2000/01/rdf-schema#label> "Estonia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/iran> <http://www.w3.org/2000/01/rdf-schema#label> "Iran" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/africa-north> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/puerto-rico> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/malawi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/sri-lanka> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://sdmx.org/wp-content/uploads/2009/01/01_sdmx_cog_annex_1_cdc_2009.pdf> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/lesotho> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/surinam> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kosovo> <http://www.w3.org/2000/01/rdf-schema#label> "Kosovo" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bulgaria> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/british-overseas-citizens> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/macau> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/cube#measureType> <http://www.w3.org/2000/01/rdf-schema#label> "measure type"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kazakhstan> <http://www.w3.org/2000/01/rdf-schema#label> "Kazakhstan" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/somalia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/sudan-south> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/oman> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/14-15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/india> <http://www.w3.org/2000/01/rdf-schema#label> "India" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/argentina> <http://www.w3.org/2000/01/rdf-schema#label> "Argentina" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/netherlands-antilles> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/somalia> <http://www.w3.org/2000/01/rdf-schema#label> "Somalia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/curacao> <http://www.w3.org/2000/01/rdf-schema#label> "Curacao" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/tonga> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eritrea> <http://www.w3.org/2000/01/rdf-schema#label> "Eritrea" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/iceland> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/south-georgia-and-south-sandwich-islands> <http://www.w3.org/2000/01/rdf-schema#label> "South Georgia and South Sandwich Islands" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/east-timor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cuba> <http://www.w3.org/2000/01/rdf-schema#label> "Cuba" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ivory-coast> <http://www.w3.org/2000/01/rdf-schema#label> "Ivory Coast" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/ecuador> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/singapore> <http://www.w3.org/2000/01/rdf-schema#label> "Singapore" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bonaire-sint-eustatius-and-saba> <http://www.w3.org/2000/01/rdf-schema#label> "Bonaire, Sint Eustatius and Saba" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/trinidad-and-tobago> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/spain> <http://www.w3.org/2000/01/rdf-schema#label> "Spain" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/pitcairn-Islands-british> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/virgin-islands-british> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mauritius> <http://www.w3.org/2000/01/rdf-schema#label> "Mauritius" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/senegal> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-vincent-and-the-grenadines> <http://www.w3.org/2000/01/rdf-schema#label> "St. Vincent and the Grenadines" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/philippines> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/central-african-republic> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/fiji> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/gabon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/czech-republic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/israel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kuwait> <http://www.w3.org/2000/01/rdf-schema#label> "Kuwait" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/niger> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/maldives> <http://www.w3.org/2000/01/rdf-schema#label> "Maldives" .
+<http://reference.data.gov.uk/id/year/2014> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kyrgyzstan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-central> <http://www.w3.org/2000/01/rdf-schema#label> "Asia Central" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/libya> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/honduras> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-south> <http://www.w3.org/2000/01/rdf-schema#label> "Asia South" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/africa-north> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/belgium> <http://www.w3.org/2000/01/rdf-schema#label> "Belgium" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/iceland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sao-tome-and-principe> <http://www.w3.org/2000/01/rdf-schema#label> "Sao Tome and Principe" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/india> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/finland> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mongolia> <http://www.w3.org/2000/01/rdf-schema#label> "Mongolia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mauritania> <http://www.w3.org/2000/01/rdf-schema#label> "Mauritania" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/albania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-helena-british> <http://www.w3.org/2000/01/rdf-schema#label> "St. Helena (British)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/norfolk-island> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mauritius> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/barbados> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/micronesia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bosnia-and-herzegovina> .
+<http://gss-data.org.uk/def/concept/ages/hoad/under-5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/lithuania> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/taiwan> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sierra-leone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/code#sex-U> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/14-15> <http://www.w3.org/2000/01/rdf-schema#label> "14-15" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/brazil> <http://www.w3.org/2000/01/rdf-schema#label> "Brazil" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/indonesia> <http://www.w3.org/2000/01/rdf-schema#label> "Indonesia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/refugee> <http://www.w3.org/2000/01/rdf-schema#label> "Refugee" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bhutan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/northern-mariana-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Northern Mariana Islands" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/heard-island-and-mcdonald-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-2> <http://www.w3.org/2000/01/rdf-schema#label> "EU 2" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2012> .
+<http://reference.data.gov.uk/id/year/2015> <http://www.w3.org/2000/01/rdf-schema#label> "2015" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/sao-tome-and-principe> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/other> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/norfolk-island> <http://www.w3.org/2000/01/rdf-schema#label> "Norfolk Island" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/other-and-unknown> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/christmas-island> <http://www.w3.org/2000/01/rdf-schema#label> "Christmas Island" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/35-39> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/antigua-and-barbuda> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/malta> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/poland> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cambodia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/palau> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/equatorial-guinea> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bulgaria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/30-34> <http://www.w3.org/2000/01/rdf-schema#label> "30-34" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/czech-republic> <http://www.w3.org/2000/01/rdf-schema#label> "Czech Republic" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/gambia-the> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/united-arab-emirates> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/aruba> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/dimension/nationality> <http://www.w3.org/2000/01/rdf-schema#label> "Nationality" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/denmark> <http://www.w3.org/2000/01/rdf-schema#label> "Denmark" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/el-salvador> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/5-9> <http://www.w3.org/2000/01/rdf-schema#label> "05-09" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bahamas-the> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://github.com/swirrl/zib#firstCode> <http://reference.data.gov.uk/id/year/2008> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/maldives> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/jamaica> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/american-samoa> <http://www.w3.org/2000/01/rdf-schema#label> "American Samoa" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://github.com/swirrl/zib#firstCode> <http://purl.org/linked-data/sdmx/2009/code#sex-F> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/nicaragua> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/western-sahara> <http://www.w3.org/2000/01/rdf-schema#label> "Western Sahara" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/papua-new-guinea> <http://www.w3.org/2000/01/rdf-schema#label> "Papua New Guinea" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/stateless> <http://www.w3.org/2000/01/rdf-schema#label> "Stateless" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/ghana> .
+<http://gss-data.org.uk/def/dimension/nationality> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/new-zealand> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/sweden> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/vietnam> <http://www.w3.org/2000/01/rdf-schema#label> "Vietnam" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/yemen> <http://www.w3.org/2000/01/rdf-schema#label> "Yemen" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/canada> <http://www.w3.org/2000/01/rdf-schema#label> "Canada" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/croatia> <http://www.w3.org/2000/01/rdf-schema#label> "Croatia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/africa-north> <http://www.w3.org/2000/01/rdf-schema#label> "Africa North" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kosovo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/16-17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/monaco> <http://www.w3.org/2000/01/rdf-schema#label> "Monaco" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/antigua-and-barbuda> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/denmark> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/east-timor> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sudan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/italy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cambodia> <http://www.w3.org/2000/01/rdf-schema#label> "Cambodia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/germany> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ivory-coast> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/afghanistan> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/america-north> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/kosovo> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/macedonia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/armenia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/colombia> <http://www.w3.org/2000/01/rdf-schema#label> "Colombia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/germany> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bonaire-sint-eustatius-and-saba> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cayman-islands-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/costa-rica> <http://www.w3.org/2000/01/rdf-schema#label> "Costa Rica" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://www.w3.org/2000/01/rdf-schema#label> "Age"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/virgin-islands-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/faroe-islands> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bangladesh> <http://www.w3.org/2000/01/rdf-schema#label> "Bangladesh" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/finland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/kuwait> .
+<http://gss-data.org.uk/def/concept/ages/all> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "The unit in which the data values are measured."@en .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2009> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/china> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/stateless> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/trinidad-and-tobago> <http://www.w3.org/2000/01/rdf-schema#label> "Trinidad and Tobago" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/europe-other> <http://www.w3.org/2000/01/rdf-schema#label> "Europe Other" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/dominica> <http://www.w3.org/2000/01/rdf-schema#label> "Dominica" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/portugal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/congo-democratic-republic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/somalia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/western-sahara> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/measurement-units/applications> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://gss-data.org.uk/def/concept-scheme/measurement-units> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/romania> <http://www.w3.org/2000/01/rdf-schema#label> "Romania" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/indonesia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/northern-mariana-islands> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cocos-keeling-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Cocos (Keeling) Islands" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/turkmenistan> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/vietnam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/montserrat-british> <http://www.w3.org/2000/01/rdf-schema#label> "Montserrat (British)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guinea-bissau> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/sierra-leone> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/armenia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/moldova> .
+<http://purl.org/linked-data/sdmx/2009/code#sex-U> <http://www.w3.org/2000/01/rdf-schema#label> "Not specified or unknown"@en .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/liechtenstein> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/burma> <http://www.w3.org/2000/01/rdf-schema#label> "Burma" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sudan-south> <http://www.w3.org/2000/01/rdf-schema#label> "Sudan (South)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/other> <http://www.w3.org/2000/01/rdf-schema#label> "Other" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/surinam> <http://www.w3.org/2000/01/rdf-schema#label> "Surinam" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/zambia> <http://www.w3.org/2000/01/rdf-schema#label> "Zambia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/hong-kong> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/angola> <http://www.w3.org/2000/01/rdf-schema#label> "Angola" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/sex> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/egypt> <http://www.w3.org/2000/01/rdf-schema#label> "Egypt" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/other-and-unknown> <http://www.w3.org/2000/01/rdf-schema#label> "Other and unknown" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/netherlands> <http://www.w3.org/2000/01/rdf-schema#label> "Netherlands" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-east> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/belarus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nicaragua> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/chad> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/russia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/count> <http://purl.org/linked-data/cube#measure> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-8> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/virgin-islands-british> <http://www.w3.org/2000/01/rdf-schema#label> "Virgin Islands (British)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/japan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/malta> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/ireland> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/french-guiana> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/french-guiana> <http://www.w3.org/2000/01/rdf-schema#label> "French Guiana" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/burundi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/yemen> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/congo-democratic-republic> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/jordan> <http://www.w3.org/2000/01/rdf-schema#label> "Jordan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/austria> <http://www.w3.org/2000/01/rdf-schema#label> "Austria" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/heard-island-and-mcdonald-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Heard Island and McDonald Islands" .
+<http://gss-data.org.uk/def/concept/ages/hoad/5-9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/18-20> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/canada> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/burkina> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mozambique> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/aruba> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/zambia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/montserrat-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/estonia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cuba> .
+<http://gss-data.org.uk/def/concept/ages/hoad/10-13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/code#sex-F> <http://www.w3.org/2000/01/rdf-schema#label> "Female"@en .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/new-caledonia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/zimbabwe> <http://www.w3.org/2000/01/rdf-schema#label> "Zimbabwe" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/finland> <http://www.w3.org/2000/01/rdf-schema#label> "Finland" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/comoros> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kenya> <http://www.w3.org/2000/01/rdf-schema#label> "Kenya" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-south> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/middle-east> <http://www.w3.org/2000/01/rdf-schema#label> "Middle East" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/lithuania> <http://www.w3.org/2000/01/rdf-schema#label> "Lithuania" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/fiji> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bangladesh> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/marshall-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/wallis-and-futuna> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/american-samoa> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/laos> <http://www.w3.org/2000/01/rdf-schema#label> "Laos" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/equatorial-guinea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/australia> <http://www.w3.org/2000/01/rdf-schema#label> "Australia" .
+<http://reference.data.gov.uk/id/year/2010> <http://www.w3.org/2000/01/rdf-schema#label> "2010" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://purl.org/linked-data/cube#component> <http://gss-data.org.uk/def/dimension/nationality> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/haiti> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/british-overseas-citizens> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sierra-leone> <http://www.w3.org/2000/01/rdf-schema#label> "Sierra Leone" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/british-overseas-citizens> <http://www.w3.org/2000/01/rdf-schema#label> "British overseas citizens" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/liechtenstein> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/djibouti> <http://www.w3.org/2000/01/rdf-schema#label> "Djibouti" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/svalbard-and-jan-mayen> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guyana> <http://www.w3.org/2000/01/rdf-schema#label> "Guyana" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/rwanda> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mongolia> .
+<http://gss-data.org.uk/def/concept/ages/hoad/unknown> <http://www.w3.org/2000/01/rdf-schema#label> "Unknown" .
+<http://gss-data.org.uk/def/concept/ages/hoad/10-13> <http://www.w3.org/2000/01/rdf-schema#label> "10-13" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/uganda> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://www.w3.org/2000/01/rdf-schema#label> "Sex"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bhutan> <http://www.w3.org/2000/01/rdf-schema#label> "Bhutan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/surinam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/virgin-islands-us> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/malaysia> <http://www.w3.org/2000/01/rdf-schema#label> "Malaysia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/unknown> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-8> <http://www.w3.org/2000/01/rdf-schema#label> "EU 8" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/korea-north> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/samoa> <http://www.w3.org/2000/01/rdf-schema#label> "Samoa" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/sex> <http://www.w3.org/2004/02/skos/core#member> <http://purl.org/linked-data/sdmx/2009/code#sex-M> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/tuvalu> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/colombia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/code#sex-F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/16-17> <http://www.w3.org/2000/01/rdf-schema#label> "16-17" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/croatia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/grenada> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/liechtenstein> <http://www.w3.org/2000/01/rdf-schema#label> "Liechtenstein" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/21-24> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cyprus-northern-part-of> <http://www.w3.org/2000/01/rdf-schema#label> "Cyprus (Northern part of)" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/eritrea> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/slovakia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/gabon> <http://www.w3.org/2000/01/rdf-schema#label> "Gabon" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/gambia-the> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/norway> <http://www.w3.org/2000/01/rdf-schema#label> "Norway" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/latvia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/congo> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/luxembourg> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/montenegro> <http://www.w3.org/2000/01/rdf-schema#label> "Montenegro" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guam> <http://www.w3.org/2000/01/rdf-schema#label> "Guam" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/former-yugoslavia> <http://www.w3.org/2000/01/rdf-schema#label> "Former Yugoslavia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tokelau> <http://www.w3.org/2000/01/rdf-schema#label> "Tokelau" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/africa-sub-saharan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/former-yugoslavia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/saudi-arabia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/french-guiana> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tunisia> <http://www.w3.org/2000/01/rdf-schema#label> "Tunisia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-pierre-and-miquelon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://www.w3.org/2000/01/rdf-schema#label> "Reference Period"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/singapore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/gibraltar-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-vincent-and-the-grenadines> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/romania> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/swaziland> <http://www.w3.org/2000/01/rdf-schema#label> "Swaziland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/tokelau> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cameroon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/falkland-islands-british> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/iceland> <http://www.w3.org/2000/01/rdf-schema#label> "Iceland" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/spain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/maldives> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/zimbabwe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/all> <http://www.w3.org/2000/01/rdf-schema#label> "All ages" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/french-polynesia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/wallis-and-futuna> <http://www.w3.org/2000/01/rdf-schema#label> "Wallis and Futuna" .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#AttributeProperty> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/belize> <http://www.w3.org/2000/01/rdf-schema#label> "Belize" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/peru> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nauru> <http://www.w3.org/2000/01/rdf-schema#label> "Nauru" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-14> <http://www.w3.org/2000/01/rdf-schema#label> "EU 14" .
+<http://purl.org/linked-data/sdmx/2009/code#sex-M> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/luxembourg> <http://www.w3.org/2000/01/rdf-schema#label> "Luxembourg" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/honduras> <http://www.w3.org/2000/01/rdf-schema#label> "Honduras" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cook-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Cook Islands" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-other> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/france> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nigeria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/algeria> <http://www.w3.org/2000/01/rdf-schema#label> "Algeria" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/uzbekistan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/sex> <http://www.w3.org/2004/02/skos/core#member> <http://purl.org/linked-data/sdmx/2009/code#sex-T> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/india> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guinea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cameroon> <http://www.w3.org/2000/01/rdf-schema#label> "Cameroon" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/vanuatu> <http://www.w3.org/2000/01/rdf-schema#label> "Vanuatu" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/iraq> <http://www.w3.org/2000/01/rdf-schema#label> "Iraq" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/europe-other> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tanzania> <http://www.w3.org/2000/01/rdf-schema#label> "Tanzania" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guyana> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/uruguay> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/oceania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/botswana> <http://www.w3.org/2000/01/rdf-schema#label> "Botswana" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kenya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/sex> <http://www.w3.org/2004/02/skos/core#member> <http://purl.org/linked-data/sdmx/2009/code#sex-F> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/turks-and-caicos-islands-british> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/russia> <http://www.w3.org/2000/01/rdf-schema#label> "Russia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/falkland-islands-british> <http://www.w3.org/2000/01/rdf-schema#label> "Falkland Islands (British)" .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "Unit of Measure"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-kitts-and-nevis> <http://www.w3.org/2000/01/rdf-schema#label> "St. Kitts and Nevis" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/angola> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/afghanistan> <http://www.w3.org/2000/01/rdf-schema#label> "Afghanistan" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/40-49> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/australia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/america-north> <http://www.w3.org/2000/01/rdf-schema#label> "America North" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/korea-south> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/montserrat-british> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/all> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/niger> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mozambique> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/albania> <http://www.w3.org/2000/01/rdf-schema#label> "Albania" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/latvia> <http://www.w3.org/2000/01/rdf-schema#label> "Latvia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/60-64> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ukraine> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/uruguay> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guatemala> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/antigua-and-barbuda> <http://www.w3.org/2000/01/rdf-schema#label> "Antigua and Barbuda" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kazakhstan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/total> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/afghanistan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/belgium> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/count> <http://www.w3.org/2000/01/rdf-schema#label> "Count" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/switzerland> <http://www.w3.org/2000/01/rdf-schema#label> "Switzerland" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/switzerland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/belize> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/hong-kong> <http://www.w3.org/2000/01/rdf-schema#label> "Hong Kong" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/austria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/solomon-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sao-tome-and-principe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/18-20> <http://www.w3.org/2000/01/rdf-schema#label> "18-20" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/italy> <http://www.w3.org/2000/01/rdf-schema#label> "Italy" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kiribati> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bhutan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/virgin-islands-us> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bolivia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-martin-french-part> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/new-caledonia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/60-64> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/kyrgyzstan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/25-29> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/jordan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/martinique> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-south-east> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/syria> <http://www.w3.org/2000/01/rdf-schema#label> "Syria" .
+<http://reference.data.gov.uk/id/year/2016> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/liberia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/dominican-republic> <http://www.w3.org/2000/01/rdf-schema#label> "Dominican Republic" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bosnia-and-herzegovina> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/5-9> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/french-polynesia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/solomon-islands> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/colombia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guatemala> <http://www.w3.org/2000/01/rdf-schema#label> "Guatemala" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cyprus-northern-part-of> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/lebanon> <http://www.w3.org/2000/01/rdf-schema#label> "Lebanon" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/swaziland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/dimension#sex> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-kitts-and-nevis> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/anguilla-british> <http://www.w3.org/2000/01/rdf-schema#label> "Anguilla (British)" .
+<http://gss-data.org.uk/def/concept/measurement-units/applications> <http://www.w3.org/2004/02/skos/core#prefLabel> "Applications" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mayotte> <http://www.w3.org/2000/01/rdf-schema#label> "Mayotte" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/togo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/panama> <http://www.w3.org/2000/01/rdf-schema#label> "Panama" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/nauru> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mexico> <http://www.w3.org/2000/01/rdf-schema#label> "Mexico" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/aruba> <http://www.w3.org/2000/01/rdf-schema#label> "Aruba" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/moldova> <http://www.w3.org/2000/01/rdf-schema#label> "Moldova" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ukraine> <http://www.w3.org/2000/01/rdf-schema#label> "Ukraine" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/lesotho> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/total> <http://www.w3.org/2000/01/rdf-schema#label> "Total" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cuba> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guadeloupe> <http://www.w3.org/2000/01/rdf-schema#label> "Guadeloupe" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/16-17> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bahrain> <http://www.w3.org/2000/01/rdf-schema#label> "Bahrain" .
+<http://gss-data.org.uk/def/concept/ages/hoad/unknown> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cyprus> <http://www.w3.org/2000/01/rdf-schema#label> "Cyprus" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mayotte> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-east> <http://www.w3.org/2000/01/rdf-schema#label> "Asia East" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/anguilla-british> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/sex> <http://github.com/swirrl/zib#codelistSize> "4"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bonaire-sint-eustatius-and-saba> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tajikistan> <http://www.w3.org/2000/01/rdf-schema#label> "Tajikistan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/chile> <http://www.w3.org/2000/01/rdf-schema#label> "Chile" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/french-polynesia> <http://www.w3.org/2000/01/rdf-schema#label> "French Polynesia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/papua-new-guinea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/libya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/65-plus> <http://www.w3.org/2000/01/rdf-schema#label> "65+" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/china> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/benin> <http://www.w3.org/2000/01/rdf-schema#label> "Benin" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ireland> <http://www.w3.org/2000/01/rdf-schema#label> "Ireland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/sdmx/2009/dimension#age> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/comoros> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/africa-sub-saharan> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/vatican-city> <http://www.w3.org/2000/01/rdf-schema#label> "Vatican City" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/iran> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cayman-islands-british> <http://www.w3.org/2000/01/rdf-schema#label> "Cayman Islands (British)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/france> <http://www.w3.org/2000/01/rdf-schema#label> "France" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-2> .
+<http://gss-data.org.uk/def/concept/ages/hoad/50-59> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/korea-south> <http://www.w3.org/2000/01/rdf-schema#label> "Korea (South)" .
+<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://www.w3.org/2000/01/rdf-schema#label> "Reference Period"@en .
+<http://purl.org/linked-data/sdmx/2009/dimension#age> <http://www.w3.org/2000/01/rdf-schema#label> "Age"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/philippines> <http://www.w3.org/2000/01/rdf-schema#label> "Philippines" .
+<http://gss-data.org.uk/def/concept/ages/hoad/60-64> <http://www.w3.org/2000/01/rdf-schema#label> "60-64" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/measure_type> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/christmas-island> .
+<http://gss-data.org.uk/def/concept/measurement-units/applications> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/botswana> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/venezuela> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/djibouti> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/togo> <http://www.w3.org/2000/01/rdf-schema#label> "Togo" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/honduras> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/faroe-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Faroe Islands" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/faroe-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/canada> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/france> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/east-timor> <http://www.w3.org/2000/01/rdf-schema#label> "East Timor" .
+<http://reference.data.gov.uk/id/year/2011> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/burundi> <http://www.w3.org/2000/01/rdf-schema#label> "Burundi" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/united-states> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/azerbaijan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/morocco> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/argentina> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/san-marino> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mozambique> <http://www.w3.org/2000/01/rdf-schema#label> "Mozambique" .
+<http://reference.data.gov.uk/id/year/2011> <http://www.w3.org/2000/01/rdf-schema#label> "2011" .
+<http://reference.data.gov.uk/id/year/2008> <http://www.w3.org/2000/01/rdf-schema#label> "2008" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mexico> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/belarus> <http://www.w3.org/2000/01/rdf-schema#label> "Belarus" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/madagascar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/40-49> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/ivory-coast> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/ethiopia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/namibia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/new-zealand> <http://www.w3.org/2000/01/rdf-schema#label> "New Zealand" .
+<http://gss-data.org.uk/def/concept/ages/hoad/under-5> <http://www.w3.org/2000/01/rdf-schema#label> "Under 5" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/equatorial-guinea> <http://www.w3.org/2000/01/rdf-schema#label> "Equatorial Guinea" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/china> <http://www.w3.org/2000/01/rdf-schema#label> "China" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/albania> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/lebanon> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/vatican-city> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-pierre-and-miquelon> <http://www.w3.org/2000/01/rdf-schema#label> "St. Pierre and Miquelon" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/latvia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/macedonia> <http://www.w3.org/2000/01/rdf-schema#label> "Macedonia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/austria> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/korea-north> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/slovakia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-other> <http://www.w3.org/2000/01/rdf-schema#label> "EU Other" .
+<http://purl.org/linked-data/cube#measureType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/rwanda> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bermuda-british> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guinea-bissau> <http://www.w3.org/2000/01/rdf-schema#label> "Guinea-Bissau" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nauru> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/burkina> <http://www.w3.org/2000/01/rdf-schema#label> "Burkina" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tonga> <http://www.w3.org/2000/01/rdf-schema#label> "Tonga" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/gabon> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bolivia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/algeria> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/monaco> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-maarten-dutch-part> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/netherlands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/dimension#sex> <http://www.w3.org/2000/01/rdf-schema#label> "Sex"@en .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/10-13> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/korea-north> <http://www.w3.org/2000/01/rdf-schema#label> "Korea (North)" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cyprus-northern-part-of> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/japan> <http://www.w3.org/2000/01/rdf-schema#label> "Japan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/samoa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2012> <http://www.w3.org/2000/01/rdf-schema#label> "2012" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/niue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/anguilla-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/christmas-island> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/czech-republic> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/new-caledonia> <http://www.w3.org/2000/01/rdf-schema#label> "New Caledonia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/andorra> <http://www.w3.org/2000/01/rdf-schema#label> "Andorra" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/guatemala> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/spain> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/georgia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mexico> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/egypt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/venezuela> <http://www.w3.org/2000/01/rdf-schema#label> "Venezuela" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/montenegro> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cayman-islands-british> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://purl.org/linked-data/cube#dimension> <http://purl.org/linked-data/cube#measureType> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/under-5> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/norfolk-island> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/uganda> <http://www.w3.org/2000/01/rdf-schema#label> "Uganda" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/laos> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/reunion> <http://www.w3.org/2000/01/rdf-schema#label> "Reunion" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-martin-french-part> <http://www.w3.org/2000/01/rdf-schema#label> "St. Martin (French Part)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/algeria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/thailand> <http://www.w3.org/2000/01/rdf-schema#label> "Thailand" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/israel> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/netherlands-antilles> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/marshall-islands> <http://www.w3.org/2000/01/rdf-schema#label> "Marshall Islands" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cook-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/18-20> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/chad> <http://www.w3.org/2000/01/rdf-schema#label> "Chad" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/pitcairn-Islands-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/cube#measureType> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ethiopia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/other-and-unknown> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/benin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/guadeloupe> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mali> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/oman> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2011> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/turks-and-caicos-islands-british> <http://www.w3.org/2000/01/rdf-schema#label> "Turks and Caicos Islands (British)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/africa-sub-saharan> <http://www.w3.org/2000/01/rdf-schema#label> "Africa Sub-Saharan" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/oceania> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/pakistan> <http://www.w3.org/2000/01/rdf-schema#label> "Pakistan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/central-african-republic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/occupied-palestinian-territories> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/dominica> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/andorra> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cocos-keeling-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/botswana> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mauritius> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/western-sahara> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/georgia> <http://www.w3.org/2000/01/rdf-schema#label> "Georgia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/saudi-arabia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/sex> <http://www.w3.org/2004/02/skos/core#member> <http://purl.org/linked-data/sdmx/2009/code#sex-U> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/guyana> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/new-zealand> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/palau> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tuvalu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/malaysia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cameroon> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/former-yugoslavia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://www.w3.org/2000/01/rdf-schema#label> "measure type"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tuvalu> <http://www.w3.org/2000/01/rdf-schema#label> "Tuvalu" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mauritania> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/croatia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/netherlands> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/mayotte> .
+<http://gss-data.org.uk/def/concept/measurement-units/applications> <http://www.w3.org/2004/02/skos/core#inScheme> <http://gss-data.org.uk/def/concept-scheme/measurement-units> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/costa-rica> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/slovakia> <http://www.w3.org/2000/01/rdf-schema#label> "Slovakia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/panama> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/other> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/grenada> <http://www.w3.org/2000/01/rdf-schema#label> "Grenada" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/serbia> <http://www.w3.org/2000/01/rdf-schema#label> "Serbia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/chad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/kenya> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/afghanistan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/ukraine> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/paraguay> <http://www.w3.org/2000/01/rdf-schema#label> "Paraguay" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/congo-democratic-republic> <http://www.w3.org/2000/01/rdf-schema#label> "Congo (Democratic Republic)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/israel> <http://www.w3.org/2000/01/rdf-schema#label> "Israel" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/morocco> <http://www.w3.org/2000/01/rdf-schema#label> "Morocco" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/qatar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/northern-mariana-islands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/occupied-palestinian-territories> <http://www.w3.org/2000/01/rdf-schema#label> "Occupied Palestinian Territories" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/uzbekistan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/tanzania> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kuwait> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/luxembourg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/saudi-arabia> <http://www.w3.org/2000/01/rdf-schema#label> "Saudi Arabia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-south-east> <http://www.w3.org/2000/01/rdf-schema#label> "Asia South East" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/turkey> <http://www.w3.org/2000/01/rdf-schema#label> "Turkey" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/unit> <http://www.w3.org/2000/01/rdf-schema#label> "Unit of Measure"@en .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bahrain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/lithuania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-other> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/comoros> <http://www.w3.org/2000/01/rdf-schema#label> "Comoros" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2010> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nicaragua> <http://www.w3.org/2000/01/rdf-schema#label> "Nicaragua" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-helena-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-south-east> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/swaziland> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#MeasureColumn> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-lucia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/niue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/fiji> <http://www.w3.org/2000/01/rdf-schema#label> "Fiji" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/middle-east> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-maarten-dutch-part> .
+<http://gss-data.org.uk/def/concept/ages/hoad/35-39> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ghana> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/haiti> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/georgia> .
+<http://reference.data.gov.uk/id/year/2013> <http://www.w3.org/2000/01/rdf-schema#label> "2013" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/bahrain> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/zimbabwe> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/pakistan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/21-24> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/angola> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/el-salvador> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cook-islands> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/united-arab-emirates> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/senegal> <http://www.w3.org/2000/01/rdf-schema#label> "Senegal" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tanzania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/brunei> <http://www.w3.org/2000/01/rdf-schema#label> "Brunei" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://github.com/swirrl/zib#codelistSize> "263"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/uganda> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/unit> <http://purl.org/linked-data/cube#attribute> <http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/venezuela> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/america-central-and-south> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/south-africa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/samoa> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/reunion> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bosnia-and-herzegovina> <http://www.w3.org/2000/01/rdf-schema#label> "Bosnia and Herzegovina" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-martin-french-part> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/puerto-rico> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/djibouti> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/belarus> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-maarten-dutch-part> <http://www.w3.org/2000/01/rdf-schema#label> "St. Maarten (Dutch Part)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/svalbard-and-jan-mayen> <http://www.w3.org/2000/01/rdf-schema#label> "Svalbard and Jan Mayen" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://github.com/swirrl/zib#codelistSize> "9"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/liberia> <http://www.w3.org/2000/01/rdf-schema#label> "Liberia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/armenia> <http://www.w3.org/2000/01/rdf-schema#label> "Armenia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/peru> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/jamaica> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/greenland> .
+<http://gss-data.org.uk/def/measure/count> <http://www.w3.org/2000/01/rdf-schema#label> "Count" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/marshall-islands> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/madagascar> <http://www.w3.org/2000/01/rdf-schema#label> "Madagascar" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mali> <http://www.w3.org/2000/01/rdf-schema#label> "Mali" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/concept/ages/all> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/indonesia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ghana> <http://www.w3.org/2000/01/rdf-schema#label> "Ghana" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/american-samoa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/poland> <http://www.w3.org/2000/01/rdf-schema#label> "Poland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/unit> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/burundi> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/micronesia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/singapore> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/puerto-rico> <http://www.w3.org/2000/01/rdf-schema#label> "Puerto Rico" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/virgin-islands-us> <http://www.w3.org/2000/01/rdf-schema#label> "Virgin Islands (US)" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cape-verde> <http://www.w3.org/2000/01/rdf-schema#label> "Cape Verde" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/martinique> <http://www.w3.org/2000/01/rdf-schema#label> "Martinique" .
+<http://gss-data.org.uk/def/measure/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#MeasureProperty> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bolivia> <http://www.w3.org/2000/01/rdf-schema#label> "Bolivia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sri-lanka> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2013> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/refugee> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/qatar> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/paraguay> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ages/hoad/50-59> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ethiopia> <http://www.w3.org/2000/01/rdf-schema#label> "Ethiopia" .
+<http://purl.org/linked-data/sdmx/2009/code#sex-T> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/unit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#AttributeColumn> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/guinea> <http://www.w3.org/2000/01/rdf-schema#label> "Guinea" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/italy> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/turkmenistan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/malawi> <http://www.w3.org/2000/01/rdf-schema#label> "Malawi" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/barbados> <http://www.w3.org/2000/01/rdf-schema#label> "Barbados" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/greece> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/occupied-palestinian-territories> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/senegal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/el-salvador> <http://www.w3.org/2000/01/rdf-schema#label> "El Salvador" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/grenada> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/pakistan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/egypt> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/martinique> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/hungary> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/syria> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/oman> <http://www.w3.org/2000/01/rdf-schema#label> "Oman" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/iraq> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/congo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2010> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/mauritania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://purl.org/linked-data/cube#dimension> <http://purl.org/linked-data/sdmx/2009/dimension#age> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/slovenia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cape-verde> .
+<http://gss-data.org.uk/def/concept/ages/hoad/25-29> <http://www.w3.org/2000/01/rdf-schema#label> "25-29" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/vietnam> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sudan-south> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/svalbard-and-jan-mayen> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/liberia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-vincent-and-the-grenadines> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/macau> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/san-marino> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/uruguay> <http://www.w3.org/2000/01/rdf-schema#label> "Uruguay" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/united-arab-emirates> <http://www.w3.org/2000/01/rdf-schema#label> "United Arab Emirates" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/turks-and-caicos-islands-british> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-south> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/brunei> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/count> <http://purl.org/linked-data/cube#component> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/thailand> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/america-central-and-south> <http://www.w3.org/2000/01/rdf-schema#label> "America Central and South" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cyprus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/uzbekistan> <http://www.w3.org/2000/01/rdf-schema#label> "Uzbekistan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sudan> <http://www.w3.org/2000/01/rdf-schema#label> "Sudan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/wallis-and-futuna> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ages/hoad/25-29> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/jamaica> <http://www.w3.org/2000/01/rdf-schema#label> "Jamaica" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/barbados> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/iraq> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/namibia> <http://www.w3.org/2000/01/rdf-schema#label> "Namibia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/seychelles> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/cape-verde> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/malawi> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/asia-central> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/hungary> <http://www.w3.org/2000/01/rdf-schema#label> "Hungary" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/san-marino> <http://www.w3.org/2000/01/rdf-schema#label> "San Marino" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://www.w3.org/2000/01/rdf-schema#label> "Nationality" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/korea-south> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/measure_type> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/measure_type> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/chile> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/yemen> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/lebanon> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/age> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/seychelles> <http://www.w3.org/2000/01/rdf-schema#label> "Seychelles" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/united-states> <http://www.w3.org/2000/01/rdf-schema#label> "United States" .
+<http://gss-data.org.uk/def/measure/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2008> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nepal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/year/2012> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/madagascar> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/germany> <http://www.w3.org/2000/01/rdf-schema#label> "Germany" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/costa-rica> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/libya> <http://www.w3.org/2000/01/rdf-schema#label> "Libya" .
+<http://reference.data.gov.uk/id/year/2014> <http://www.w3.org/2000/01/rdf-schema#label> "2014" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2013> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cyprus> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/guam> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/togo> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tunisia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/hungary> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ireland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/measurement-units/applications> <http://www.w3.org/2000/01/rdf-schema#label> "Applications" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/greece> <http://www.w3.org/2000/01/rdf-schema#label> "Greece" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/vanuatu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/code#sex-T> <http://www.w3.org/2000/01/rdf-schema#label> "Total"@en .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/cambodia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/nepal> <http://www.w3.org/2000/01/rdf-schema#label> "Nepal" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/brazil> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/heard-island-and-mcdonald-islands> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/age> <http://github.com/swirrl/zib#codelistSize> "16"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/guinea-bissau> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/denmark> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/kazakhstan> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/tunisia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/micronesia> <http://www.w3.org/2000/01/rdf-schema#label> "Micronesia" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/norway> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/taiwan> <http://www.w3.org/2000/01/rdf-schema#label> "Taiwan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/gibraltar-british> <http://www.w3.org/2000/01/rdf-schema#label> "Gibraltar (British)" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/slovenia> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/oceania> <http://www.w3.org/2000/01/rdf-schema#label> "Oceania" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/ecuador> <http://www.w3.org/2000/01/rdf-schema#label> "Ecuador" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/ho_country_of_nationality> <http://purl.org/linked-data/cube#dimension> <http://gss-data.org.uk/def/dimension/nationality> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/eu-8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/iran> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/moldova> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/gambia-the> <http://www.w3.org/2000/01/rdf-schema#label> "Gambia, The" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/reunion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/niue> <http://www.w3.org/2000/01/rdf-schema#label> "Niue" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/nigeria> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/south-georgia-and-south-sandwich-islands> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kyrgyzstan> <http://www.w3.org/2000/01/rdf-schema#label> "Kyrgyzstan" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2014> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/vanuatu> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/poland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/portugal> <http://www.w3.org/2000/01/rdf-schema#label> "Portugal" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/switzerland> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/jordan> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/kiribati> <http://www.w3.org/2000/01/rdf-schema#label> "Kiribati" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/sweden> <http://www.w3.org/2000/01/rdf-schema#label> "Sweden" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/ho_country_of_nationality> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/ho-country-of-nationality/montenegro> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/rwanda> <http://www.w3.org/2000/01/rdf-schema#label> "Rwanda" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/year/2016> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/haiti> <http://www.w3.org/2000/01/rdf-schema#label> "Haiti" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/bahamas-the> <http://www.w3.org/2000/01/rdf-schema#label> "Bahamas, The" .
+<http://gss-data.org.uk/def/concept/measurement-units/applications> <http://www.w3.org/2004/02/skos/core#notation> "applications" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/lesotho> <http://www.w3.org/2000/01/rdf-schema#label> "Lesotho" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/tajikistan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/thailand> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/turkmenistan> <http://www.w3.org/2000/01/rdf-schema#label> "Turkmenistan" .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/st-lucia> <http://www.w3.org/2000/01/rdf-schema#label> "St. Lucia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_04/component/period> <http://purl.org/linked-data/cube#dimension> <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> .
+<http://gss-data.org.uk/def/concept/ho-country-of-nationality/pitcairn-Islands-british> <http://www.w3.org/2000/01/rdf-schema#label> "Pitcairn Islands (British)" .
