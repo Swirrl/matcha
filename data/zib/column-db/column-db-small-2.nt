@@ -1,0 +1,262 @@
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/germany> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/concept/nature-of-transfer/arrivals> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-8-2> <http://www.w3.org/2000/01/rdf-schema#label> "Article 8.2" .
+<http://gss-data.org.uk/def/concept/foreign-geography/bulgaria> <http://www.w3.org/2000/01/rdf-schema#label> "Bulgaria" .
+<http://gss-data.org.uk/def/concept/foreign-geography/estonia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/measurement-units/arrivals> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://gss-data.org.uk/def/concept-scheme/measurement-units> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://purl.org/linked-data/cube#dimension> <http://gss-data.org.uk/def/dimension/nature-of-transfer> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-18-1> .
+<http://reference.data.gov.uk/id/quarter/2015-Q3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/dimension/nature-of-transfer> <http://www.w3.org/2000/01/rdf-schema#label> "Nature of Transfer" .
+<http://reference.data.gov.uk/id/quarter/2017-Q1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/finland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/germany> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/greece> <http://www.w3.org/2000/01/rdf-schema#label> "Greece" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2016-Q1> .
+<http://reference.data.gov.uk/id/quarter/2016-Q2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/luxembourg> .
+<http://gss-data.org.uk/def/concept/foreign-geography/liechtenstein> <http://www.w3.org/2000/01/rdf-schema#label> "Liechtenstein" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://github.com/swirrl/zib#codelistSize> "32"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://reference.data.gov.uk/id/quarter/2017-Q2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/measurement-units/arrivals> <http://www.w3.org/2000/01/rdf-schema#label> "Arrivals" .
+<http://gss-data.org.uk/def/concept/foreign-geography/lithuania> <http://www.w3.org/2000/01/rdf-schema#label> "Lithuania" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/italy> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/austria> .
+<http://gss-data.org.uk/def/concept/measurement-units/arrivals> <http://www.w3.org/2004/02/skos/core#prefLabel> "Arrivals" .
+<http://gss-data.org.uk/def/concept/foreign-geography/slovenia> <http://www.w3.org/2000/01/rdf-schema#label> "Slovenia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-9> .
+<http://gss-data.org.uk/def/concept/foreign-geography/luxembourg> <http://www.w3.org/2000/01/rdf-schema#label> "Luxembourg" .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://purl.org/linked-data/cube#concept> <http://purl.org/linked-data/sdmx/2009/concept#unitMeasure> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/lithuania> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://sdmx.org/wp-content/uploads/2009/01/01_sdmx_cog_annex_1_cdc_2009.pdf> .
+<http://gss-data.org.uk/def/concept/foreign-geography/cyprus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/france> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-15> <http://www.w3.org/2000/01/rdf-schema#label> "Article 15" .
+<http://reference.data.gov.uk/id/quarter/2017-Q1> <http://www.w3.org/2000/01/rdf-schema#label> "2017-Q1" .
+<http://purl.org/linked-data/cube#measureType> <http://www.w3.org/2000/01/rdf-schema#label> "measure type"@en .
+<http://gss-data.org.uk/def/concept/foreign-geography/switzerland> <http://www.w3.org/2000/01/rdf-schema#label> "Switzerland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-16> .
+<http://reference.data.gov.uk/id/quarter/2017-Q3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/unit> <http://www.w3.org/2000/01/rdf-schema#label> "Unit of Measure"@en .
+<http://gss-data.org.uk/def/dimension/dublin-regulation-article> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/norway> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://purl.org/linked-data/cube#dimension> <http://purl.org/linked-data/cube#measureType> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://reference.data.gov.uk/id/quarter/2016-Q1> <http://www.w3.org/2000/01/rdf-schema#label> "2016-Q1" .
+<http://gss-data.org.uk/def/concept/foreign-geography/netherlands> <http://www.w3.org/2000/01/rdf-schema#label> "Netherlands" .
+<http://gss-data.org.uk/def/concept/foreign-geography/sweden> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/switzerland> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://github.com/swirrl/zib#codelistSize> "12"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/malta> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-14> <http://www.w3.org/2000/01/rdf-schema#label> "Article 14" .
+<http://gss-data.org.uk/def/concept/foreign-geography/latvia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/latvia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/total> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-17-2> <http://www.w3.org/2000/01/rdf-schema#label> "Article 17.2" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/cube#measureType> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-17-2> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2017-Q3> .
+<http://gss-data.org.uk/def/concept/foreign-geography/slovakia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-14> .
+<http://gss-data.org.uk/def/concept/foreign-geography/ireland> <http://www.w3.org/2000/01/rdf-schema#label> "Ireland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://purl.org/linked-data/cube#dimension> <http://gss-data.org.uk/def/dimension/dublin-regulation-article> .
+<http://gss-data.org.uk/def/concept/measurement-units/requests-for-transfer> <http://www.w3.org/2004/02/skos/core#inScheme> <http://gss-data.org.uk/def/concept-scheme/measurement-units> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-15> .
+<http://gss-data.org.uk/def/concept/foreign-geography/iceland> <http://www.w3.org/2000/01/rdf-schema#label> "Iceland" .
+<http://reference.data.gov.uk/id/quarter/2016-Q2> <http://www.w3.org/2000/01/rdf-schema#label> "2016-Q2" .
+<http://gss-data.org.uk/def/concept/foreign-geography/netherlands> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/quarter/2017-Q2> <http://www.w3.org/2000/01/rdf-schema#label> "2017-Q2" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/measure_type> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/def/concept/nature-of-transfer/arrivals> <http://www.w3.org/2000/01/rdf-schema#label> "Arrivals" .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "The unit in which the data values are measured."@en .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/norway> <http://www.w3.org/2000/01/rdf-schema#label> "Norway" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://purl.org/linked-data/cube#dimension> <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/finland> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-20-5> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/foreign-geography/spain> <http://www.w3.org/2000/01/rdf-schema#label> "Spain" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/count> <http://purl.org/linked-data/cube#measure> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2016-Q4> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2017-Q2> .
+<http://reference.data.gov.uk/id/quarter/2015-Q4> <http://www.w3.org/2000/01/rdf-schema#label> "2015-Q4" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://www.w3.org/2000/01/rdf-schema#label> "measure type"@en .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/ireland> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2017-Q1> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-12> <http://www.w3.org/2000/01/rdf-schema#label> "Article 12" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-13> .
+<http://gss-data.org.uk/def/concept/foreign-geography/belgium> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://github.com/swirrl/zib#codelistSize> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/def/concept/foreign-geography/cyprus> <http://www.w3.org/2000/01/rdf-schema#label> "Cyprus" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> .
+<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/def/concept/foreign-geography/switzerland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/spain> .
+<http://gss-data.org.uk/def/concept/foreign-geography/ireland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://purl.org/linked-data/cube#component> <http://gss-data.org.uk/def/dimension/nature-of-transfer> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/sweden> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/netherlands> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-10> <http://www.w3.org/2000/01/rdf-schema#label> "Article 10" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/liechtenstein> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/poland> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-11> <http://www.w3.org/2000/01/rdf-schema#label> "Article 11" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-20-5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/unit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#AttributeColumn> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2015-Q3> .
+<http://gss-data.org.uk/def/concept/measurement-units/requests-for-transfer> <http://www.w3.org/2004/02/skos/core#prefLabel> "Requests for transfer" .
+<http://gss-data.org.uk/def/concept/foreign-geography/czech-republic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/dimension/nature-of-transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-16> <http://www.w3.org/2000/01/rdf-schema#label> "Article 16" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/nature_of_transfer> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/nature-of-transfer/requests-for-transfer> .
+<http://gss-data.org.uk/def/concept/nature-of-transfer/arrivals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-11> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://purl.org/linked-data/cube#component> <http://gss-data.org.uk/def/dimension/dublin-regulation-article> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/denmark> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-8-2> .
+<http://gss-data.org.uk/def/concept/measurement-units/arrivals> <http://www.w3.org/2004/02/skos/core#inScheme> <http://gss-data.org.uk/def/concept-scheme/measurement-units> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/unit> <http://purl.org/linked-data/cube#attribute> <http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> .
+<http://gss-data.org.uk/def/concept/measurement-units/requests-for-transfer> <http://www.w3.org/2000/01/rdf-schema#label> "Requests for transfer" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://www.w3.org/2000/01/rdf-schema#label> "Foreign geography" .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#AttributeProperty> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-11> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/iceland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/belgium> <http://www.w3.org/2000/01/rdf-schema#label> "Belgium" .
+<http://gss-data.org.uk/def/concept/foreign-geography/slovenia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/france> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/lithuania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "Unit of Measure"@en .
+<http://gss-data.org.uk/def/concept/foreign-geography/croatia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/dimension/foreign-geography> <http://www.w3.org/2000/01/rdf-schema#label> "Foreign geography" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-18-1> <http://www.w3.org/2000/01/rdf-schema#label> "Article 18.1" .
+<http://gss-data.org.uk/def/concept/foreign-geography/norway> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/quarter/2016-Q4> <http://www.w3.org/2000/01/rdf-schema#label> "2016-Q4" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/concept/foreign-geography/austria> .
+<http://gss-data.org.uk/def/concept/foreign-geography/malta> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://purl.org/linked-data/cube#component> <http://gss-data.org.uk/def/dimension/foreign-geography> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2016-Q2> .
+<http://gss-data.org.uk/def/concept/foreign-geography/romania> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/nature-of-transfer/requests-for-transfer> <http://www.w3.org/2000/01/rdf-schema#label> "Requests for transfer" .
+<http://reference.data.gov.uk/id/quarter/2015-Q3> <http://www.w3.org/2000/01/rdf-schema#label> "2015-Q3" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://purl.org/linked-data/cube#dimension> <http://gss-data.org.uk/def/dimension/foreign-geography> .
+<http://gss-data.org.uk/def/concept/measurement-units/arrivals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://gss-data.org.uk/def/concept/foreign-geography/italy> <http://www.w3.org/2000/01/rdf-schema#label> "Italy" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/czech-republic> <http://www.w3.org/2000/01/rdf-schema#label> "Czech Republic" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-17-2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/greece> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-8-2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/measurement-units/requests-for-transfer> <http://www.w3.org/2004/02/skos/core#topConceptOf> <http://gss-data.org.uk/def/concept-scheme/measurement-units> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2015-Q4> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> <http://www.w3.org/2000/01/rdf-schema#label> "Reference Period"@en .
+<http://gss-data.org.uk/def/concept/foreign-geography/italy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2015-Q1> .
+<http://reference.data.gov.uk/id/quarter/2016-Q4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/finland> <http://www.w3.org/2000/01/rdf-schema#label> "Finland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/measure_type> .
+<http://gss-data.org.uk/def/concept/foreign-geography/nrs/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/bulgaria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://purl.org/linked-data/cube#measureType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://reference.data.gov.uk/id/quarter/2016-Q3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/quarter/2015-Q4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/foreign-geography/malta> <http://www.w3.org/2000/01/rdf-schema#label> "Malta" .
+<http://reference.data.gov.uk/id/quarter/2015-Q2> <http://www.w3.org/2000/01/rdf-schema#label> "2015-Q2" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-18-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-12> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/cyprus> .
+<http://gss-data.org.uk/def/concept/foreign-geography/hungary> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-20-5> <http://www.w3.org/2000/01/rdf-schema#label> "Article 20.5" .
+<http://gss-data.org.uk/def/concept/nature-of-transfer/requests-for-transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/slovakia> .
+<http://reference.data.gov.uk/id/quarter/2017-Q4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/portugal> <http://www.w3.org/2000/01/rdf-schema#label> "Portugal" .
+<http://gss-data.org.uk/def/concept/foreign-geography/germany> <http://www.w3.org/2000/01/rdf-schema#label> "Germany" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://www.w3.org/2000/01/rdf-schema#label> "Reference Period"@en .
+<http://gss-data.org.uk/def/concept/foreign-geography/spain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/poland> <http://www.w3.org/2000/01/rdf-schema#label> "Poland" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/belgium> .
+<http://gss-data.org.uk/def/dimension/foreign-geography> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/czech-republic> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://github.com/swirrl/zib#firstCode> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-10> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/total> <http://www.w3.org/2000/01/rdf-schema#label> "Total" .
+<http://gss-data.org.uk/def/concept/foreign-geography/denmark> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/quarter/2017-Q4> <http://www.w3.org/2000/01/rdf-schema#label> "2017-Q4" .
+<http://gss-data.org.uk/def/concept/foreign-geography/liechtenstein> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/romania> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2016-Q3> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/def/concept/foreign-geography/romania> <http://www.w3.org/2000/01/rdf-schema#label> "Romania" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/luxembourg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/measure_type> <http://github.com/swirrl/zib#codelistSize> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/def/concept/foreign-geography/greece> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/unit> <http://purl.org/linked-data/cube#component> <http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/croatia> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-10> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/hungary> <http://www.w3.org/2000/01/rdf-schema#label> "Hungary" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/foreign-geography/nrs/total> <http://www.w3.org/2000/01/rdf-schema#label> "Total" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/nature_of_transfer> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/nature-of-transfer/arrivals> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#MeasureColumn> .
+<http://gss-data.org.uk/def/measure/count> <http://www.w3.org/2000/01/rdf-schema#label> "Count" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://reference.data.gov.uk/id/quarter/2015-Q2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://github.com/swirrl/zib#codelistSize> "14"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://gss-data.org.uk/def/concept/foreign-geography/sweden> <http://www.w3.org/2000/01/rdf-schema#label> "Sweden" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-8-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/measurement-units/requests-for-transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/slovenia> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-10> .
+<http://gss-data.org.uk/def/measure/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#MeasureProperty> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2015-Q2> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/estonia> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-8-1> <http://www.w3.org/2000/01/rdf-schema#label> "Article 8.1" .
+<http://gss-data.org.uk/def/concept/foreign-geography/portugal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://reference.data.gov.uk/id/quarter/2015-Q1> <http://www.w3.org/2000/01/rdf-schema#label> "2015-Q1" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#DimensionColumn> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-9> <http://www.w3.org/2000/01/rdf-schema#label> "Article 9" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/hungary> .
+<http://gss-data.org.uk/def/concept/foreign-geography/latvia> <http://www.w3.org/2000/01/rdf-schema#label> "Latvia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/period> <http://www.w3.org/2004/02/skos/core#member> <http://reference.data.gov.uk/id/quarter/2017-Q4> .
+<http://reference.data.gov.uk/id/quarter/2017-Q3> <http://www.w3.org/2000/01/rdf-schema#label> "2017-Q3" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/count> <http://www.w3.org/2000/01/rdf-schema#label> "Count" .
+<http://gss-data.org.uk/def/concept/foreign-geography/denmark> <http://www.w3.org/2000/01/rdf-schema#label> "Denmark" .
+<http://gss-data.org.uk/def/dimension/dublin-regulation-article> <http://www.w3.org/2000/01/rdf-schema#label> "Dublin Regulation Article" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/iceland> .
+<http://reference.data.gov.uk/id/quarter/2015-Q1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/portugal> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/unit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://github.com/swirrl/zib#Column> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/nature_of_transfer> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/nature_of_transfer> <http://www.w3.org/2000/01/rdf-schema#label> "Nature of Transfer" .
+<http://gss-data.org.uk/def/concept/foreign-geography/austria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/slovakia> <http://www.w3.org/2000/01/rdf-schema#label> "Slovakia" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/dublin_regulation_article> <http://www.w3.org/2000/01/rdf-schema#label> "Dublin Regulation Article" .
+<http://gss-data.org.uk/def/measure/count> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/foreign_geography> <http://github.com/swirrl/zib#hasCodeList> <http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> .
+<http://reference.data.gov.uk/id/quarter/2016-Q3> <http://www.w3.org/2000/01/rdf-schema#label> "2016-Q3" .
+<http://gss-data.org.uk/def/concept/foreign-geography/croatia> <http://www.w3.org/2000/01/rdf-schema#label> "Croatia" .
+<http://gss-data.org.uk/def/concept/foreign-geography/estonia> <http://www.w3.org/2000/01/rdf-schema#label> "Estonia" .
+<http://gss-data.org.uk/def/concept/measurement-units/arrivals> <http://www.w3.org/2004/02/skos/core#notation> "arrivals" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/count> <http://purl.org/linked-data/cube#component> <http://gss-data.org.uk/def/measure/count> .
+<http://gss-data.org.uk/def/concept/foreign-geography/poland> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/france> <http://www.w3.org/2000/01/rdf-schema#label> "France" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/component/period> <http://github.com/swirrl/zib#firstCode> <http://reference.data.gov.uk/id/quarter/2015-Q1> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/bulgaria> .
+<http://reference.data.gov.uk/id/quarter/2016-Q1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/total> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://zib.publishmydata.com/def/DimensionValue> .
+<http://gss-data.org.uk/def/concept/foreign-geography/austria> <http://www.w3.org/2000/01/rdf-schema#label> "Austria" .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/dublin_regulation_article> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/dublin-regulation-article/article-8-1> .
+<http://gss-data.org.uk/data/migration/ho-asylum/as_22_q/codes-used/foreign_geography> <http://www.w3.org/2004/02/skos/core#member> <http://gss-data.org.uk/def/concept/foreign-geography/nrs/total> .
+<http://gss-data.org.uk/def/concept/measurement-units/requests-for-transfer> <http://www.w3.org/2004/02/skos/core#notation> "requests-for-transfer" .
+<http://gss-data.org.uk/def/concept/dublin-regulation-article/article-13> <http://www.w3.org/2000/01/rdf-schema#label> "Article 13" .
