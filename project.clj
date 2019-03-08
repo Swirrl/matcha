@@ -5,9 +5,19 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/core.logic "0.8.11"]]
+                 [org.clojure/core.logic "0.8.11"]
+                 [net.cgrand/xforms "0.18.2"]]
 
-  :profiles {:dev {:dependencies [[grafter "0.11.4"]]}}
+  :profiles {:dev {:dependencies [[grafter "0.11.4"]
+                                  [criterium "0.4.4"]]
+                   :resource-paths ["data"]
+
+                   :jvm-opts ["-Xmx4g"]}
+             }
+
+  :test-selectors {:default (complement :perf)
+                   :perf :perf
+                   :all (fn [_] true)}
 
   :deploy-repositories [["releases" :clojars]
                        ["snapshots" :clojars]]
