@@ -41,7 +41,18 @@
 
                       [:rick :foaf/knows :martin]
                       [:rick :foaf/knows :katie]
-                      [:katie :foaf/knows :julie]])
+                      [:katie :foaf/knows :julie]
+                      [:martin :foaf/knows :bob]])
+
+(def index-choice [[:big-s :some/pred :small-o]
+                   [:big-s :some/pred :other-1]
+                   [:big-s :some/pred :other-2]
+
+                   [:small-o :label "small"]
+
+                   [:big-s :label "l"]
+                   [:big-s :label "l2"]
+                   ])
 
 (deftest query-clojure-data
   (testing "Querying 3/tuples of clojure values"
