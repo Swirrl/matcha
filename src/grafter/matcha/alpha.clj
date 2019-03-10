@@ -7,7 +7,8 @@
             [clojure.spec.alpha :as s]
             [clojure.string :as string]
             [clojure.walk :as walk]
-            [grafter.matcha.db :as pldb]))
+            [grafter.matcha.db :as pldb]
+            [net.cgrand.xforms :as xf]))
 
 (defmacro ^:private when-available [syms & body]
   (when (every? some? (map resolve syms))
@@ -304,18 +305,16 @@
 (defn find-vars-in-tree [tree]
   (filterv query-var? (tree-seq coll? seq tree)))
 
-(defn unify-solutions [projected-vars solutions]
+(defn unify-and-replace-xf [projected-vars]
   (map (fn [s]
          (let [vars (if (= 1 (count projected-vars))
                       (first projected-vars)
                       projected-vars)]
-           (u/unifier (vector vars s))))
-       solutions))
+           (u/unifier (vector vars s))))))
 
-(defn replace-vars-with-vals [construct-pattern binding-maps]
+(defn replace-vars-with-vals-xf [construct-pattern]
   (map (fn [binding-map]
-         (walk/postwalk-replace binding-map construct-pattern))
-       binding-maps))
+         (walk/postwalk-replace binding-map construct-pattern))))
 
 (defn ^:no-doc quote-query-vars
   "Used to help macro expansion.  We need to quote only ?query-variables
@@ -326,27 +325,49 @@
                                                `(quote ~qv)) query-vars))]
     (walk/postwalk-replace replacements construct-pattern)))
 
-(defn group-subjects [solutions]
-  (if-let [subj-maps (seq (filter :grafter.rdf/uri solutions))]
-    (into []
-          (comp
-           (map (fn [v]
-                  (apply merge-with
-                         (fn [a b]
-                           (cond
-                             (set? a)
-                             (conj a b)
-                             :else
-                             (set [a b])))
-                         v)))
-           (map (fn [m]
-                  (let [vs (:grafter.rdf/uri m)
-                        v (if (set? vs)
-                            (first vs)
-                            vs)]
-                    (assoc m :grafter.rdf/uri v)))))
-          (vals (group-by :grafter.rdf/uri subj-maps)))
-    solutions))
+(def NOTFOUND (Object.))
+
+(def group-subjects-xf
+  (comp
+   (map (fn [v]
+          (apply merge-with
+                 (fn [a b]
+                   (cond
+                     (set? a)
+                     (conj a b)
+                     :else
+                     (set [a b])))
+                 v)))
+   (map (fn [m]
+          (let [vs (:grafter.rdf/uri m)
+                v (if (set? vs)
+                    (first vs)
+                    vs)]
+            (assoc m :grafter.rdf/uri v))))))
+
+(defn builds-resource-objects? [construct-pattern]
+  (and (map? construct-pattern)
+       (not= NOTFOUND (get construct-pattern
+                           :grafter.rdf/uri NOTFOUND))))
+
+
+(defn pred-merge [a b]
+  (cond
+    (set? a)
+    (conj a b)
+    :else
+    (set [a b])))
+
+(def group-as-resource-objects
+  (xf/by-key :grafter.rdf/uri
+             identity
+             (fn [a b] b)
+             (comp
+              (xf/reduce (partial merge-with pred-merge))
+              (map (fn [m] (update m :grafter.rdf/uri (fn [v]
+                                                         (if (set? v)
+                                                           (first v)
+                                                           v))))))))
 
 (defmacro construct
   "Query a `db-or-idx` with `bgps` patterns, and return data in the form of the
@@ -363,12 +384,51 @@
   ([construct-pattern bgps db-or-idx]
    (let [pvars (find-vars-in-tree construct-pattern)
          pvarvec (vec pvars)]
-     `(->> ~(solve* 'construct &env pvars bgps db-or-idx)
-           ;; create a sequence of {?var :value} binding maps for
-           ;; each solution.
-           (unify-solutions (quote ~pvarvec))
-           (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern))
-           (group-subjects)))))
+     `(let [solutions# ~(solve* 'construct &env pvars bgps db-or-idx)
+            unify-and-replace-xf# (comp (unify-and-replace-xf (quote ~pvarvec))
+                                        (replace-vars-with-vals-xf ~(quote-query-vars pvarvec construct-pattern)))
+            first-sol# (first solutions#)]
+
+        (if (builds-resource-objects? '~construct-pattern)
+          (sequence
+           (comp unify-and-replace-xf#
+                 group-as-resource-objects)
+           solutions#)
+
+          (sequence unify-and-replace-xf# solutions#))))))
+
+
+(comment
+
+  (def the-unified-solutions '({:grafter.rdf/uri :s, :p2 :o} {:grafter.rdf/uri :s, :p :o} {:grafter.rdf/uri :s, :p :o2} {:grafter.rdf/uri :s2, :p2 :o2}))
+  (group-by :grafter.rdf/uri the-unified-solutions)
+  (into {} (net.cgrand.xforms/by-key :grafter.rdf/uri second vector (map identity)) the-unified-solutions)
+
+  (let [pred-join (fn [a b]
+
+                    (cond
+                      (set? a)
+                      (conj a b)
+                      :else
+                      (set [a b])))]
+    (into []
+          (net.cgrand.xforms/by-key :grafter.rdf/uri
+                                    identity
+                                    (fn [a b] b)
+                                    (comp #_(map println)
+
+                                          (net.cgrand.xforms/reduce (partial merge-with pred-join))
+                                          (map #(update % :grafter.rdf/uri (fn [v]
+                                                                             (if (set? v)
+                                                                              (first v)
+                                                                              v))))
+                                          #_(net.cgrand.xforms/into {})))
+
+          the-unified-solutions))
+
+
+  )
+
 
 (s/def ::construct-pattern any?)
 
