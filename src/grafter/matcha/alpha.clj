@@ -327,26 +327,29 @@
     (walk/postwalk-replace replacements construct-pattern)))
 
 (defn group-subjects [solutions]
-  (if-let [subj-maps (seq (filter :grafter.rdf/uri solutions))]
-    (into []
-          (comp
-           (map (fn [v]
-                  (apply merge-with
-                         (fn [a b]
-                           (cond
-                             (set? a)
-                             (conj a b)
-                             :else
-                             (set [a b])))
-                         v)))
-           (map (fn [m]
-                  (let [vs (:grafter.rdf/uri m)
-                        v (if (set? vs)
-                            (first vs)
-                            vs)]
-                    (assoc m :grafter.rdf/uri v)))))
-          (vals (group-by :grafter.rdf/uri subj-maps)))
-    solutions))
+  (->> (group-by :grafter.rdf/uri solutions)
+       vals
+       (map (fn merger [v]
+              (apply merge-with
+                     (fn [a b]
+                       (cond
+                         (set? a)
+                         (conj a b)
+                         :else
+                         (set [a b])))
+                     v)))
+       (map (fn fix-subject [m]
+              (let [vs (:grafter.rdf/uri m)
+                    v (if (set? vs)
+                        (first vs)
+                        vs)]
+                (assoc m :grafter.rdf/uri v))))))
+
+(def NOTFOUND (Object.))
+
+(defn resource-object? [construct-pattern]
+  (and (map? construct-pattern)
+       (not= NOTFOUND (:grafter.rdf/uri construct-pattern NOTFOUND))))
 
 (defmacro construct
   "Query a `db-or-idx` with `bgps` patterns, and return data in the form of the
@@ -363,12 +366,14 @@
   ([construct-pattern bgps db-or-idx]
    (let [pvars (find-vars-in-tree construct-pattern)
          pvarvec (vec pvars)]
-     `(->> ~(solve* 'construct &env pvars bgps db-or-idx)
-           ;; create a sequence of {?var :value} binding maps for
-           ;; each solution.
-           (unify-solutions (quote ~pvarvec))
-           (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern))
-           (group-subjects)))))
+     `(let [solutions# (->> ~(solve* 'construct &env pvars bgps db-or-idx)
+                            ;; create a sequence of {?var :value} binding maps for
+                            ;; each solution.
+                            (unify-solutions (quote ~pvarvec))
+                            (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern)))]
+        (if (resource-object? '~construct-pattern)
+          (group-subjects solutions#)
+          solutions#)))))
 
 (s/def ::construct-pattern any?)
 
