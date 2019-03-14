@@ -91,28 +91,29 @@
 (def zib:MeasureColumn (zib "MeasureColumn"))
 (def zib:hasCodeList (zib "hasCodeList"))
 
-(def-perf-suite ^:indexes zib-column-db-constructs
+(def-perf-suite ^:query zib-column-db-constructs
   (let [quads (into #{} (rdf/statements (io/resource "zib/column-db/column-db-xl-1.nt")))]
     (println "Running zib-column-db-constructs with different indexes on" (count quads) "triples")
     (let [matcha-spo (mdb/index-triples [:s :p :o] quads)
-          matcha-so (mdb/index-triples [:s :o] quads)
-          matcha-s-po (mdb/index-triples [:s [:p :o]] quads)
+          ;matcha-so (mdb/index-triples [:s :o] quads)
+          ;matcha-s-po (mdb/index-triples [:s [:p :o]] quads)
 
           matcha-o (mdb/index-triples [:o] quads)
 
           matcha-p (mdb/index-triples [:p] quads)
           matcha-po (mdb/index-triples [[:p :o]] quads)
-          matcha-fully-indexed (mdb/index-triples fully-indexed quads)]
+          ;matcha-fully-indexed (mdb/index-triples fully-indexed quads)
+          ]
       (report-bench
        (construct-by-type matcha-spo zib:AttributeColumn)  ;; 237 µs
-       (construct-by-type matcha-so zib:AttributeColumn)   ;; 240 µs
-       (construct-by-type matcha-s-po zib:AttributeColumn) ;; 259 µs
+       ;; (construct-by-type matcha-so zib:AttributeColumn)   ;; 240 µs
+       ;; (construct-by-type matcha-s-po zib:AttributeColumn) ;; 259 µs
 
-       (construct-by-type matcha-fully-indexed zib:AttributeColumn) ;; 253 µs
+       ;; (construct-by-type matcha-fully-indexed zib:AttributeColumn) ;; 253 µs
 
-       (construct-by-type matcha-o zib:AttributeColumn)  ;; 217 ms
-       (construct-by-type matcha-p zib:AttributeColumn)  ;; 331 ms
-       (construct-by-type matcha-po zib:AttributeColumn) ;; 222 ms
+       ;; (construct-by-type matcha-o zib:AttributeColumn)  ;; 217 ms
+       ;; (construct-by-type matcha-p zib:AttributeColumn)  ;; 331 ms
+       ;; (construct-by-type matcha-po zib:AttributeColumn) ;; 222 ms
 
        ;; ask also about zib:DimensionColumn - difference is that in
        ;; this data there are 5 results as opposed to just one.  So
@@ -120,16 +121,14 @@
        ;; grouping into a :grafter.rdf/uri subject map.
 
        (construct-by-type matcha-spo zib:DimensionColumn)  ;; 1.7 ms
-       (construct-by-type matcha-so zib:DimensionColumn)   ;; 1.9 ms
-       (construct-by-type matcha-s-po zib:DimensionColumn) ;; 1.6 ms
+       ;; (construct-by-type matcha-so zib:DimensionColumn)   ;; 1.9 ms
+       ;; (construct-by-type matcha-s-po zib:DimensionColumn) ;; 1.6 ms
 
-       (construct-by-type matcha-fully-indexed zib:DimensionColumn) ;; 1.7 ms
+       ;; (construct-by-type matcha-fully-indexed zib:DimensionColumn) ;; 1.7 ms
 
        (construct-by-type matcha-o zib:DimensionColumn) ;; 1.0 sec !!!
        (construct-by-type matcha-p zib:DimensionColumn) ;; 1.232 sec !!!
        (construct-by-type matcha-po zib:DimensionColumn) ;; 1.094 sec !!!
-
-
        ))))
 
 (def comp-with-most-dimvals (URI. "http://gss-data.org.uk/data/gss_data/trade/hmrc_ots_cn8/component/combined_nomenclature"))
@@ -147,7 +146,7 @@
 
     (count top-concepts)))
 
-(def-perf-suite skos-values
+(def-perf-suite ^:query skos-values
   (let [quads (into #{} (rdf/statements (io/resource "zib/column-db/column-db-xxl-1.nt")))]
     (println "Running zib-column-db-constructs with different indexes on" (count quads) "triples")
     (let [matcha-spo (mdb/index-triples [:s :p :o] quads)]
@@ -156,7 +155,7 @@
        (find-top-concepts-values matcha-spo) ;; 3.88 secs (old) 1.9 secs (new)
        ))))
 
-(def-perf-suite construct-vs-select
+(def-perf-suite ^:query construct-vs-select
   (let [db-unindexed (into #{} (rdf/statements (io/resource "zib/column-db/column-db-xxl-1.nt")))
         db-spo (mdb/index-triples [:s :p :o] db-unindexed)]
     (report-bench
@@ -171,7 +170,7 @@
                          [[?narrower rdf:a skos:Concept]
                           [?narrower ?p ?o]] db-spo)))))
 
-(def-perf-suite compound-indexes
+(def-perf-suite ^:query compound-indexes
   (let [db-unindexed (into #{} (rdf/statements (io/resource "zib/column-db/column-db-xxl-1.nt")))
         db-po (mdb/index-triples [#{:p :o}] db-unindexed)]
     (report-bench
@@ -180,7 +179,7 @@
               [[?narrower rdf:a skos:Concept]
                [?narrower ?p ?o]] db-po)))))
 
-(def-perf-suite construct-resource-grouping
+(def-perf-suite ^:query construct-resource-grouping
   (let [db-unindexed (into #{} (rdf/statements (io/resource "zib/column-db/column-db-xxl-1.nt")))
         db-spo (mdb/index-triples [:s :p :o] db-unindexed)]
     (report-bench
