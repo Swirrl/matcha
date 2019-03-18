@@ -4,9 +4,9 @@
             [grafter.vocabularies.core :refer [prefixer]]
             [grafter.vocabularies.foaf :refer [foaf:knows]]
             [grafter.vocabularies.rdf :refer [rdfs:label]]
-            [grafter.rdf.protocols :refer [->Triple] :as gp]
+            [grafter-2.rdf.protocols :refer [->Triple] :as gp]
             [clojure.spec.alpha :as s])
-  (:import [grafter.rdf.protocols LangString RDFLiteral]
+  (:import [grafter_2.rdf.protocols LangString RDFLiteral]
            [java.net URI]))
 
 (deftest quote-query-vars-test

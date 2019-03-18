@@ -13,19 +13,37 @@
   (when (every? some? (map resolve syms))
     `(do ~@body)))
 
-(try
-  ;; avoid issue: https://github.com/Swirrl/matcha/issues/5
-  (require '[grafter.rdf.protocols :as gp])
-  (import '[grafter.rdf.protocols RDFLiteral LangString Quad])
+(defn require-grafter-protocols [require-form]
+  (try
+    (require require-form)
+    :required
+    (catch java.io.FileNotFoundException _
+      :fne)
+    (catch java.lang.ClassNotFoundException _
+      :cnfe)
+    (catch clojure.lang.Compiler$CompilerException _
+      ;; this ones a little aggressive...
+      :cce
+      )
+    ))
 
-  (catch java.io.FileNotFoundException _))
+(require-grafter-protocols '[grafter.rdf.protocols])
+(require-grafter-protocols '[grafter-2.rdf.protocols])
 
-(when-available #{LangString RDFLiteral}
+(when-available #{grafter.rdf.protocols.LangString grafter.rdf.protocols.RDFLiteral}
   (extend-protocol lp/IUninitialized
-    LangString
+    grafter.rdf.protocols.LangString
     (lp/-uninitialized [coll] coll)
 
-    RDFLiteral
+    grafter.rdf.protocols.RDFLiteral
+    (lp/-uninitialized [coll] coll)))
+
+(when-available #{grafter_2.rdf.protocols.LangString grafter_2.rdf.protocols.RDFLiteral}
+  (extend-protocol lp/IUninitialized
+    grafter_2.rdf.protocols.LangString
+    (lp/-uninitialized [coll] coll)
+
+    grafter_2.rdf.protocols.RDFLiteral
     (lp/-uninitialized [coll] coll)))
 
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
