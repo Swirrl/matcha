@@ -136,11 +136,10 @@
          (simple-symbol? x))))
 
 (s/def ::atomic
-  (s/and some?
-         (s/or :symbol valid-symbol-atomic?
-               :literal (s/and (complement symbol?)
-                               (s/or :sexp ::sexp
-                                     :non-coll (complement collection?))))))
+  (s/nilable (s/or :symbol valid-symbol-atomic?
+                   :literal (s/and (complement symbol?)
+                                   (s/or :sexp ::sexp
+                                         :non-coll (complement collection?))))))
 
 (s/def ::triple
   (s/tuple ::atomic ::atomic ::atomic))
@@ -200,7 +199,7 @@
            ~@(when (seq requireds) [[`l/succeed]]))])))))
 
 (defn valid-bgps? [bgps-syms]
-  (letfn [(valid-atomic? [[_ x]] (and (some? x) (not (collection? x))))]
+  (letfn [(valid-atomic? [[_ x]] (not (collection? x)))]
     (let [invalid (into {} (remove valid-atomic? bgps-syms))]
       (when (seq invalid)
         (throw

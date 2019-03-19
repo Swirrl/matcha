@@ -129,6 +129,13 @@
 
                            [[:a :b :c] [:d :e :f]]))))
 
+    (testing "Matches nil"
+      (is (= "nil label"
+             (construct-1 ?label
+                          [[nil :label ?label]]
+
+                          [[nil :label "nil label"]]))))
+
     (testing "Construct people Rick knows"
       (let [construct-rick-nested (construct {:grafter.rdf/uri rick
                                               foaf:knows {:grafter.rdf/uri ?p
@@ -137,11 +144,11 @@
                                               [?p rdfs:label ?name]])]
         (is (= {:grafter.rdf/uri rick
                 foaf:knows #{{:grafter.rdf/uri martin, rdfs:label "Martin"}
-                              {:grafter.rdf/uri katie, rdfs:label "Katie"}}}
+                             {:grafter.rdf/uri katie, rdfs:label "Katie"}}}
                (first (construct-rick-nested friends))))))
 
     (let [friends-db-as-triples (set (map (fn [[s p o]] [s p o])
-                                       friends))]
+                                          friends))]
       (testing "Construct vector solution"
         (let [construct-all (construct [?s ?p ?o]
                                        [[?s ?p ?o]])]
@@ -568,4 +575,7 @@
                  (values ?person people)]
                 optional-friends))))
 
-    ))
+    ;; Yes this should really be valid...
+    (is (valid-syntax?
+         (construct ?s
+                    [[nil nil nil]])))))
