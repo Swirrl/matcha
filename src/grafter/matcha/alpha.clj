@@ -24,8 +24,7 @@
     (catch clojure.lang.Compiler$CompilerException _
       ;; this ones a little aggressive...
       :cce
-      )
-    ))
+      )))
 
 (require-grafter-protocols '[grafter.rdf.protocols])
 (require-grafter-protocols '[grafter-2.rdf.protocols])
@@ -253,10 +252,10 @@
     `(do
        ~@(some->> validation :bgp (list `valid-bgps?) list)
        ~@(some->> validation :values (list `valid-values?) list)
-       (pldb/with-db (index-if-necessary ~db-or-idx)
-         (l/run* ~(vec pvars)
-           (fresh ~(->> bgps find-vars (remove (set pvars)) vec)
-             ~@(parse-patterns conformed)))))))
+       (seq (pldb/with-db (index-if-necessary ~db-or-idx)
+              (l/run* ~(vec pvars)
+                (fresh ~(->> bgps find-vars (remove (set pvars)) vec)
+                  ~@(parse-patterns conformed))))))))
 
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
@@ -388,7 +387,8 @@
            ;; each solution.
            (unify-solutions (quote ~pvarvec))
            (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern))
-           (group-subjects)))))
+           (group-subjects)
+           seq))))
 
 (s/def ::construct-pattern any?)
 

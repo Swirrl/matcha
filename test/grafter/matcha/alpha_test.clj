@@ -121,6 +121,14 @@
                 foaf:knows #{martin katie}}
                (first (construct-rick friends))))))
 
+    (testing "Construct returns nil when no matches"
+      (is (nil? (construct [?p ?o] [[:not-a-matching-query ?p ?o]] [[:a :b :c] [:d :e :f]])))
+
+      (is (nil? (construct {:grafter.rdf/uri ?s ?p ?o}
+                           [[?s :not :matching] [?s ?p ?o]]
+
+                           [[:a :b :c] [:d :e :f]]))))
+
     (testing "Construct people Rick knows"
       (let [construct-rick-nested (construct {:grafter.rdf/uri rick
                                               foaf:knows {:grafter.rdf/uri ?p
@@ -453,7 +461,7 @@
                 [(optional [[?s ?p ?o]])]
                 tiny-db))))
 
-      (is (empty?
+      (is (nil?
            (select [?s ?p ?o]
              [(optional [[:do :not :match]])]
              tiny-db)))
@@ -558,4 +566,6 @@
                             (optional [[?name :name/backwards ?eman]
                                        (values ?name names)])])
                  (values ?person people)]
-                optional-friends))))))
+                optional-friends))))
+
+    ))
