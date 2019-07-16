@@ -42,10 +42,9 @@ you want to dynamically create in memory queries may be more awkward.
 
 Currently there is no support for the following SPARQL-like features:
 
-1. OPTIONALs, though we can probably add these (planned)
-2. Reasoning on in memory vocabularies with RDFS (maybe OWL)
-3. Clojurescript support (planned)
-4. Ability to bind a query variable to one or more triples, like
+1. Reasoning on in memory vocabularies with RDFS (maybe OWL)
+2. Clojurescript support (planned)
+3. Ability to bind a query variable to one or more triples, like
    SPARQL `BIND` or `VALUES` clauses.
 
 ## Usage
