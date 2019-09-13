@@ -5,10 +5,10 @@
         org.clojure/clojure {:mvn/version "1.10.0"}}
 
  :aliases {:dev {:extra-paths ["test"]
-                 :extra-deps {org.clojure/test.check {:mvn/version "0.10.0-alpha3"}
+                 :extra-deps {org.clojure/test.check {:mvn/version "0.10.0"}
                               speculative {:mvn/version "0.0.2"}}}
 
            :test {:extra-paths ["test"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "0.0-248"}
-                               grafter/grafter {:mvn/version "0.11.4"}}}}
+                               grafter/grafter {:mvn/version "2.1.0"}}}}
 }
