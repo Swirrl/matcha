@@ -19,10 +19,6 @@
   [triple s p o])
 
 
-(def matcha-db (apply pldb/db (map triple-vector->idx-triple [[:rick :foaf/friend :katie]
-                                                              [:katie :foaf/friend :julie]
-                                                              [:julie :foaf/name "Julie"]])))
-
 (defn- varify [query-data]
   (let [distinct-qvars (set (for [triple query-data
                                   term (filter symbol? triple)]
@@ -66,17 +62,24 @@
 
 (comment
 
+  (def matcha-db (apply pldb/db (map triple-vector->idx-triple [[:rick :foaf/friend :katie]
+                                                                [:katie :foaf/friend :julie]
+                                                                [:julie :foaf/name "Julie"]])))
+
+  
   (def foaf-query '[[?s :foaf/friend ?o]
                     [?o :foaf/friend ?o2]
                     [?o2 :foaf/name ?name]])
-
+  
   (varify foaf-query)
-  (goalify foaf-query)
+  (goalify (varify foaf-query))
 
 
   (compile-query foaf-query)
 
-  (run-query matcha-db foaf-query))
+  (run-query matcha-db foaf-query)
+  
+  )
 
 
 
