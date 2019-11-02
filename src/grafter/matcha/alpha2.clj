@@ -97,16 +97,33 @@
                                               :clojure.spec.alpha/invalid)))
                              :gen #(s/gen (s/spec #{'select}))))
 
-(defn all-projected-vars-are-bound? [{:keys [where projection]}]
-  (let [where-bindings (set (->> where
-                                 (mapcat vals)
-                                 (filter (comp #{:var} first))
-                                 (map second)))
-        proj-bindings (set projection)]
+(defn- var-set
+  "Utility function to find confromed :vars"
+  [bindings]
+  (->> bindings
+       (filter (comp #{:var} first))
+       (map second)
+       set))
+
+(defn all-projected-vars-are-bound?
+  "Given a conformed query checks whether all projected variables are
+  bound in the where clause."
+  [{:keys [where projection]}]
+  (let [where-bindings (->> where
+                             (mapcat vals)
+                             var-set)
+        proj-bindings (var-set projection)]
     (set/subset? proj-bindings where-bindings)))
 
+;; NOTE: this exists for consistency so that conformed query variables
+;; in a :projection have the same representation as in a bgp.
+;;
+;; It should also allow room to grow the definition of projected to
+;; share more SPARQL features.
+(s/def ::projected (s/or :var ::var))
+
 (s/def ::select (s/and (s/cat :query-type ::select-type
-                              :projection (s/spec (s/+ ::var))
+                              :projection (s/spec (s/+ ::projected))
                               :where (s/spec (s/+ ::bgp)))
                        all-projected-vars-are-bound?))
 
