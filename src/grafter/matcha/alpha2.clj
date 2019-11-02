@@ -4,10 +4,12 @@
             [clojure.core.logic.protocols :as lp]
             [clojure.core.logic.pldb :as pldb]
             [clojure.spec.alpha :as s]
+            [clojure.spec.gen.alpha :as g]
             [clojure.core.logic.unifier :as u]
             [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojure.set :as set]))
+            [clojure.set :as set]
+            [grafter.matcha.alpha :as ma]))
 
 
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
@@ -60,26 +62,74 @@
   [matcha-db query]
   (run-query* matcha-db (compile-query query)))
 
+(def select-query '(select [?name]
+                           [[?s :foaf/friend ?o]
+                            [?o :foaf/friend ?o2]
+                            [?o2 :foaf/name ?name]]))
+
+(s/def ::var (s/spec (s/and ma/query-var?
+                            (fn [v] (> (count (str v)) 1)))
+                     :gen (fn []
+                            (g/fmap (fn [s]
+                                      (symbol (str "?" s)))
+                                    (g/string-ascii)))))
+
+(s/def ::s (s/or :uri uri?
+                 :keyword keyword?
+                 :var ::var))
+
+(s/def ::p (s/or :uri uri?
+                 :keyword keyword?
+                 :var ::var))
+
+(s/def ::primitive any?) ;; might want to exclude collections
+
+(s/def ::o (s/or :uri uri?
+                 :keyword keyword?
+                 :var ::var
+                 :primitive ::primitive))
+
+(s/def ::bgp (s/spec (s/cat :s ::s :p ::p :o ::o)))
+
+(s/def ::select-type (s/spec (s/conformer (fn [v]
+                                            (if (or (= 'select v) (= 'grafter.matcha.alpha2/select v))
+                                              'grafter.matcha.alpha2/select
+                                              :clojure.spec.alpha/invalid)))
+                             :gen #(s/gen (s/spec #{'select}))))
+
+(defn all-projected-vars-are-bound? [{:keys [where projection]}]
+  (let [where-bindings (set (->> where
+                                 (mapcat vals)
+                                 (filter (comp #{:var} first))
+                                 (map second)))
+        proj-bindings (set projection)]
+    (set/subset? proj-bindings where-bindings)))
+
+(s/def ::select (s/and (s/cat :query-type ::select-type
+                              :projection (s/spec (s/+ ::var))
+                              :where (s/spec (s/+ ::bgp)))
+                       all-projected-vars-are-bound?))
+
 (comment
 
   (def matcha-db (apply pldb/db (map triple-vector->idx-triple [[:rick :foaf/friend :katie]
                                                                 [:katie :foaf/friend :julie]
                                                                 [:julie :foaf/name "Julie"]])))
 
-  
+
   (def foaf-query '[[?s :foaf/friend ?o]
                     [?o :foaf/friend ?o2]
                     [?o2 :foaf/name ?name]])
-  
+
   (varify foaf-query)
   (goalify (varify foaf-query))
 
 
   (compile-query foaf-query)
 
-  (run-query matcha-db foaf-query)
-  
-  )
+  (run-query matcha-db foaf-query))
+
+
 
 
 
