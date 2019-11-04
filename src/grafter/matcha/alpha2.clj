@@ -34,7 +34,11 @@
               (mapv (fn [term]
                       (sym->lvar term term)) triple))}))
 
-(defn- goalify [{:grafter.matcha.alpha2/keys [query bindings] :as qdata}]
+(defn- goalify [{query :lvar/query
+                 bindings :lvar/bindings
+                 :as qdata}]
+
+  (sc.api/spy)
   (let [goals (for [bgp query]
                 (apply triple bgp))
 
@@ -51,7 +55,9 @@
   [q]
   (goalify (varify q)))
 
-(defn run-query* [matcha-db {:grafter.matcha.alpha2/keys [bindings compiled-goals result-var] :as compiled-query}]
+(defn run-query* [matcha-db {bindings :lvar/bindings
+                             :grafter.matcha.alpha2/keys [compiled-goals result-var] :as compiled-query}]
+  (sc.api/spy)
   (l/solutions (l/tabled-s true {:db [matcha-db]
                                  :reify-vars false})
                result-var
@@ -61,11 +67,6 @@
   "Compile a query"
   [matcha-db query]
   (run-query* matcha-db (compile-query query)))
-
-(def select-query '(select [?name]
-                           [[?s :foaf/friend ?o]
-                            [?o :foaf/friend ?o2]
-                            [?o2 :foaf/name ?name]]))
 
 (s/def ::var (s/spec (s/and ma/query-var?
                             (fn [v] (> (count (str v)) 1)))
@@ -91,41 +92,91 @@
 
 (s/def ::bgp (s/spec (s/cat :s ::s :p ::p :o ::o)))
 
-(s/def ::select-type (s/spec (s/conformer (fn [v]
-                                            (if (or (= 'select v) (= 'grafter.matcha.alpha2/select v))
-                                              'grafter.matcha.alpha2/select
-                                              :clojure.spec.alpha/invalid)))
+(defn- canonicalise-query-type [qt]
+  (condp = qt
+      'select 'grafter.matcha.alpha2/select
+      'grafter.matcha.alpha2/select 'grafter.matcha.alpha2/select
+
+      'construct 'grafter.matcha.alpha2/construct
+      'grafter.matcha.alpha2/construct 'grafter.matcha.alpha2/construct
+
+      'ask 'grafter.matcha.alpha2/ask
+      'grafter.matcha.alpha2/ask 'grafter.matcha.alpha2/ask
+      ))
+
+(s/def ::select-type (s/spec (s/conformer canonicalise-query-type
+                                          canonicalise-query-type)
                              :gen #(s/gen (s/spec #{'select}))))
 
-(defn- var-set
+(defn- vars
   "Utility function to find confromed :vars"
   [bindings]
   (->> bindings
        (filter (comp #{:var} first))
-       (map second)
-       set))
+       (mapv second)))
+
+(defn distinct-bindings [{:keys [where projection]}]
+  {:bindings/where (apply set/union
+                          (map (fn [triple]
+                                 (->> triple
+                                      vals
+                                      vars
+                                      set)) where))
+
+   :bindings/projection (vars projection)})
 
 (defn all-projected-vars-are-bound?
   "Given a conformed query checks whether all projected variables are
   bound in the where clause."
-  [{:keys [where projection]}]
-  (let [where-bindings (->> where
-                             (mapcat vals)
-                             var-set)
-        proj-bindings (var-set projection)]
-    (set/subset? proj-bindings where-bindings)))
+  [query]
+  (let [{:bindings/keys [where projection]} (distinct-bindings query)]
+    (set/subset? projection where)))
 
-;; NOTE: this exists for consistency so that conformed query variables
-;; in a :projection have the same representation as in a bgp.
+;; NOTE: ::projected exists for consistency so that conformed query
+;; variables in a :projection have the same representation as in a
+;; bgp. i.e. [:var ?var] rather than just ?var.
 ;;
 ;; It should also allow room to grow the definition of projected to
 ;; share more SPARQL features.
 (s/def ::projected (s/or :var ::var))
 
+(s/def ::where (s/spec (s/+ ::bgp)))
+
 (s/def ::select (s/and (s/cat :query-type ::select-type
                               :projection (s/spec (s/+ ::projected))
-                              :where (s/spec (s/+ ::bgp)))
+                              :where ::where)
                        all-projected-vars-are-bound?))
+
+(defn- varify [{:keys [where]
+                where-bindings :bindings/where
+                proj-bindings :bindings/projection :as query-data}]
+  (let [distinct-qvars (set/union where-bindings proj-bindings)
+        sym->lvar (->> distinct-qvars
+                       (map (juxt identity (comp l/lvar str)))
+                       (into {}))]
+
+    (sc.api/spy)
+    :lvar/bindings sym->lvar
+
+    ;;; TODO TODO TODO FIX THIS BIT
+    :lvar/projection (mapv (fn [term]
+                             (sym->lvar term term)) proj-bindings)
+
+    :lvar/query (for [triple (s/unform ::where where)]
+                  (mapv (fn [term]
+                          (sym->lvar term term)) triple))))
+
+(defn conform-query [query]
+  (let [conformed (s/conform ::select query)
+        distinct-vars (distinct-bindings conformed)
+
+        annotated-query (merge distinct-vars conformed)
+        lvard (varify annotated-query)
+        lvard-annotated-query (merge annotated-query lvard)]
+
+    (goalify lvard-annotated-query)))
+
+
 
 (comment
 
@@ -144,7 +195,21 @@
 
   (compile-query foaf-query)
 
-  (run-query matcha-db foaf-query))
+  (run-query matcha-db foaf-query)
+
+
+  (def select-query '(select [?name]
+                           [[?s :foaf/friend ?o]
+                            [?o :foaf/friend ?o2]
+                            [?o2 :foaf/name ?name]]))
+
+
+  (run-query matcha-db
+             (conform-query select-query))
+
+
+
+  )
 
 
 
