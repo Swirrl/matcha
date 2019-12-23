@@ -57,7 +57,7 @@
 
 (defn run-query* [matcha-db {bindings :lvar/bindings
                              :grafter.matcha.alpha2/keys [compiled-goals result-var] :as compiled-query}]
-  (sc.api/spy)
+  ;(sc.api/spy)
   (l/solutions (l/tabled-s true {:db [matcha-db]
                                  :reify-vars false})
                result-var
@@ -156,23 +156,36 @@
                        (into {}))]
 
     (sc.api/spy)
-    :lvar/bindings sym->lvar
+
+    {
+     :lvar/bindings sym->lvar
 
     ;;; TODO TODO TODO FIX THIS BIT
-    :lvar/projection (mapv (fn [term]
-                             (sym->lvar term term)) proj-bindings)
+     :lvar/projection (mapv (fn [term]
+                              (sym->lvar term term)) proj-bindings)
 
-    :lvar/query (for [triple (s/unform ::where where)]
-                  (mapv (fn [term]
-                          (sym->lvar term term)) triple))))
+     :lvar/query (for [triple (s/unform ::where where)]
+                   (mapv (fn [term]
+                           (sym->lvar term term)) triple))}))
+
+(defn- denamespace
+  "Walk query form an remove namespaces from symbols.  This allows users to use the "
+  [q]
+  (walk/prewalk
+   (fn [v] (if (symbol? v) (symbol (name v)) v))
+   q))
 
 (defn conform-query [query]
-  (let [conformed (s/conform ::select query)
+  (let [conformed (s/conform ::select (denamespace query))
         distinct-vars (distinct-bindings conformed)
 
         annotated-query (merge distinct-vars conformed)
         lvard (varify annotated-query)
-        lvard-annotated-query (merge annotated-query lvard)]
+        _     (sc.api/spy)
+        lvard-annotated-query (merge annotated-query lvard)
+        ]
+
+    (sc.api/spy)
 
     (goalify lvard-annotated-query)))
 
