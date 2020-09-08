@@ -7,7 +7,7 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [org.clojure/core.logic "1.10.0"]]
 
-  :profiles {:dev {:dependencies [[grafter "2.0.0"]]}}
+  :profiles {:dev {:dependencies [[grafter "2.1.10"]]}}
 
   :deploy-repositories [["releases" :clojars]
                        ["snapshots" :clojars]]
