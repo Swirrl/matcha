@@ -20,6 +20,11 @@
   [[s p o]]
   [triple s p o])
 
+(defn make-index
+  ([triples] (make-index triples {}))
+  ([triples opts]
+   (apply pldb/db (map triple-vector->idx-triple triples))))
+
 
 (defn- varify [query-data]
   (let [distinct-qvars (set (for [triple query-data
@@ -38,7 +43,6 @@
                  bindings :lvar/bindings
                  :as qdata}]
 
-  (sc.api/spy)
   (let [goals (for [bgp query]
                 (apply triple bgp))
 
@@ -49,24 +53,6 @@
     (assoc qdata
            ::result-var result-var
            ::compiled-goals compiled-goals)))
-
-(defn compile-query
-  "Compile a query"
-  [q]
-  (goalify (varify q)))
-
-(defn run-query* [matcha-db {bindings :lvar/bindings
-                             :grafter.matcha.alpha2/keys [compiled-goals result-var] :as compiled-query}]
-  ;(sc.api/spy)
-  (l/solutions (l/tabled-s true {:db [matcha-db]
-                                 :reify-vars false})
-               result-var
-               compiled-goals))
-
-(defn run-query
-  "Compile a query"
-  [matcha-db query]
-  (run-query* matcha-db (compile-query query)))
 
 (s/def ::var (s/spec (s/and ma/query-var?
                             (fn [v] (> (count (str v)) 1)))
@@ -108,7 +94,20 @@
                                           canonicalise-query-type)
                              :gen #(s/gen (s/spec #{'select}))))
 
-(defn- vars
+(defmulti projection-vars first)
+
+(defmethod projection-vars :one [binding]
+  (-> binding
+       second
+       second
+       ))
+
+(defmethod projection-vars :many [bindings]
+  (->> bindings
+       second
+       (mapv second)))
+
+(defn- triple-vars
   "Utility function to find confromed :vars"
   [bindings]
   (->> bindings
@@ -116,14 +115,15 @@
        (mapv second)))
 
 (defn distinct-bindings [{:keys [where projection]}]
+
   {:bindings/where (apply set/union
                           (map (fn [triple]
                                  (->> triple
                                       vals
-                                      vars
+                                      triple-vars
                                       set)) where))
 
-   :bindings/projection (vars projection)})
+   :bindings/projection (projection-vars projection)})
 
 (defn all-projected-vars-are-bound?
   "Given a conformed query checks whether all projected variables are
@@ -143,7 +143,8 @@
 (s/def ::where (s/spec (s/+ ::bgp)))
 
 (s/def ::select (s/and (s/cat :query-type ::select-type
-                              :projection (s/spec (s/+ ::projected))
+                              :projection (s/spec (s/or :many (s/+ ::projected)
+                                                        :one ::projected))
                               :where ::where)
                        all-projected-vars-are-bound?))
 
@@ -156,11 +157,9 @@
                        (into {}))]
 
     (sc.api/spy)
+    {:lvar/bindings sym->lvar
 
-    {
-     :lvar/bindings sym->lvar
-
-    ;;; TODO TODO TODO FIX THIS BIT
+     ;;; TODO TODO TODO FIX THIS BIT
      :lvar/projection (mapv (fn [term]
                               (sym->lvar term term)) proj-bindings)
 
@@ -176,19 +175,38 @@
    q))
 
 (defn conform-query [query]
-  (let [conformed (s/conform ::select (denamespace query))
-        distinct-vars (distinct-bindings conformed)
+  (let [conformed (s/conform ::select (denamespace query))]
+    (when (= :clojure.spec.alpha/invalid conformed)
+      (throw (ex-info "Invalid query" {:error ::invalid-query
+                                       ::query query})))
 
-        annotated-query (merge distinct-vars conformed)
-        lvard (varify annotated-query)
-        _     (sc.api/spy)
-        lvard-annotated-query (merge annotated-query lvard)
-        ]
+    (let [distinct-vars (distinct-bindings conformed)
+          annotated-query (merge distinct-vars conformed)
+          lvard (varify annotated-query)
+          lvard-annotated-query (merge annotated-query lvard)]
 
-    (sc.api/spy)
+      (goalify lvard-annotated-query))))
 
-    (goalify lvard-annotated-query)))
 
+(defn compile-query
+  "Compile a query"
+  [q]
+  (goalify (varify q)))
+
+(defn run-query* [matcha-db {bindings :lvar/bindings
+                             projection :lvar/projection
+                             :grafter.matcha.alpha2/keys [compiled-goals result-var] :as compiled-query}]
+
+                                        ;(sc.api/spy)
+  (l/solutions (l/tabled-s true {:db [matcha-db]
+                                 :reify-vars false})
+               projection
+               compiled-goals))
+
+(defn run-query
+  "Compile a query"
+  [matcha-db query]
+  (run-query* matcha-db (compile-query query)))
 
 
 (comment
@@ -220,7 +238,15 @@
   (run-query matcha-db
              (conform-query select-query))
 
+  (run-query matcha-db
+             (conform-query select-query))
 
+
+
+  (s/conform ::select '(select ?name
+                               [[?s :foaf/friend ?o]
+                                [?o :foaf/friend ?o2]
+                                [?o2 :foaf/name ?name]]))
 
   )
 
