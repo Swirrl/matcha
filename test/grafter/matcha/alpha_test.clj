@@ -581,24 +581,45 @@
                     [[nil nil nil]])))))
 
 (deftest build-test
-  (testing "Sugared build"
+  (testing "build"
     (let [db [[:s :p :o]
               [:s :p2 :o2]
 
-              [:s2 :p :o3]]
+              [:s2 :p :o3]]]
 
-          ret (build ?s
-                     {?p ?o}
-                     [[?s ?p ?o]]
-                     db)]
+      (testing "with unbound subject"
+        (let [ret (build ?s
+                         {?p ?o}
+                         [[?s ?p ?o]]
+                         db)]
+          (is (= #{{:grafter.rdf/uri :s
+                    :p :o
+                    :p2 :o2}
 
-      (is (= #{{:grafter.rdf/uri :s
-                :p :o
-                :p2 :o2}
+                   {:grafter.rdf/uri :s2
+                    :p :o3}}
+                 (set ret)))))
 
-               {:grafter.rdf/uri :s2
-                :p :o3}}
-             (set ret))))
+      (testing "with bound subject"
+        (let [subject :s
+              ret (build subject
+                         {?p ?o}
+                         [[subject ?p ?o]]
+                         db)]
+          (is (= #{{:grafter.rdf/uri :s
+                    :p :o
+                    :p2 :o2}}
+                 (set ret)))))
+
+      (testing "with hardcoded subject value"
+        (let [ret (build :s
+                         {?p ?o}
+                         [[:s ?p ?o]]
+                         db)]
+          (is (= #{{:grafter.rdf/uri :s
+                    :p :o
+                    :p2 :o2}}
+                 (set ret))))))
 
     (testing "Optionals and predicate grouping"
       (let [db [[:s :label "s"]

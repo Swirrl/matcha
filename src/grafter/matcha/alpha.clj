@@ -398,11 +398,13 @@
   "Query a `db-or-idx` with `bgps` patterns, and return data grouped by
   subject and predicates into resource object maps.
 
-  `subject` can be either a `?query-var` symbol used in the `bgps` or
-  a 2-tuple key value pair of `[:keyword ?query-var]`, in which case
-  `:keyword` will be the key used to identify the subject of the maps
-  in the response. If only `?query-var` and no `:keyword` is specified
-  then the default keyword of `:grafter.rdf/uri` is used.
+  `subject` can be a concrete value, a value bound in lexical scope, a
+  `?query-var` symbol used in the `bgps` or a 2-tuple key value pair
+  of `[:keyword ?query-var]` or [:keyword :concrete-value]. If the
+  vector form is used case `:keyword` will be the key used to identify
+  the subject of the maps in the response. If only `?query-var` or a
+  concrete value and no `:keyword` is specified then the default
+  keyword of `:grafter.rdf/uri` is used.
 
   NOTE: unlike `construct`, `build` will eliminate any unbound
   variables from the response maps that may arrise from using an
@@ -418,11 +420,14 @@
       (build ~subject
              ~construct-pattern ~bgps db-or-idx#)))
   ([subject construct-pattern bgps db-or-idx]
-   (let [[subject-k subject-var] (if (symbol? subject)
-                                   [:grafter.rdf/uri subject]
-                                   subject)
-         pvars (cons subject-var (find-vars-in-tree construct-pattern))
+   (let [[subject-k subject-var] (if (vector? subject)
+                                   subject
+                                   [:grafter.rdf/uri subject])
+         pvars (if (query-var? subject-var)
+                 (cons subject-var (find-vars-in-tree construct-pattern))
+                 (find-vars-in-tree construct-pattern))
          pvarvec (vec pvars)]
+
      `(->> ~(solve* 'build &env pvars bgps db-or-idx)
            ;; create a sequence of {?var :value} binding maps for
            ;; each solution.
