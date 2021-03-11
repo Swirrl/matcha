@@ -344,31 +344,117 @@
                                                `(quote ~qv)) query-vars))]
     (walk/postwalk-replace replacements construct-pattern)))
 
-(defn group-subjects [solutions]
-  (if-let [subj-maps (seq (filter :grafter.rdf/uri solutions))]
+(def ^:private group-predicates-xf
+  (map (fn [v]
+         (apply merge-with
+                (fn [a b]
+                  (cond
+                    (set? a)
+                    (conj a b)
+                    :else
+                    (set [a b])))
+                v))))
+
+(def ^:private unsetify-grafter-uri
+  (map (fn [m]
+         (let [vs (:grafter.rdf/uri m)
+               v (if (set? vs)
+                   (first vs)
+                   vs)]
+           (assoc m :grafter.rdf/uri v)))))
+
+(defn group-subjects-for-construct [construct-pattern solutions]
+  (if (and (map? construct-pattern) (:grafter.rdf/uri construct-pattern))
     (into []
           (comp
-           (map (fn [v]
-                  (apply merge-with
-                         (fn [a b]
-                           (cond
-                             (set? a)
-                             (conj a b)
-                             :else
-                             (set [a b])))
-                         v)))
-           (map (fn [m]
-                  (let [vs (:grafter.rdf/uri m)
-                        v (if (set? vs)
-                            (first vs)
-                            vs)]
-                    (assoc m :grafter.rdf/uri v)))))
-          (vals (group-by :grafter.rdf/uri subj-maps)))
+           group-predicates-xf
+           unsetify-grafter-uri)
+          (vals (group-by :grafter.rdf/uri solutions)))
     solutions))
 
+(def ^:private clean-up-subject-map
+  "Removes any keys with unbound vars as values and flattens any sets
+  that have just one value into scalars."
+  (map (fn [e]
+         (reduce-kv (fn [m k v]
+                      (-> m
+                          (cond->
+                              (symbol? v)
+                              (dissoc k)
+
+                              (and (set? v) (= 1 (count v)))
+                              (assoc k (first v)))))
+                    e
+                    e))))
+
+(defn group-subjects-for-build [subject-k solutions]
+  (into []
+        (comp
+         group-predicates-xf
+         clean-up-subject-map)
+        (vals (group-by subject-k solutions))))
+
+(defmacro build
+  "Query a `db-or-idx` with `bgps` patterns, and return data grouped by
+  subject and predicates into resource object maps.
+
+  `subject` can be a concrete value, a value bound in lexical scope, a
+  `?query-var` symbol used in the `bgps` or a 2-tuple key value pair
+  of `[:keyword ?query-var]` or [:keyword :concrete-value]. If the
+  vector form is used case `:keyword` will be the key used to identify
+  the subject of the maps in the response. If only `?query-var` or a
+  concrete value and no `:keyword` is specified then the default
+  keyword of `:grafter.rdf/uri` is used.
+
+  NOTE: unlike `construct`, `build` will eliminate any unbound
+  variables from the response maps that may arrise from using an
+  optional.
+
+  If called with 3 arguments, returns a function of 1 argument: the `db-or-idx`,
+  which returns a sequence of results in the form of the `construct-pattern`.
+
+  If called with 4 arguments, queries the `db-or-idx` directly, returning a
+  sequence of results in the form of the `construct-pattern`."
+  ([subject construct-pattern bgps]
+   `(fn [db-or-idx#]
+      (build ~subject
+             ~construct-pattern ~bgps db-or-idx#)))
+  ([subject construct-pattern bgps db-or-idx]
+   (let [[subject-k subject-var] (if (vector? subject)
+                                   subject
+                                   [:grafter.rdf/uri subject])
+         pvars (if (query-var? subject-var)
+                 (cons subject-var (find-vars-in-tree construct-pattern))
+                 (find-vars-in-tree construct-pattern))
+         pvarvec (vec pvars)]
+
+     `(->> ~(solve* 'build &env pvars bgps db-or-idx)
+           ;; create a sequence of {?var :value} binding maps for
+           ;; each solution.
+           (unify-solutions (quote ~pvarvec))
+           (replace-vars-with-vals ~(quote-query-vars pvarvec (merge {subject-k subject-var}
+                                                                     construct-pattern)))
+           (group-subjects-for-build ~subject-k)
+           seq))))
+
+(defmacro build-1
+  "Like `build` but returns only the first resource object.
+
+  NOTE: it is not lazy, so to make this efficient you should be
+  selective in your `bgps`."
+  ([subject-kv construct-pattern bgps]
+   `(fn [db-or-idx#]
+      (build ~subject-kv
+             ~construct-pattern ~bgps db-or-idx#)))
+  ([subject construct-pattern bgps db-or-idx]
+   `(first (build ~subject ~construct-pattern ~bgps ~db-or-idx))))
+
 (defmacro construct
-  "Query a `db-or-idx` with `bgps` patterns, and return data in the form of the
-  `construct-pattern`.
+  "NOTE: If you want to construct maps, you will likely be better
+  using `build` instead.
+
+  Query a `db-or-idx` with `bgps` patterns, and return data in the
+  form of the `construct-pattern`.
 
   If called with 2 arguments, returns a function of 1 argument: the `db-or-idx`,
   which returns a sequence of results in the form of the `construct-pattern`.
@@ -386,7 +472,7 @@
            ;; each solution.
            (unify-solutions (quote ~pvarvec))
            (replace-vars-with-vals ~(quote-query-vars pvarvec construct-pattern))
-           (group-subjects)
+           (group-subjects-for-construct (quote ~construct-pattern))
            seq))))
 
 (s/def ::construct-pattern any?)

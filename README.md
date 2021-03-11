@@ -30,8 +30,8 @@ use Matcha to query this graph locally.
   dispose of the index.  This can lead to poor performance when you
   want to query the same set of data multiple times.
 - Construct graph query results directly into clojure datastructures.
-- Support for `VALUES` clauses (unlike in SPARQL we do not yet support 
-  binding arbitrary tuples/tables).  So we only support the 
+- Support for `VALUES` clauses (unlike in SPARQL we do not yet support
+  binding arbitrary tuples/tables).  So we only support the
   `VALUES ?x { ... }` form.
 - Support for `OPTIONAL`s with SPARQL-like semantics.
 
@@ -48,7 +48,7 @@ Currently there is no support for the following SPARQL-like features:
 ## Usage
 
 Matcha defines some primary query functions `select`, `select-1`,
-`construct`, `construct-1` and `ask`.
+`build`, `build-1`, `construct`, `construct-1` and `ask`.
 
 First lets define an in memory database of triples, in reality this
 could come from a SPARQL query `CONSTRUCT`, but here we'll just define
@@ -69,7 +69,7 @@ URI's, or clojure keywords.
                  [:rick :foaf/knows :martin]
                  [:rick :foaf/knows :katie]
                  [:katie :foaf/knows :julie]
-                 
+
                  [:rick :a :foaf/Person]
                  [:katie :a :foaf/Person]
                  [:martin :a :foaf/Person]])
@@ -91,6 +91,52 @@ BGPs have some semantics you need to be aware of:
 - Clojure symbols beginning with a `?` are treated specially as query
   variables.
 - Other symbols are resolved to their values.
+
+### `build`
+
+`build` always groups returned solutions into a sequence of clojure
+maps, where the subjects are grouped into maps, and the maps are
+grouped by their properties. If a property has multiple values they
+will be rolled up into a set, otherwise they will be a scalar value.
+
+Each map returned by `build` typically represents a resource in the
+built graph, which is projected into a sequence of maps, with
+potentially multi-valued keys.
+
+It takes a binding for `?subject` of the map, a map form specifying
+the projection of other property/value bindings a `bgp` and a
+database.
+
+``` clojure
+(build ?person
+       {:foaf/knows ?friends}
+       [[?person :foaf/knows ?friends]]
+       friends-db)
+
+;; => ({:grafter.rdf/uri :rick, :foaf/knows #{:martin :katie}}
+;;     {:grafter.rdf/uri :katie, :foaf/knows :julie}
+```
+
+NOTE: `:foaf/knows` is projected into a set of values for `:rick`, but
+a single scalar value for `:katie`.
+
+The `?subject` is by default associated with the key
+`:grafter.rdf/uri`. If you wish to specify this key yourself you can
+by providing a key/value pair as the subject: e.g. substituting
+?person for `[:id ?person]` changes the return values like so:
+
+``` clojure
+(build [:id ?person]
+       {:foaf/knows ?friends}
+       [[?person :foaf/knows ?friends]]
+         friends-db)
+;; => ({:id :rick, :foaf/knows #{:martin :katie}}
+;;     {:id :katie, :foaf/knows :julie}
+```
+
+Because `build` knows it is always returning a sequence of maps, it
+will remove any keys corresponding to unbound variables introduced
+through optionals.  This is unlike `construct`.
 
 ### `select`
 
@@ -130,10 +176,14 @@ the first solution.
 
 ### `construct`
 
-`CONSTRUCT`s are the most powerful query type, as they allow you to
-construct arbitrary clojure data structures directly from your query
-results, and position the projected query variables where ever you
-want within the projected datastructure template.
+NOTE: if you're using you `construct` to return maps, you should first
+consider using `build` which fixes some issues present in common
+`construct` usage.
+
+`CONSTRUCT`s allow you to construct arbitrary clojure data structures
+directly from your query results, and position the projected query
+variables where ever you want within the projected datastructure
+template.
 
 Args:
  * `construct-pattern`: an arbitrary clojure data structure. Results
@@ -213,7 +263,7 @@ You can parameterise Matcha queries simply by adding a lexical binding or wrappi
                    [[person-id :foaf/knows ?friend]
                     [?friend :rdfs/label ?name]]))
 
-(lookup-friends :rick friends-db) 
+(lookup-friends :rick friends-db)
 
 ;; => [{:grafter.rdf/uri :martin, :name "Martin"}
 ;;     {:grafter.rdf/uri :katie, :name "Katie"}]
@@ -240,8 +290,8 @@ We support dynamic VALUEs clauses in all query types like so:
   (select [?name]
     [(values ?person-id person-ids)
      [?person-id :rdfs/label ?name]]))
-     
-(lookup-names [:rick :katie] friends-db) ;; => ["Rick", "Katie"]     
+
+(lookup-names [:rick :katie] friends-db) ;; => ["Rick", "Katie"]
 ```
 
 You can also hardcode the values into the query:
@@ -253,7 +303,7 @@ You can also hardcode the values into the query:
      [?person-id :rdfs/label ?name]]))
 ```
 
-Any "flat collection" (i.e. a `sequential?` or a `set?`) is valid 
+Any "flat collection" (i.e. a `sequential?` or a `set?`) is valid
 on the right hand side of a `values` binding.
 
 ## Performance

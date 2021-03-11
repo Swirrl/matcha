@@ -579,3 +579,82 @@
     (is (valid-syntax?
          (construct ?s
                     [[nil nil nil]])))))
+
+(deftest build-test
+  (testing "build"
+    (let [db [[:s :p :o]
+              [:s :p2 :o2]
+
+              [:s2 :p :o3]]]
+
+      (testing "with unbound subject"
+        (let [ret (build ?s
+                         {?p ?o}
+                         [[?s ?p ?o]]
+                         db)]
+          (is (= #{{:grafter.rdf/uri :s
+                    :p :o
+                    :p2 :o2}
+
+                   {:grafter.rdf/uri :s2
+                    :p :o3}}
+                 (set ret)))))
+
+      (testing "with bound subject"
+        (let [subject :s
+              ret (build subject
+                         {?p ?o}
+                         [[subject ?p ?o]]
+                         db)]
+          (is (= #{{:grafter.rdf/uri :s
+                    :p :o
+                    :p2 :o2}}
+                 (set ret)))))
+
+      (testing "with hardcoded subject value"
+        (let [ret (build :s
+                         {?p ?o}
+                         [[:s ?p ?o]]
+                         db)]
+          (is (= #{{:grafter.rdf/uri :s
+                    :p :o
+                    :p2 :o2}}
+                 (set ret))))))
+
+    (testing "Optionals and predicate grouping"
+      (let [db [[:s :label "s"]
+                [:s :label "s another"]
+                [:s :p2 :o2]
+                [:s :optional "optional"]
+                [:s2 :label "s2"]
+                [:s2 :p2 :o2]]
+
+            ret (build ?s
+                       {:label ?label
+                        :optional ?opt}
+
+                       [[?s :label ?label]
+                        (grafter.matcha.alpha/optional [[?s :optional ?opt]])]
+                       db)]
+
+        (is (= #{{:grafter.rdf/uri :s,
+                  :label #{"s" "s another"},
+                  :optional "optional"}
+                 {:grafter.rdf/uri :s2, :label "s2"}}
+
+               (set ret)))))))
+
+(deftest build-1-test
+  (let [db [[:s :p :o]
+            [:s :p2 :o2]
+            [:s :p2 :o3]
+            [:s2 :p :o]
+            [:s2 :p2 :o2]]
+        ret (build-1 ?s
+                     {?p ?o}
+                     [(values ?s [:s])
+                      [?s ?p ?o]]
+                     db)]
+    (is (= {:grafter.rdf/uri :s, :p2 #{:o3 :o2}, :p :o}
+           ret))
+    ))
