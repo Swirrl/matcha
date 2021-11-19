@@ -37,12 +37,14 @@
     grafter.rdf.protocols.RDFLiteral
     (lp/-uninitialized [coll] coll)))
 
-(when-available #{grafter_2.rdf.protocols.LangString grafter_2.rdf.protocols.RDFLiteral}
+(when-available #{grafter_2.rdf.protocols.LangString grafter_2.rdf.protocols.RDFLiteral  grafter_2.rdf.protocols.OffsetDate}
   (extend-protocol lp/IUninitialized
     grafter_2.rdf.protocols.LangString
     (lp/-uninitialized [coll] coll)
 
     grafter_2.rdf.protocols.RDFLiteral
+    (lp/-uninitialized [coll] coll)
+    grafter_2.rdf.protocols.OffsetDate
     (lp/-uninitialized [coll] coll)))
 
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
