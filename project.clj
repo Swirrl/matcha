@@ -1,4 +1,4 @@
-(defproject grafter/matcha.alpha "0.1.13"
+(defproject grafter/matcha.alpha "0.1.14-SNAPSHOT"
   :description "A SPARQL-like query engine and DSL for querying in
   memory RDF models."
   :url "https://github.com/Swirrl/matcha"
