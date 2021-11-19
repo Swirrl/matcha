@@ -7,7 +7,8 @@
             [grafter-2.rdf.protocols :refer [->Triple] :as gp]
             [clojure.spec.alpha :as s])
   (:import [grafter_2.rdf.protocols LangString RDFLiteral]
-           [java.net URI]))
+           [java.net URI]
+           [java.time LocalDate ZoneOffset]))
 
 (deftest quote-query-vars-test
   ;; used to help macro expansion
@@ -230,7 +231,7 @@
            (index-triples friends-vectors)))))
 
 
-(deftest grafter-record-interrop
+(deftest grafter-record-interop
   ;; Test we avoid issue: https://github.com/Swirrl/matcha/issues/5
   ;; where grafter types cause an exception because they don't
   ;; implement core.logic protocols.
@@ -241,7 +242,11 @@
     (is (= rs  ((construct-1 ?o [[?s ?p ?o]]) [[:a :b rs]]))))
 
   (let [quads [(gp/->Quad :s :p :o :g) (gp/->Quad :s :p2 :o2 :g)]]
-    (is #{:o :o2} ((construct ?o [[?s ?p ?o]]) quads))))
+    (is #{:o :o2} ((construct ?o [[?s ?p ?o]]) quads)))
+
+
+  (let [offset-date (gp/map->OffsetDate {:date (LocalDate/now) :timezone (ZoneOffset/UTC)})]
+    (m/construct ?o [[?s ?p ?o]] [[:s :p offset-date]])))
 
 
 
