@@ -6,7 +6,7 @@
 
  :aliases {:dev {:extra-paths ["test"]
                  :extra-deps {org.clojure/test.check {:mvn/version "0.10.0-alpha3"}
-                              speculative/speculative {:mvn/version "0.0.2"}}}
+                              speculative/speculative {:mvn/version "0.0.3"}}}
 
            :test {:extra-paths ["test"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "0.0-248"}
