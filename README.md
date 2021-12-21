@@ -315,6 +315,22 @@ solutions on a database of a million triples can be done on a laptop
 in less than 10 seconds.  Query time scaling seems to be roughly
 linear with the database size.
 
+## Developing Matcha
+
+To test, create and build a library jar run:
+
+```
+$ clojure -T:build ci
+```
+
+Once you have done that to deploy the jar to clojars run:
+
+```
+$ clojure -T:build deploy
+```
+
+_NOTE_: For this step to work you will need appropriate deployment
+privileges on clojars.org.
 
 ## License
 
