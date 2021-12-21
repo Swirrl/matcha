@@ -22,9 +22,16 @@
       (assoc :lib lib :version version)
       (bb/install)))
 
+(defn tag [{:keys [version] :as opts}]
+  (let [vtag (str "v" version)]
+    (b/git-process {:git-args ["tag" vtag]})
+    (b/git-process {:git-args ["push" "origin" vtag]}))
+  opts)
+
 (defn deploy
   "Deploy the JAR to Clojars."
   [opts]
   (-> opts
       (assoc :lib lib :version version)
+      (tag)
       (bb/deploy)))
