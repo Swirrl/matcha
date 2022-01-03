@@ -9,7 +9,7 @@
                               speculative/speculative {:mvn/version "0.0.3"}}}
 
            :test {:extra-paths ["test"]
-                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.60.972"}
+                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.60.977"}
                                grafter/grafter {:mvn/version "2.1.18"}}
                   :main-opts ["-m" "kaocha.runner"]}
 
