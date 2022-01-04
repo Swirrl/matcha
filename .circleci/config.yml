@@ -37,13 +37,17 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - test
+      - test:
+          filters:  # required since `deploy` has tag filters AND requires `test`
+            tags:
+              only: /.*/
       - deploy:
           context:
             - clojars-publisher
           filters:
+            tags:
+              only: /^v.*/
             branches:
-              only:
-                - master
+              ignore: /.*/
           requires:
             - test

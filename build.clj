@@ -4,7 +4,8 @@
   (:refer-clojure :exclude [test]))
 
 (def lib 'grafter/matcha.alpha)
-(def version (format "0.2.%s" (b/git-count-revs nil)))
+(def version (System/getenv "CIRCLE_TAG"))
+
 (def jar-file (format "target/%s-%s.jar" (name lib) version))
 
 (defn test
@@ -29,16 +30,11 @@
       (assoc :lib lib :version version)
       (bb/install)))
 
-(defn tag [{:keys [version] :as opts}]
-  (let [vtag (str "v" version)]
-    (b/git-process {:git-args ["tag" vtag]})
-    (b/git-process {:git-args ["push" "origin" vtag]}))
-  opts)
-
 (defn deploy
-  "Deploy the JAR to Clojars."
+  "Deploy the JAR to Clojars.
+
+  NOTE: this expects a tag to be set; typically done via the github release UI."
   [opts]
   (-> opts
       (assoc :lib lib :version version)
-      (tag)
       (bb/deploy)))
