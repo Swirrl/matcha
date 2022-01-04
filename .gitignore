@@ -10,3 +10,4 @@
 .hgignore
 .hg/
 .cpcache
+/test-results/
