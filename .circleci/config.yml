@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  test:
     docker:
       - image: clojure:openjdk-11-tools-deps-1.10.3.1040-buster
     # Add steps to the job
@@ -13,8 +13,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Build & Test"
-          command: "clojure -T:build ci"
+          name: "Test"
+          command: "clojure -T:build test"
 
   deploy:
     docker:
@@ -24,7 +24,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Deploy jar to clojars"
+          name: "Build jar"
+          command: "clojure -T:build build"
+      - run:
+          name: "Tag and deploy to clojars"
           command: "clojure -T:build deploy"
 
 
@@ -34,7 +37,7 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - build
+      - test
       - deploy:
           context:
             - clojars-publisher
@@ -43,4 +46,4 @@ workflows:
               only:
                 - master
           requires:
-            - build
+            - test

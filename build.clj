@@ -1,17 +1,22 @@
 (ns build
   (:require [clojure.tools.build.api :as b]
-            [org.corfield.build :as bb]))
+            [org.corfield.build :as bb])
+  (:refer-clojure :exclude [test]))
 
 (def lib 'grafter/matcha.alpha)
 (def version (format "0.2.%s" (b/git-count-revs nil)))
 (def jar-file (format "target/%s-%s.jar" (name lib) version))
 
-(defn ci
+(defn test
+  "Run the tests"
+  [opts]
+  (bb/run-tests opts))
+
+(defn build
   "Run the CI pipeline of tests (and build the JAR)."
   [opts]
   (-> opts
       (assoc :lib lib :version version)
-      (bb/run-tests)
       (bb/clean)
       (bb/jar)))
 
