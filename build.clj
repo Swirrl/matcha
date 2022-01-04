@@ -1,10 +1,13 @@
 (ns build
   (:require [clojure.tools.build.api :as b]
-            [org.corfield.build :as bb])
+            [org.corfield.build :as bb]
+            [clojure.string :as str])
   (:refer-clojure :exclude [test]))
 
 (def lib 'grafter/matcha.alpha)
-(def version (System/getenv "CIRCLE_TAG"))
+(def version (str/replace (or (System/getenv "CIRCLE_TAG")
+                              "v0.3.999-SNAPSHOT")
+                          #"^v" ""))
 
 (def jar-file (format "target/%s-%s.jar" (name lib) version))
 
