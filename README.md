@@ -1,6 +1,6 @@
 # Matcha
 
-[![Clojars Project](https://img.shields.io/clojars/v/grafter/matcha.alpha.svg)](https://clojars.org/grafter/matcha.alpha) [![cljdoc badge](https://cljdoc.org/badge/swirrl/matcha)](https://cljdoc.org/d/swirrl/matcha)
+[![Clojars Project](https://img.shields.io/clojars/v/grafter/matcha.alpha.svg)](https://clojars.org/grafter/matcha.alpha) [![cljdoc badge](https://cljdoc.org/badge/grafter/matcha.alpha)](https://cljdoc.org/d/grafter/matcha.alpha)
 
 *WARNING: Alpha Software Subject to Change*
 
