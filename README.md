@@ -317,17 +317,37 @@ linear with the database size.
 
 ## Developing Matcha
 
-To test, create and build a library jar run:
+Matcha uses [`tools.build`](https://clojure.org/guides/tools_build) and 
+[`tools.deps`](https://clojure.org/guides/deps_and_cli) for builds, 
+development and testing.
+
+The command:
 
 ```
-$ clojure -T:build ci
+$ clojure -T:build test
 ```
 
-Once you have done that to deploy the jar to clojars run:
+Will run the tests, whilst
 
 ```
-$ clojure -T:build deploy
+$ clojure -T:build build
+$ clojure -T:build install
 ```
+
+can be used to build and install a jar into your local mvn repository.
+
+However for consuming local Matcha changes in local projects you are 
+usually better using `tools.deps` `:classpath-overrides`, or creating
+a branch and consuming via a `:git/url`.
+
+## Deploying to Clojars
+
+For [deployments CircleCI is setup](https://github.com/Swirrl/matcha/blob/fafe7478ae605c4cb2a0253714c3bd286e1ca185/.circleci/config.yml#L46-L55)
+to automatically deploy tags of the form `vX.Y.Z` where `X.Y.Z` are 
+`major.minor.patch` numbers.  If you have permissions (i.e. you are 
+a Swirrl developer) the recommended workflow is to create a new 
+release of the `main` branch in github with a tag that bumps the
+version number appropriately.
 
 _NOTE_: For this step to work you will need appropriate deployment
 privileges on clojars.org.
