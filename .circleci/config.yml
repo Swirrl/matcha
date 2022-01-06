@@ -8,6 +8,9 @@ jobs:
   test:
     docker:
       - image: clojure:openjdk-11-tools-deps-1.10.3.1040-buster
+        auth:
+          username: $DOCKERHUB_USERNAME # can specify string literal values
+          password: $DOCKERHUB_PASSWORD # or project environment variable reference
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -21,6 +24,9 @@ jobs:
   deploy:
     docker:
       - image: clojure:openjdk-11-tools-deps-1.10.3.1040-buster
+        auth:
+          username: $DOCKERHUB_USERNAME # can specify string literal values
+          password: $DOCKERHUB_PASSWORD # or project environment variable reference
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -40,12 +46,15 @@ workflows:
   build-workflow:
     jobs:
       - test:
+          context:
+            - swirrl-dockerhub-consumer
           filters:  # required since `deploy` has tag filters AND requires `test`
             tags:
               only: /.*/
       - deploy:
           context:
-            - clojars-publisher
+            - swirrl-clojars-publisher
+            - swirrl-dockerhub-consumer
           filters:
             tags:
               only: /^v.*/
