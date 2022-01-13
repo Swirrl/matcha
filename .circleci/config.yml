@@ -7,7 +7,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: clojure:openjdk-11-tools-deps-1.10.3.1040-buster
+      - image: cimg/clojure:1.10
         auth:
           username: $DOCKERHUB_USERNAME # can specify string literal values
           password: $DOCKERHUB_PASSWORD # or project environment variable reference
