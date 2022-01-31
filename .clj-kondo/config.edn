@@ -1,0 +1,1 @@
+{:linters {:unresolved-symbol {:exclude [(clojure.core.logic.pldb/db-rel)]}}}
