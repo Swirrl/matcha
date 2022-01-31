@@ -11,3 +11,5 @@
 .hg/
 .cpcache
 /test-results/
+.clj-kondo/.cache
+/.lsp/

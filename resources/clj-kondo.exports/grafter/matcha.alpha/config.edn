@@ -1,0 +1,7 @@
+{ :linters {:unresolved-symbol {:exclude [(grafter.matcha.alpha/construct)
+                                          (grafter.matcha.alpha/construct-1)
+                                          (grafter.matcha.alpha/select)
+                                          (grafter.matcha.alpha/select-1)
+                                          (grafter.matcha.alpha/build)
+                                          (grafter.matcha.alpha/build-1)
+                                          (grafter.matcha.alpha/ask)]}}}

@@ -1,5 +1,5 @@
 {
- :paths ["src"]
+ :paths ["src" "resources"]
 
  :deps {org.clojure/core.logic {:mvn/version "1.0.0"}
         org.clojure/clojure {:mvn/version "1.10.3"}}

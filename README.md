@@ -315,10 +315,29 @@ solutions on a database of a million triples can be done on a laptop
 in less than 10 seconds.  Query time scaling seems to be roughly
 linear with the database size.
 
+## Avoiding clj-kondo lint errors with matcha macros
+
+Matcha exports some clj-kondo configuration which prevents clj-kondo
+warning about unbound variables when using the matcha query macros.
+
+You can import these configs into your project with the following
+command:
+
+```
+$ clj-kondo --copy-configs --dependencies --lint "$(clojure -Spath)"
+Imported config to .clj-kondo/grafter/matcha.alpha. To activate, add "grafter/matcha.alpha" to :config-paths in .clj-kondo/config.edn.
+```
+
+Then simply add the following to `.clj-kondo/config.edn`:
+
+```
+{:config-paths ["grafter/matcha.alpha"]}
+```
+
 ## Developing Matcha
 
-Matcha uses [`tools.build`](https://clojure.org/guides/tools_build) and 
-[`tools.deps`](https://clojure.org/guides/deps_and_cli) for builds, 
+Matcha uses [`tools.build`](https://clojure.org/guides/tools_build) and
+[`tools.deps`](https://clojure.org/guides/deps_and_cli) for builds,
 development and testing.
 
 The command:
@@ -336,16 +355,16 @@ $ clojure -T:build install
 
 can be used to build and install a jar into your local mvn repository.
 
-However for consuming local Matcha changes in local projects you are 
+However for consuming local Matcha changes in local projects you are
 usually better using `tools.deps` `:classpath-overrides`, or creating
 a branch and consuming via a `:git/url`.
 
 ## Deploying to Clojars
 
 For [deployments CircleCI is setup](https://github.com/Swirrl/matcha/blob/fafe7478ae605c4cb2a0253714c3bd286e1ca185/.circleci/config.yml#L46-L55)
-to automatically deploy tags of the form `vX.Y.Z` where `X.Y.Z` are 
-`major.minor.patch` numbers.  If you have permissions (i.e. you are 
-a Swirrl developer) the recommended workflow is to create a new 
+to automatically deploy tags of the form `vX.Y.Z` where `X.Y.Z` are
+`major.minor.patch` numbers.  If you have permissions (i.e. you are
+a Swirrl developer) the recommended workflow is to create a new
 release of the `main` branch in github with a tag that bumps the
 version number appropriately.
 
