@@ -1,6 +1,6 @@
 (ns grafter.matcha.alpha
   (:refer-clojure :exclude [==])
-  (:require [clojure.core.logic :as l :refer [fresh run* ]]
+  (:require [clojure.core.logic :as l :refer [fresh]]
             [clojure.core.logic.protocols :as lp]
             [clojure.core.logic.pldb :as pldb]
             [clojure.spec.alpha :as s]
@@ -47,6 +47,8 @@
     grafter_2.rdf.protocols.OffsetDate
     (lp/-uninitialized [coll] coll)))
 
+(declare triple) ;; avoid clj-kondo linter warnings. The db-rel macro
+                 ;; below really defs the triple var.
 (pldb/db-rel triple ^:index subject ^:index predicate ^:index object)
 
 (defn triple-vector->idx-triple
@@ -99,7 +101,7 @@
     (select [?s ?p ?o]
       [[?s ?p ?o]
        (values ?s subjects)]))"
-  [binding bound-value]
+  [_binding _bound-value]
   (assert nil "`values` used not in a query block"))
 
 (defmacro optional
@@ -118,7 +120,7 @@
                            (values ?name names)])])]
     optional-friends)"
   {:style/indent :defn ::clause true}
-  [bgps]
+  [_bgps]
   (assert nil "`optional` used not in a query block"))
 
 (defn collection? [x]
@@ -247,7 +249,7 @@
     (reduce (partial merge-with merge)
             (map extract-row conformed-bgps))))
 
-(defn- solve* [qtype bound-vars pvars bgps db-or-idx]
+(defn- solve* [_qtype bound-vars pvars bgps db-or-idx]
   (let [conformed (s/conform ::bgps bgps)
         validation (extract-validation bound-vars conformed)]
     `(do
