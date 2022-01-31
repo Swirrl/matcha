@@ -1,6 +1,6 @@
 (ns grafter.matcha.alpha
   (:refer-clojure :exclude [==])
-  (:require [clojure.core.logic :as l :refer [fresh run*]]
+  (:require [clojure.core.logic :as l :refer [fresh run* ]]
             [clojure.core.logic.protocols :as lp]
             [clojure.core.logic.pldb :as pldb]
             [clojure.spec.alpha :as s]
