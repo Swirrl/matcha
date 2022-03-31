@@ -1,7 +1,7 @@
 {
  :paths ["src" "resources"]
 
- :deps {org.clojure/core.logic {:mvn/version "1.0.0"}
+ :deps {org.clojure/core.logic {:mvn/version "1.0.1"}
         org.clojure/clojure {:mvn/version "1.11.0"}}
 
  :aliases {:dev {:extra-paths ["test"]
