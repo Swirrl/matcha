@@ -10,7 +10,7 @@
 
            :test {:extra-paths ["test"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "1.71.1119"}
-                               lambdaisland/kaocha-junit-xml {:mvn/version "0.0.76"}
+                               lambdaisland/kaocha-junit-xml {:mvn/version "1.16.98"}
                                grafter/grafter {:mvn/version "2.1.18"}}
                   :main-opts ["-m" "kaocha.runner"]}
 
