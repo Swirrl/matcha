@@ -663,3 +663,32 @@
     (is (= {:grafter.rdf/uri :s, :p2 #{:o3 :o2}, :p :o}
            ret))
     ))
+
+(deftest issue-21-test
+  (testing "Order of `optional`s shouldn't matter."
+    (let [data [[1 :p :a]
+                [1 :p2 :X]
+                [1 :p3 :Z]
+                [3 :q :x]]
+          ;; two 'equal' queries with different ordering of
+          ;; `optional`s
+          result-ab (build [:id ?id]
+                           {:id ?id 
+                            :optional-a ?oa
+                            :optional-b ?ob}
+                           [[?id :p ?o]
+                            (optional [[?id :p2 ?oa]])
+                            (optional [[?id :p3 ?ob]])]
+                           data)
+          result-ba (build [:id ?id]
+                           {:id ?id 
+                            :optional-a ?oa
+                            :optional-b ?ob}
+                           [[?id :p ?o]
+                            (optional [[?id :p3 ?ob]])
+                            (optional [[?id :p2 ?oa]])]
+                           data)]
+      (is (= (select-keys (first result-ab) [:optional-a :optional-b])
+             {:optional-a :X :optional-b :Z}))
+      (is (= result-ab result-ba))
+      result-ab)))
