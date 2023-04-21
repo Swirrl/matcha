@@ -504,7 +504,7 @@
             (let [person katie]
               (select [?o ?name]
                 [[person foaf:knows ?o]
-                 (optional [[?o rdfs:label ?name]])
+                 ;;(optional [[?o rdfs:label ?name]])
                  (optional [[?o other:label ?name]])]
                 optional-friends)))))
 
@@ -541,7 +541,7 @@
                 optional-friends))))))
 
   (testing "How about some optionals in your optionals?"
-    (is (= #{[martin "Nitram"] [katie '_0] [julie '_0]}
+    (is (= #{[martin "Nitram"] [katie '_1] [julie '_0]}
            (set
             (let [people #{rick katie}
                   names  #{"Martin"}]

@@ -260,6 +260,85 @@
                 (fresh ~(->> bgps find-vars (remove (set pvars)) vec)
                   ~@(parse-patterns conformed))))))))
 
+(s/fdef select
+  :args (s/or
+         :ary-1 (s/cat :bgps ::bgps)
+         :ary-2 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps)
+         :ary-3 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps :db any?))
+  :ret (s/or
+        :ary-1-and-2 (s/fspec
+                      :args (s/cat :db-or-idx any?)
+                      :ret (s/coll-of any?))
+        :ary-3 (s/coll-of any?)))
+
+(defn split-optionals
+  "Returns a map of {:bgps ... :optionals [...]}
+
+  Where :bgps value is the input form with `(optional ...)` forms
+  removed, and :optionals is s vector of optional forms."
+  [bgps]
+  (let [optionals (java.util.ArrayList.)
+        optional? (fn [v]
+                    (and (seq? v)
+                         (symbol? (first v))
+                         (= #'optional (resolve (first v)))))
+        pruned (walk/postwalk
+                (fn [form]
+                  (if-not (vector? form)
+                    form
+                    (reduce (fn [result item]
+                              (if (optional? item)
+                                (do
+                                  (.add optionals item)
+                                  result)
+                                (conj result item)))
+                            []
+                            form)))
+                bgps)]
+    {:bgps pruned
+     :optionals (into [] optionals)}))
+
+(defn- decompose-optionals
+  "Returns a map of {:bgps ... :optionals ... :opt-vars ...}.
+
+  The :opt-vars is a set of symbols that occur only in `pvars` and
+  inside `optional` forms. See also: [[split-optionals]]"
+  [bgps pvars]
+  (let [{bgps' :bgps optional-forms :optionals
+         :as m} (split-optionals bgps)
+        all-opts (set (mapcat find-vars optional-forms))
+        pvars (set pvars)
+        mandatory (set/intersection (set (find-vars bgps')) pvars)
+        ;;mandatory (set/difference (set (find-vars bgps')) pvars)
+        opts (set/difference all-opts mandatory)]
+    (assoc m :opt-vars (set/difference (set/intersection pvars opts) mandatory))))
+
+(defn- unbound? [v] (and (symbol? v) (.startsWith ^String (name v) "_")))
+
+(defn -make-select-solution
+  "Creates a solution vector according where values in reqs and opts are
+  in the right position (as specified in select's 'projected values').
+  
+  - reqs - vector of required values
+  - opts - vector of optional values
+  - required-indices - vector of ints
+  - optional-indices - vector of ints"
+  [reqs opts required-indices optional-indices]
+  {:pre [(vector? reqs)
+         (vector? opts)
+         (vector? required-indices)
+         (vector? optional-indices)]}
+  (let [v (transient (vec (repeat (+ (count reqs) (count opts)) :?)))
+        v (reduce (fn [v i] 
+                    (assoc! v (nth required-indices i) (nth reqs i)))
+                  v
+                  (range (count reqs)))
+        v (reduce (fn [v i] 
+                    (assoc! v (nth optional-indices i) (nth opts i)))
+                  v
+                  (range (count opts)))]
+    (persistent! v)))
+
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
 
@@ -280,18 +359,59 @@
    `(fn [db-or-idx#]
       (select ~project-vars ~bgps db-or-idx#)))
   ([project-vars bgps db-or-idx]
-   (solve* 'select &env project-vars bgps db-or-idx)))
-
-(s/fdef select
-  :args (s/or
-         :ary-1 (s/cat :bgps ::bgps)
-         :ary-2 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps)
-         :ary-3 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps :db any?))
-  :ret (s/or
-        :ary-1-and-2 (s/fspec
-                      :args (s/cat :db-or-idx any?)
-                      :ret (s/coll-of any?))
-        :ary-3 (s/coll-of any?)))
+   (let [var->index (->> (map-indexed (fn [i v] [i v]) project-vars)
+                         (reduce (fn [m [i v]] (assoc! m v i)) (transient {}))
+                         (persistent!))
+         {:keys [opt-vars]} (decompose-optionals bgps (set project-vars))
+         [requireds optionals] [(filterv (complement opt-vars) project-vars)
+                                (filterv opt-vars project-vars)]
+         optional-indices (mapv var->index optionals)
+         required-indices (mapv var->index requireds)
+         optional-vals (fn [opt-var solutions]
+                         (let [index (get var->index opt-var)]
+                           (map #(get % index) solutions)))
+         solutions-sym (gensym "solutions_")
+         optionals-syms (mapv #(gensym (str "optional_" % "_")) optionals)
+         optionals-v-syms (mapv #(gensym (str "optional_v_" % "_")) optionals)]
+     `(let [~solutions-sym ~(solve* 'select &env project-vars bgps db-or-idx)
+            ~solutions-sym (if (= 1 ~(count project-vars))
+                             (map (fn [s#] [s#]) ~solutions-sym)
+                             ~solutions-sym)
+            ;; unpack values from solutions if asked for only 1 value
+            make-solution# (if (= 1 ~(count project-vars))
+                             (fn [sol# & _args#] (first sol#))
+                             -make-select-solution)
+            unbounds# (atom 0)
+            unbound!# (fn [] (let [v# @unbounds#]
+                               (swap! unbounds# inc)
+                               v#))
+            optional-vals-fn# (fn [solutions# indices#]
+                                ;; get all values for each ?var (think: column)
+                                (for [index# ~optional-indices]
+                                  (let [s# (->> (mapv #(get % index#) solutions#)
+                                                (remove ~unbound?))]
+                                    ;; we can't remove everything,
+                                    ;; at least 1 unbound needs to be returned
+                                    (if (seq s#)
+                                      s#
+                                      [(symbol (str "_" (unbound!#)))]))))
+            group-fn# (fn [sol#]        ;returns vector or required values only
+                        (mapv (fn [index#] (get sol# index#)) 
+                              ~required-indices))
+            grouped# (group-by group-fn# ~solutions-sym)
+            ;; for each group, extract "columns" of (optional) values
+            grouped-by-req#
+            (reduce-kv (fn [m# k# v#]
+                         (assoc m# k#
+                                (optional-vals-fn# v# ~optional-indices)))
+                       {}
+                       grouped#)
+            ;; grouped-by-req: {REQ1 ((v1 v2 v3) (u1 u2 ...)) REQ2 (...)}
+            ~optionals-v-syms (optional-vals-fn# ~solutions-sym ~optional-indices)]
+        (seq (for [[req-v# ~optionals-v-syms] grouped-by-req#
+                   ~@(vec (interleave optionals-syms optionals-v-syms))]
+               (make-solution# req-v# ~optionals-syms
+                               ~required-indices ~optional-indices)))))))
 
 (defmacro select-1
   "Query a `db-or-idx` with `bgps` patterns.
@@ -342,8 +462,6 @@
   (map (fn [binding-map]
          (walk/postwalk-replace binding-map construct-pattern))
        binding-maps))
-
-(defn- unbound? [v] (and (symbol? v) (.startsWith ^String (name v) "_")))
 
 (defn handle-optionals
   "Takes a seq of maps (solutions) and removes top level keys
@@ -460,48 +578,6 @@
          (make-group-predicates-xf subject-k)
          clean-up-subject-map)
         (vals (group-by subject-k solutions))))
-
-(defn split-optionals
-  "Returns a map of {:bgps ... :optionals [...]}
-
-  Where :bgps value is the input form with `(optional ...)` forms
-  removed, and :optinals is s vector of optional forms."
-  [bgps]
-  (let [optionals (java.util.ArrayList.)
-        optional? (fn [v]
-                    (and (seq? v)
-                         (symbol? (first v))
-                         (= #'optional (resolve (first v)))))
-        pruned (walk/postwalk
-                (fn [form]
-                  (if-not (vector? form)
-                    form
-                    (reduce (fn [result item]
-                              (if (optional? item)
-                                (do
-                                  (tap> {:found item})
-                                  (.add optionals item)
-                                  result)
-                                (conj result item)))
-                            []
-                            form)))
-                bgps)]
-    {:bgps pruned
-     :optionals (into [] optionals)}))
-
-(defn- decompose-optionals
-  "Returns a map of {:bgps ... :optionals ... :opt-vars ...}.
-
-  The :opt-vars are vars that occur only in `pvars` and inside `optional` forms.
-  See also: [[split-optionals]]"
-  [bgps pvars]
-  (let [{bgps' :bgps optional-forms :optionals
-         :as m} (split-optionals bgps)
-        all-opts (set (mapcat find-vars optional-forms))
-        pvars (set pvars)
-        mandatory (set/difference (set (find-vars bgps')) pvars)
-        opts (set/difference all-opts mandatory)]
-    (assoc m :opt-vars (set/difference (set/intersection pvars opts) mandatory))))
 
 (defmacro build
   "Query a `db-or-idx` with `bgps` patterns, and return data grouped by
