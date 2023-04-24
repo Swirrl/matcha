@@ -517,6 +517,29 @@
                  (optional [[?o other:label ?name]])]
                 optional-friends))))))
 
+  (testing "OPTIONAL and multiple solutions"
+    (let [db [(->Triple :john :status :online)
+              (->Triple :john :prop1 "A")
+              (->Triple :john :prop1 "B")
+              (->Triple :john :prop2 :x)
+              (->Triple :john :prop2 :y)]]
+      (is (= #{[:john "B" :y] [:john "B" :x] [:john "A" :y] [:john "A" :x]}
+             (set (select [?o ?p ?x]
+                    [[?o :status ?status]
+                     (optional [[?o :prop1 ?p]])
+                     (optional [[?o :prop2 ?x]])]
+                    db)))))
+
+    (let [db [(->Triple :john :status :online)
+              (->Triple :john :prop2 :x)
+              (->Triple :john :prop2 :y)]]
+      (is (= #{[:john '_1 :y] [:john '_1 :x]}
+             (set (select [?o ?p ?x]
+                    [[?o :status ?status]
+                     (optional [[?o :prop1 ?p]])
+                     (optional [[?o :prop2 ?x]])]
+                    db))))))
+
   (testing "OPTIONAL behaviour with VALUES"
     (is (=
          #{[martin "Martin"] [katie "Katie"] [julie "Not a robot"]}
@@ -661,8 +684,7 @@
                       [?s ?p ?o]]
                      db)]
     (is (= {:grafter.rdf/uri :s, :p2 #{:o3 :o2}, :p :o}
-           ret))
-    ))
+           ret))))
 
 (deftest issue-21-test
   (testing "Order of `optional`s shouldn't matter."
