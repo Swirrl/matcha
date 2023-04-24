@@ -673,7 +673,7 @@
           ;; two 'equal' queries with different ordering of
           ;; `optional`s
           result-ab (build [:id ?id]
-                           {:id ?id 
+                           {:id ?id
                             :optional-a ?oa
                             :optional-b ?ob}
                            [[?id :p ?o]
@@ -681,7 +681,7 @@
                             (optional [[?id :p3 ?ob]])]
                            data)
           result-ba (build [:id ?id]
-                           {:id ?id 
+                           {:id ?id
                             :optional-a ?oa
                             :optional-b ?ob}
                            [[?id :p ?o]
@@ -692,3 +692,77 @@
              {:optional-a :X :optional-b :Z}))
       (is (= result-ab result-ba))
       result-ab)))
+
+(def catalog-data [[:crime :a :dcat/Dataset]
+                   [:crime :dcterms/title "Crime"]
+
+                   [:crime :dcterms/spatial :manchester]
+                   [:crime :dcat/spatialResolutionInMeters 50]
+
+                   [:crime :dcterms/description "Has all optional fields"]
+                   [:crime :dcterms/publisher :ons]
+                   [:crime :dcterms/creator :moj]
+
+                   [:operations :a :dcat/Dataset]
+                   [:operations :dcterms/title "Operational Procedures"]
+                   [:operations :dcterms/description "Has one optional (creator)"]
+                   [:operations :dcterms/creator :nhs]
+
+                   [:deprivation :a :dcat/Dataset]
+                   [:deprivation :dcterms/title "Covid"]
+                   [:deprivation :dcterms/description "Has one optional (publisher)"]
+                   [:deprivation :dcterms/publisher :dluhc]
+
+                   [:not-in-results :a :Ontology]
+                   [:not-in-results :dcterms/title "Should not be found"]])
+
+(deftest catalog-example-with-optionals
+  (testing "catalog example with multiple optionals"
+    (testing "select"
+      (is
+       ;; NOTE select's return unbound variables not 'nil'
+       (= #{'[:operations "Operational Procedures" _0 :nhs _1 _2]
+            '[:deprivation "Covid" :dluhc _3 _4 _5]
+            '[:crime "Crime" :ons :moj :manchester 50]}
+
+          (set (select [?ds ?title ?pub ?creator ?area ?resolution]
+                       [[?ds :a :dcat/Dataset]
+                        [?ds :dcterms/title ?title]
+                        (optional
+                         [[?ds :dcterms/spatial ?area]
+                          [?ds :dcat/spatialResolutionInMeters ?resolution]])
+                        (optional
+                         [[?ds :dcterms/publisher ?pub]])
+                        (optional
+                         [[?ds :dcterms/creator ?creator]])]
+
+                       catalog-data)))))
+
+    (testing "build"
+      (is
+       (= #{{:grafter.rdf/uri :operations
+             :dcterms/creator :nhs}
+            {:grafter.rdf/uri :crime
+             :dcterms/spatial :manchester
+             :dcat/spatialResolutionInMeters 50
+             :dcterms/publisher :ons
+             :dcterms/creator :moj}
+            {:grafter.rdf/uri :deprivation
+             :dcterms/publisher :dluhc}}
+
+          (set (build ?ds {:dcterms/creator ?creator
+                           :dcterms/publisher ?pub
+                           :dcterms/spatial ?area
+                           :dcat/spatialResolutionInMeters ?resolution}
+
+                      [[?ds :a :dcat/Dataset]
+                       [?ds :dcterms/title ?title]
+                       (optional
+                        [[?ds :dcterms/spatial ?area]
+                         [?ds :dcat/spatialResolutionInMeters ?resolution]])
+                       (optional
+                        [[?ds :dcterms/publisher ?pub]])
+                       (optional
+                        [[?ds :dcterms/creator ?creator]])]
+
+                      catalog-data)))))))
