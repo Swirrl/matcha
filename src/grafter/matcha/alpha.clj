@@ -367,9 +367,6 @@
                                 (filterv opt-vars project-vars)]
          optional-indices (mapv var->index optionals)
          required-indices (mapv var->index requireds)
-         optional-vals (fn [opt-var solutions]
-                         (let [index (get var->index opt-var)]
-                           (map #(get % index) solutions)))
          solutions-sym (gensym "solutions_")
          optionals-syms (mapv #(gensym (str "optional_" % "_")) optionals)
          optionals-v-syms (mapv #(gensym (str "optional_v_" % "_")) optionals)]
