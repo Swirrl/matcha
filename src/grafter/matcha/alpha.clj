@@ -572,7 +572,7 @@
 
 (defn group-subjects-for-build
   "- `solutions` - a seq of maps"
-  [subject-k optional-vars solutions]
+  [subject-k solutions]
   (into []
         (comp
          (make-group-predicates-xf subject-k)
@@ -625,7 +625,7 @@
            (unify-solutions (quote ~pvarvec))
            (replace-vars-with-vals ~quoted-pvars)
            (handle-optionals ~quoted-pvars ~(quote-query-vars opt-vars opt-vars))
-           (group-subjects-for-build ~subject-k #{})
+           (group-subjects-for-build ~subject-k)
            seq))))
 
 (defmacro build-1
