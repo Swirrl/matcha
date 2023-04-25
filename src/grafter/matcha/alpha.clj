@@ -326,7 +326,9 @@
   {:pre [(vector? reqs)
          (vector? opts)
          (vector? required-indices)
-         (vector? optional-indices)]}
+         (vector? optional-indices)
+         (= (count reqs) (count required-indices))
+         (= (count opts) (count optional-indices))]}
   (let [v (transient (vec (repeat (+ (count reqs) (count opts)) :?)))
         v (reduce (fn [v i] 
                     (assoc! v (nth required-indices i) (nth reqs i)))
