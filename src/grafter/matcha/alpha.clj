@@ -309,7 +309,6 @@
         all-opts (set (mapcat find-vars optional-forms))
         pvars (set pvars)
         mandatory (set/intersection (set (find-vars bgps')) pvars)
-        ;;mandatory (set/difference (set (find-vars bgps')) pvars)
         opts (set/difference all-opts mandatory)]
     (assoc m :opt-vars (set/difference (set/intersection pvars opts) mandatory))))
 
