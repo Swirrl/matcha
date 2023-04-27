@@ -504,7 +504,7 @@
             (let [person katie]
               (select [?o ?name]
                 [[person foaf:knows ?o]
-                 (optional [[?o rdfs:label ?name]])
+                 ;;(optional [[?o rdfs:label ?name]])
                  (optional [[?o other:label ?name]])]
                 optional-friends)))))
 
@@ -516,6 +516,29 @@
                  (optional [[?o rdfs:label ?name]])
                  (optional [[?o other:label ?name]])]
                 optional-friends))))))
+
+  (testing "OPTIONAL and multiple solutions"
+    (let [db [(->Triple :john :status :online)
+              (->Triple :john :prop1 "A")
+              (->Triple :john :prop1 "B")
+              (->Triple :john :prop2 :x)
+              (->Triple :john :prop2 :y)]]
+      (is (= #{[:john "B" :y] [:john "B" :x] [:john "A" :y] [:john "A" :x]}
+             (set (select [?o ?p ?x]
+                    [[?o :status ?status]
+                     (optional [[?o :prop1 ?p]])
+                     (optional [[?o :prop2 ?x]])]
+                    db)))))
+
+    (let [db [(->Triple :john :status :online)
+              (->Triple :john :prop2 :x)
+              (->Triple :john :prop2 :y)]]
+      (is (= #{[:john '_1 :y] [:john '_1 :x]}
+             (set (select [?o ?p ?x]
+                    [[?o :status ?status]
+                     (optional [[?o :prop1 ?p]])
+                     (optional [[?o :prop2 ?x]])]
+                    db))))))
 
   (testing "OPTIONAL behaviour with VALUES"
     (is (=
@@ -541,7 +564,7 @@
                 optional-friends))))))
 
   (testing "How about some optionals in your optionals?"
-    (is (= #{[martin "Nitram"] [katie '_0] [julie '_0]}
+    (is (= #{[martin "Nitram"] [katie '_1] [julie '_0]}
            (set
             (let [people #{rick katie}
                   names  #{"Martin"}]
@@ -661,5 +684,124 @@
                       [?s ?p ?o]]
                      db)]
     (is (= {:grafter.rdf/uri :s, :p2 #{:o3 :o2}, :p :o}
-           ret))
-    ))
+           ret))))
+
+(deftest issue-21-test
+  (testing "Order of `optional`s shouldn't matter."
+    (let [data [[1 :p :a]
+                [1 :p2 :X]
+                [1 :p3 :Z]
+                [3 :q :x]]
+          ;; two 'equal' queries with different ordering of
+          ;; `optional`s
+          result-ab (build [:id ?id]
+                           {:id ?id
+                            :optional-a ?oa
+                            :optional-b ?ob}
+                           [[?id :p ?o]
+                            (optional [[?id :p2 ?oa]])
+                            (optional [[?id :p3 ?ob]])]
+                           data)
+          result-ba (build [:id ?id]
+                           {:id ?id
+                            :optional-a ?oa
+                            :optional-b ?ob}
+                           [[?id :p ?o]
+                            (optional [[?id :p3 ?ob]])
+                            (optional [[?id :p2 ?oa]])]
+                           data)]
+      (is (= (select-keys (first result-ab) [:optional-a :optional-b])
+             {:optional-a :X :optional-b :Z}))
+      (is (= result-ab result-ba))
+      result-ab)))
+
+(def catalog-data [[:crime :a :dcat/Dataset]
+                   [:crime :dcterms/title "Crime"]
+
+                   [:crime :dcterms/spatial :manchester]
+                   [:crime :dcat/spatialResolutionInMeters 50]
+
+                   [:crime :dcterms/description "Has all optional fields"]
+                   [:crime :dcterms/publisher :ons]
+                   [:crime :dcterms/creator :moj]
+
+                   [:operations :a :dcat/Dataset]
+                   [:operations :dcterms/title "Operational Procedures"]
+                   [:operations :dcterms/description "Has one optional (creator)"]
+                   [:operations :dcterms/creator :nhs]
+
+                   [:deprivation :a :dcat/Dataset]
+                   [:deprivation :dcterms/title "Covid"]
+                   [:deprivation :dcterms/description "Has one optional (publisher)"]
+                   [:deprivation :dcterms/publisher :dluhc]
+
+                   [:not-in-results :a :Ontology]
+                   [:not-in-results :dcterms/title "Should not be found"]])
+
+(deftest catalog-example-with-optionals
+  (testing "catalog example with multiple optionals"
+    (testing "select"
+      (is
+       ;; NOTE select's return unbound variables not 'nil'
+       (= #{'[:operations "Operational Procedures" _0 :nhs _1 _2]
+            '[:deprivation "Covid" :dluhc _3 _4 _5]
+            '[:crime "Crime" :ons :moj :manchester 50]}
+
+          (set (select [?ds ?title ?pub ?creator ?area ?resolution]
+                       [[?ds :a :dcat/Dataset]
+                        [?ds :dcterms/title ?title]
+                        (optional
+                         [[?ds :dcterms/spatial ?area]
+                          [?ds :dcat/spatialResolutionInMeters ?resolution]])
+                        (optional
+                         [[?ds :dcterms/publisher ?pub]])
+                        (optional
+                         [[?ds :dcterms/creator ?creator]])]
+
+                       catalog-data)))))
+
+    (testing "build"
+      (is
+       (= #{{:grafter.rdf/uri :operations
+             :dcterms/creator :nhs}
+            {:grafter.rdf/uri :crime
+             :dcterms/spatial :manchester
+             :dcat/spatialResolutionInMeters 50
+             :dcterms/publisher :ons
+             :dcterms/creator :moj}
+            {:grafter.rdf/uri :deprivation
+             :dcterms/publisher :dluhc}}
+
+          (set (build ?ds {:dcterms/creator ?creator
+                           :dcterms/publisher ?pub
+                           :dcterms/spatial ?area
+                           :dcat/spatialResolutionInMeters ?resolution}
+
+                      [[?ds :a :dcat/Dataset]
+                       [?ds :dcterms/title ?title]
+                       (optional
+                        [[?ds :dcterms/spatial ?area]
+                         [?ds :dcat/spatialResolutionInMeters ?resolution]])
+                       (optional
+                        [[?ds :dcterms/publisher ?pub]])
+                       (optional
+                        [[?ds :dcterms/creator ?creator]])]
+
+                      catalog-data)))))))
+
+(deftest optionals-with-values
+  (is (= '([:crime _0 :ons :moj :manchester 50]
+           [:deprivation _0 :dluhc _0 _1 _2])
+         (select [?ds ?title ?pub ?creator ?area ?resolution]
+                 [(values ?ds
+                          [:crime
+                           :deprivation])
+                  (optional
+                   [[?ds :dcterms/spatial ?area]
+                    [?ds :dcat/spatialResolutionInMeters ?resolution]])
+                  (optional
+                   [[?ds :dcterms/publisher ?pub]])
+                  (optional
+                   [[?ds :dcterms/creator ?creator]])]
+
+                 catalog-data))))

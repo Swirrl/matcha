@@ -198,7 +198,7 @@
      (concat
       (mapv parse-pattern-row requireds)
       (when (seq optionals)
-        [`(l/conda
+        [`(l/conde
            ~@(map parse-pattern-row optionals)
            ~@(when (seq requireds) [[`l/succeed]]))])))))
 
@@ -260,6 +260,86 @@
                 (fresh ~(->> bgps find-vars (remove (set pvars)) vec)
                   ~@(parse-patterns conformed))))))))
 
+(s/fdef select
+  :args (s/or
+         :ary-1 (s/cat :bgps ::bgps)
+         :ary-2 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps)
+         :ary-3 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps :db any?))
+  :ret (s/or
+        :ary-1-and-2 (s/fspec
+                      :args (s/cat :db-or-idx any?)
+                      :ret (s/coll-of any?))
+        :ary-3 (s/coll-of any?)))
+
+(defn split-optionals
+  "Returns a map of {:bgps ... :optionals [...]}
+
+  Where :bgps value is the input form with `(optional ...)` forms
+  removed, and :optionals is s vector of optional forms."
+  [bgps]
+  (let [optionals (java.util.ArrayList.)
+        optional? (fn [v]
+                    (and (seq? v)
+                         (symbol? (first v))
+                         (= #'optional (resolve (first v)))))
+        pruned (walk/postwalk
+                (fn [form]
+                  (if-not (vector? form)
+                    form
+                    (reduce (fn [result item]
+                              (if (optional? item)
+                                (do
+                                  (.add optionals item)
+                                  result)
+                                (conj result item)))
+                            []
+                            form)))
+                bgps)]
+    {:bgps pruned
+     :optionals (into [] optionals)}))
+
+(defn- decompose-optionals
+  "Returns a map of {:bgps ... :optionals ... :opt-vars ...}.
+
+  The :opt-vars is a set of symbols that occur only in `pvars` and
+  inside `optional` forms. See also: [[split-optionals]]"
+  [bgps pvars]
+  (let [{bgps' :bgps optional-forms :optionals
+         :as m} (split-optionals bgps)
+        all-opts (set (mapcat find-vars optional-forms))
+        pvars (set pvars)
+        mandatory (set/intersection (set (find-vars bgps')) pvars)
+        opts (set/difference all-opts mandatory)]
+    (assoc m :opt-vars (set/difference (set/intersection pvars opts) mandatory))))
+
+(defn- unbound? [v] (and (symbol? v) (.startsWith ^String (name v) "_")))
+
+(defn -make-select-solution
+  "Creates a solution vector according where values in reqs and opts are
+  in the right position (as specified in select's 'projected values').
+  
+  - reqs - vector of required values
+  - opts - vector of optional values
+  - required-indices - vector of ints
+  - optional-indices - vector of ints"
+  [reqs opts required-indices optional-indices]
+  {:pre [(vector? reqs)
+         (vector? opts)
+         (vector? required-indices)
+         (vector? optional-indices)
+         (= (count reqs) (count required-indices))
+         (= (count opts) (count optional-indices))]}
+  (let [v (transient (vec (repeat (+ (count reqs) (count opts)) :?)))
+        v (reduce (fn [v i] 
+                    (assoc! v (nth required-indices i) (nth reqs i)))
+                  v
+                  (range (count reqs)))
+        v (reduce (fn [v i] 
+                    (assoc! v (nth optional-indices i) (nth opts i)))
+                  v
+                  (range (count opts)))]
+    (persistent! v)))
+
 (defmacro select
   "Query a `db-or-idx` with `bgps` patterns.
 
@@ -280,18 +360,56 @@
    `(fn [db-or-idx#]
       (select ~project-vars ~bgps db-or-idx#)))
   ([project-vars bgps db-or-idx]
-   (solve* 'select &env project-vars bgps db-or-idx)))
-
-(s/fdef select
-  :args (s/or
-         :ary-1 (s/cat :bgps ::bgps)
-         :ary-2 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps)
-         :ary-3 (s/cat :project-vars (s/coll-of query-var?) :bgps ::bgps :db any?))
-  :ret (s/or
-        :ary-1-and-2 (s/fspec
-                      :args (s/cat :db-or-idx any?)
-                      :ret (s/coll-of any?))
-        :ary-3 (s/coll-of any?)))
+   (let [var->index (->> (map-indexed (fn [i v] [i v]) project-vars)
+                         (reduce (fn [m [i v]] (assoc! m v i)) (transient {}))
+                         (persistent!))
+         {:keys [opt-vars]} (decompose-optionals bgps (set project-vars))
+         [requireds optionals] [(filterv (complement opt-vars) project-vars)
+                                (filterv opt-vars project-vars)]
+         optional-indices (mapv var->index optionals)
+         required-indices (mapv var->index requireds)
+         solutions-sym (gensym "solutions_")
+         optionals-syms (mapv #(gensym (str "optional_" % "_")) optionals)
+         optionals-v-syms (mapv #(gensym (str "optional_v_" % "_")) optionals)]
+     `(let [~solutions-sym ~(solve* 'select &env project-vars bgps db-or-idx)
+            ~solutions-sym (if (= 1 ~(count project-vars))
+                             (map (fn [s#] [s#]) ~solutions-sym)
+                             ~solutions-sym)
+            ;; unpack values from solutions if asked for only 1 value
+            make-solution# (if (= 1 ~(count project-vars))
+                             (fn [sol# & _args#] (first sol#))
+                             -make-select-solution)
+            unbounds# (atom 0)
+            unbound!# (fn [] (let [v# @unbounds#]
+                               (swap! unbounds# inc)
+                               v#))
+            optional-vals-fn# (fn [solutions# indices#]
+                                ;; get all values for each ?var (think: column)
+                                (for [index# ~optional-indices]
+                                  (let [s# (->> (mapv #(get % index#) solutions#)
+                                                (remove ~unbound?))]
+                                    ;; we can't remove everything,
+                                    ;; at least 1 unbound needs to be returned
+                                    (if (seq s#)
+                                      s#
+                                      [(symbol (str "_" (unbound!#)))]))))
+            group-fn# (fn [sol#]        ;returns vector or required values only
+                        (mapv (fn [index#] (get sol# index#)) 
+                              ~required-indices))
+            grouped# (group-by group-fn# ~solutions-sym)
+            ;; for each group, extract "columns" of (optional) values
+            grouped-by-req#
+            (reduce-kv (fn [m# k# v#]
+                         (assoc m# k#
+                                (optional-vals-fn# v# ~optional-indices)))
+                       {}
+                       grouped#)
+            ;; grouped-by-req: {REQ1 ((v1 v2 v3) (u1 u2 ...)) REQ2 (...)}
+            ~optionals-v-syms (optional-vals-fn# ~solutions-sym ~optional-indices)]
+        (seq (for [[req-v# ~optionals-v-syms] grouped-by-req#
+                   ~@(vec (interleave optionals-syms optionals-v-syms))]
+               (make-solution# req-v# ~optionals-syms
+                               ~required-indices ~optional-indices)))))))
 
 (defmacro select-1
   "Query a `db-or-idx` with `bgps` patterns.
@@ -326,7 +444,11 @@
 (defn find-vars-in-tree [tree]
   (filterv query-var? (tree-seq coll? seq tree)))
 
-(defn unify-solutions [projected-vars solutions]
+(defn unify-solutions
+  "Returns a seq of maps."
+  [projected-vars solutions]
+  ;; projected-vars :: [?id ?x ...]
+  ;; solutions :: ([v1 v2 _0 ...])  
   (map (fn [s]
          (let [vars (if (= 1 (count projected-vars))
                       (first projected-vars)
@@ -339,6 +461,30 @@
          (walk/postwalk-replace binding-map construct-pattern))
        binding-maps))
 
+(defn handle-optionals
+  "Takes a seq of maps (solutions) and removes top level keys
+  mapped to an unbound value from each map."
+  [construct-pattern optionals solutions]
+  ;; This way, when merging solution by subject, we don't have to deal with
+  ;; sets of values.
+  (let [;; these are *potentially* optional keys
+        ;; optionals can have unbound solutions,
+        ;; while non-optionals will have actual values
+        opt-keys (reduce-kv (fn [s k v]
+                              (if (contains? optionals v)
+                                (conj s k)
+                                s))
+                            #{}
+                            construct-pattern)]
+    (for [solution solutions]
+      (reduce-kv (fn [m k v]
+                   (if (and (contains? opt-keys k)
+                            (unbound? v))
+                     (dissoc m k)
+                     m))
+                 solution
+                 solution))))
+
 (defn ^:no-doc quote-query-vars
   "Used to help macro expansion.  We need to quote only ?query-variables
   and leave other symbols unqouted so they pickup their values from
@@ -349,15 +495,45 @@
     (walk/postwalk-replace replacements construct-pattern)))
 
 (def ^:private group-predicates-xf
+  "Transducer taking in a seq of seqs where the
+  inner seqs are solutions for the same subject.
+
+  E.g.:
+  (({:id 1 ...} {:id 1 ...} ...) ({:id 2 ...} {:id 2 ..} ...) ...)"
   (map (fn [v]
          (apply merge-with
                 (fn [a b]
                   (cond
                     (set? a)
                     (conj a b)
+                    
                     :else
                     (set [a b])))
                 v))))
+
+(def ^:private make-group-predicates-xf
+  "Returns a transducer taking in a seq of seqs where the inner seqs are
+  solutions for the same subject.
+
+  E.g.:
+  (({:id 1 ...} {:id 1 ...} ...) ({:id 2 ...} {:id 2 ..} ...) ...)"
+  (fn [subject-k]
+    
+    (let [merger-fn (fn [a b]
+                      (cond
+                        (set? a)  (conj a b)
+                        :else (set [a b])))
+          remove-subject-k (fn [sol] (dissoc sol subject-k))
+          part-fn (fn part-fn [part]
+                    (if-not (seq part)
+                      part
+                      (let [subj (-> part first (get subject-k))
+                            merged (->> part
+                                        (map remove-subject-k)
+                                        (apply merge-with merger-fn))]
+                        (cond-> merged
+                          subj (assoc subject-k subj)))))]
+      (map part-fn))))
 
 (def ^:private unsetify-grafter-uri
   (map (fn [m]
@@ -379,22 +555,25 @@
 (def ^:private clean-up-subject-map
   "Removes any keys with unbound vars as values and flattens any sets
   that have just one value into scalars."
-  (map (fn [e]
+  (map (fn cleanup [e]
          (reduce-kv (fn [m k v]
-                      (-> m
-                          (cond->
-                              (symbol? v)
-                              (dissoc k)
+                      (cond
+                        (symbol? v)
+                        (dissoc m k)
 
-                              (and (set? v) (= 1 (count v)))
-                              (assoc k (first v)))))
+                        (and (set? v) (= 1 (count v)))
+                        (assoc m k (first v))
+
+                        :else m))
                     e
                     e))))
 
-(defn group-subjects-for-build [subject-k solutions]
+(defn group-subjects-for-build
+  "- `solutions` - a seq of maps"
+  [subject-k solutions]
   (into []
         (comp
-         group-predicates-xf
+         (make-group-predicates-xf subject-k)
          clean-up-subject-map)
         (vals (group-by subject-k solutions))))
 
@@ -427,17 +606,23 @@
    (let [[subject-k subject-var] (if (vector? subject)
                                    subject
                                    [:grafter.rdf/uri subject])
-         pvars (if (query-var? subject-var)
-                 (cons subject-var (find-vars-in-tree construct-pattern))
-                 (find-vars-in-tree construct-pattern))
-         pvarvec (vec pvars)]
-
+         pvars (distinct
+                (if (query-var? subject-var)
+                  (cons subject-var (find-vars-in-tree construct-pattern))
+                  (find-vars-in-tree construct-pattern)))
+         pvarvec (vec pvars)
+         {bgps-without-optionals :bgps
+          :keys [opt-vars optionals]} (decompose-optionals bgps pvars)
+         bgps (into bgps-without-optionals optionals)
+         quoted-pvars (quote-query-vars pvarvec (merge {subject-k subject-var}
+                                                       construct-pattern))]
+     ;; pvars :: (?id ?x ?y ) etc
      `(->> ~(solve* 'build &env pvars bgps db-or-idx)
            ;; create a sequence of {?var :value} binding maps for
            ;; each solution.
            (unify-solutions (quote ~pvarvec))
-           (replace-vars-with-vals ~(quote-query-vars pvarvec (merge {subject-k subject-var}
-                                                                     construct-pattern)))
+           (replace-vars-with-vals ~quoted-pvars)
+           (handle-optionals ~quoted-pvars ~(quote-query-vars opt-vars opt-vars))
            (group-subjects-for-build ~subject-k)
            seq))))
 
