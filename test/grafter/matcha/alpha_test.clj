@@ -788,3 +788,20 @@
                         [[?ds :dcterms/creator ?creator]])]
 
                       catalog-data)))))))
+
+(deftest optionals-with-values
+  (is (= '([:crime _0 :ons :moj :manchester 50]
+           [:deprivation _0 :dluhc _0 _1 _2])
+         (select [?ds ?title ?pub ?creator ?area ?resolution]
+                 [(values ?ds
+                          [:crime
+                           :deprivation])
+                  (optional
+                   [[?ds :dcterms/spatial ?area]
+                    [?ds :dcat/spatialResolutionInMeters ?resolution]])
+                  (optional
+                   [[?ds :dcterms/publisher ?pub]])
+                  (optional
+                   [[?ds :dcterms/creator ?creator]])]
+
+                 catalog-data))))
