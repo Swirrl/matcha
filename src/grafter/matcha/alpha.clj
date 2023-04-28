@@ -178,7 +178,7 @@
 (declare parse-patterns)
 
 (defn- parse-optional [{:keys [bgps]}]
-  `[(l/conde ~(parse-patterns bgps))])
+  (parse-patterns bgps))
 
 (defn- parse-clause [[type row]]
   (case type
