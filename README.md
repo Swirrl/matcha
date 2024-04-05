@@ -2,8 +2,6 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/grafter/matcha.alpha.svg)](https://clojars.org/grafter/matcha.alpha) [![cljdoc badge](https://cljdoc.org/badge/grafter/matcha.alpha)](https://cljdoc.org/d/grafter/matcha.alpha)
 
-*WARNING: Alpha Software Subject to Change*
-
 A Clojure DSL to query in memory triple models with a SPARQL like
 language.  Matcha provides simple BGP (Basic Graph Pattern) style
 queries on in memory graphs of linked data triples.
