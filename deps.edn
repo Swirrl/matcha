@@ -1,15 +1,15 @@
 {
  :paths ["src" "resources"]
 
- :deps {org.clojure/core.logic {:mvn/version "1.0.1"}
-        org.clojure/clojure {:mvn/version "1.11.1"}}
+ :deps {org.clojure/core.logic {:mvn/version "1.1.0"}
+        org.clojure/clojure {:mvn/version "1.11.3"}}
 
  :aliases {:dev {:extra-paths ["test"]
                  :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
                               speculative/speculative {:mvn/version "0.0.3"}}}
 
            :test {:extra-paths ["test"]
-                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.82.1306"}
+                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.88.1376"}
                                lambdaisland/kaocha-junit-xml {:mvn/version "1.17.101"}
                                grafter/grafter {:mvn/version "2.1.18"}}
                   :main-opts ["-m" "kaocha.runner"]}
